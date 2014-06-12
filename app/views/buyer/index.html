@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en" ng-app="app" ng-controller="bootstrapCtrl">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ g.head.title }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" media="all" href="html/app.css" />
+</head>
+<body>
+	<div id="flash-message">{{ g.flash-message }}</div>
+	<div id="ng-view" ng-view></div>
+	<script data-main="html/app.js" src="vendor/requirejs/require.js"></script>
+</body>
+</html>
