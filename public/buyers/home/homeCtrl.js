@@ -1,1 +1,1 @@
-angular.module("buyers.controllers",[]).controller("homeCtrl",["$scope",function(){}]);
+define(["./module"],function(o){o.controller("homeCtrl",["$scope",function(){console.log(1)}])});

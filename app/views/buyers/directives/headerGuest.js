@@ -1,12 +1,13 @@
-angular.module('buyers.directives', [])
-	.directive('headerGuest', function(){
+define(['./module'], function (module) {
+	module.directive('headerGuest', function(){
 		return {
 			restrict: 'E',
 			transclude: true,
 			scope: {},
 			templateUrl: './directives/headerGuest.html',
 			link: function (scope, element) {
+				console.log('header')
 			}
 		};
-		console.log( 'header')
 	});
+});

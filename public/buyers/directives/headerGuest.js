@@ -1,1 +1,1 @@
-angular.module("buyers.directives",[]).directive("headerGuest",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"./directives/headerGuest.html",link:function(){}}});
+define(["./module"],function(e){e.directive("headerGuest",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"./directives/headerGuest.html",link:function(){console.log("header")}}})});

@@ -4,14 +4,16 @@
 define([
 	'angular',
 	'angularRoute',
-	'./directives/headerGuest.js',
 	'/common/directives/flashMessage.js',
-	'./home/homeCtrl.js',
+	'./directives/index.js',
+	'./home/index.js',
+	// './auth/index.js',
 ], function (angular, ngRoute) {
 	return angular.module('buyers', [
 		'ngRoute',
 		'common.directives',
+		'buyers.home',
 		'buyers.directives',
-		'buyers.controllers'
+		// 'buyers.auth',
 	]);
 });
