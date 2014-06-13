@@ -1,9 +1,11 @@
-define(['angular', 'app'], function(angular, app) {
-
+define([
+	'angular',
+	'app',
+], function(angular, app) {
 	return app.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/', {
 			templateUrl: './home/home.html',
-			// controller: 'homeCtrl'
+			controller: 'homeCtrl'
 		});
 		$routeProvider.when('/terms-and-conditions', {
 			templateUrl: './terms/terms.html',
@@ -16,8 +18,6 @@ define(['angular', 'app'], function(angular, app) {
 		$routeProvider.otherwise({
 			redirectTo: '/'
 		});
-
 		// $locationProvider.html5Mode(true).hashPrefix('!');
 	}]);
-
 });
