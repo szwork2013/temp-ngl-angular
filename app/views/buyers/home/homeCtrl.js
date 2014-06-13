@@ -1,5 +1,3 @@
-define(['angular'], function(angular) {
-	return angular.module('buyers.controllers', [])
-		.controller('loginCtrl', ['$scope', function($scope) {
-		}]);
-});
+angular.module('buyers.controllers', [])
+	.controller('homeCtrl', ['$scope', function($scope) {
+	}]);

@@ -1,5 +1,11 @@
+/**
+ * Application Dependencies and Bootstrap
+ */
+
+// Deferred Bootstrap
 window.name = "NG_DEFER_BOOTSTRAP!";
 
+// RequireJS Configuration
 require.config({
 	paths: {
 		angular: '/vendor/angular/angular',
@@ -11,9 +17,11 @@ require.config({
 	},
 	priority: [
 		"angular"
-	]
+	],
+	enforceDefine: false // makes "define()" not throw errors
 });
 
+// Angular Bootstrap
 require( [
 	'angular',
 	'app',
@@ -21,6 +29,7 @@ require( [
 ], function(angular, app, routes) {
 	var $html = angular.element(document.getElementsByTagName('html')[0]);
 
+	// Document Ready
 	angular.element().ready(function() {
 		angular.resumeBootstrap([app['name']]);
 	});

@@ -1,1 +1,1 @@
-define(["angular"],function(n){return n.module("buyers.controllers",[]).controller("loginCtrl",["$scope",function(){}])});
+angular.module("buyers.controllers",[]).controller("homeCtrl",["$scope",function(){}]);

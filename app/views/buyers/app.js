@@ -1,9 +1,12 @@
+/**
+ * Application Top Level Dependencies
+ */
 define([
 	'angular',
 	'angularRoute',
-	'/common/directives/flashMessage',
-	'./directives/headerGuest',
-	'./home/homeCtrl',
+	'./directives/headerGuest.js',
+	'/common/directives/flashMessage.js',
+	'./home/homeCtrl.js',
 ], function (angular, ngRoute) {
 	return angular.module('buyers', [
 		'ngRoute',

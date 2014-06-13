@@ -1,1 +1,1 @@
-define(["angular","angularRoute","/common/directives/flashMessage","./directives/headerGuest","./home/homeCtrl"],function(e){return e.module("buyers",["ngRoute","common.directives","buyers.directives","buyers.controllers"])});
+define(["angular","angularRoute","./directives/headerGuest.js","/common/directives/flashMessage.js","./home/homeCtrl.js"],function(e){return e.module("buyers",["ngRoute","common.directives","buyers.directives","buyers.controllers"])});

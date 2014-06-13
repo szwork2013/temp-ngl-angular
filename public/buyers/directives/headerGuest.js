@@ -1,1 +1,1 @@
-define(["angular"],function(e){e.module("buyers.directives",[]).directive("headerGuest",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"./directives/headerGuest.html",link:function(){}}})});
+angular.module("buyers.directives",[]).directive("headerGuest",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"./directives/headerGuest.html",link:function(){}}});
