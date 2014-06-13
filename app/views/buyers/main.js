@@ -18,7 +18,7 @@ require.config({
 	priority: [
 		"angular"
 	],
-	enforceDefine: false // makes "define()" not throw errors
+	// enforceDefine: false // makes "define()" not throw errors
 });
 
 // Angular Bootstrap
