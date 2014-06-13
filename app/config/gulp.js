@@ -13,8 +13,10 @@ input.scripts = [
 	'!'+input.assets+'/bower_components/**/*'
 ];
 input.styles = [
-	input.assets+'/**/*.scss',
-	input.assets+'/**/*.less'
+	input.assets+'/**/*.less',
+	'!'+input.assets+'/assets/**/*',
+	'!'+input.assets+'/vendor/**/*',
+	'!'+input.assets+'/bower_components/**/*'
 ];
 input.html = input.assets+'/**/*.html';
 // Output

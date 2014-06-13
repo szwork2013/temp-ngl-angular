@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" ng-app="app" ng-controller="bootstrapCtrl">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ g.head.title }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="{{ g.head.keywords }}">
+	<meta name="description" content="{{ g.head.description }}">
+	<link rel="stylesheet" type="text/css" media="all" href="styles.css" />
+</head>
+<body>
+	<div id="flash-message" ng-show="g.flash-message" ng-class="g.flash-message.class">{{ g.flash-message.message }}</div>
+	<div id="ng-view" ng-view ng-class="pageClass(g.page_name)"></div>
+	<script data-main="app.js" src="../bower_components/requirejs/require.js"></script>
+</body>
+</html>
