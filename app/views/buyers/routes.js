@@ -7,15 +7,15 @@ define([
 		'$locationProvider',
 		function($routeProvider, $locationProvider) {
 			$routeProvider.when('/', {
-				templateUrl: './home/home.html',
+				templateUrl: '/home/home.html',
 				controller: 'homeCtrl'
 			});
 			$routeProvider.when('/terms-and-conditions', {
-				templateUrl: './terms/terms.html',
+				templateUrl: '/terms/terms.html',
 				controller: 'termsCtrl'
 			});
 			$routeProvider.when('/marketplace/login', {
-				templateUrl: './login/login.html',
+				templateUrl: '/auth/login.html',
 				controller: 'loginCtrl'
 			});
 			$routeProvider.otherwise({

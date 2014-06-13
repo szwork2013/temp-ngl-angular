@@ -1,1 +1,0 @@
-angular.module("buyers.directives",[]).directive("headerGuest",function(){return require(["./directives/headerGuest"],function(e){$injector.invoke(e,this,{$scope:$scope})})});
