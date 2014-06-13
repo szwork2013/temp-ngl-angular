@@ -1,8 +1,5 @@
-define([
-	'angular',
-], function (angular) {
-	angular.module('common.directives', [])
-	.directive('flashMessage', function(){
+define(['./module.js'], function (module) {
+	module.directive('flashMessage', function(){
 		return {
 			restrict: 'E',
 			transclude: true,

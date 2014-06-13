@@ -1,1 +1,1 @@
-define(["./module"],function(e){e.directive("headerGuest",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"./directives/headerGuest.html",link:function(){console.log("header")}}})});
+define(["./module.js"],function(e){e.directive("headerGuest",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"./directives/headerGuest.html",link:function(){}}})});

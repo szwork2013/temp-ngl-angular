@@ -1,5 +1,4 @@
 define([
-	'./footerGuest',
-	'./headerGuest'
-], function () {
-});
+	'./footerGuest.js',
+	'./headerGuest.js'
+]);

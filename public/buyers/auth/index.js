@@ -1,1 +1,1 @@
-define(["./loginCtrl"],function(){});
+define(["./loginCtrl.js"]);

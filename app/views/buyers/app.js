@@ -4,7 +4,7 @@
 define([
 	'angular',
 	'angularRoute',
-	'/common/directives/flashMessage.js',
+	'/common/directives/index.js',
 	'./directives/index.js',
 	'./home/index.js',
 	'./auth/index.js',

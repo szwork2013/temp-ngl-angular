@@ -1,1 +1,1 @@
-sad panda
+[Angular/RequireJS example](https://github.com/StarterSquad/angularjs-requirejs-seed)

@@ -1,1 +1,1 @@
-define(["./homeCtrl"],function(){});
+define(["./homeCtrl.js"]);

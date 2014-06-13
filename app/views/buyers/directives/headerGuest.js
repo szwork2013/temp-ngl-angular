@@ -1,4 +1,4 @@
-define(['./module'], function (module) {
+define(['./module.js'], function (module) {
 	module.directive('headerGuest', function(){
 		return {
 			restrict: 'E',
@@ -6,7 +6,6 @@ define(['./module'], function (module) {
 			scope: {},
 			templateUrl: './directives/headerGuest.html',
 			link: function (scope, element) {
-				console.log('header')
 			}
 		};
 	});

@@ -1,0 +1,1 @@
+define(["./flashMessage.js"]);

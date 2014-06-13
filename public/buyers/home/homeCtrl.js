@@ -1,1 +1,1 @@
-define(["./module"],function(o){o.controller("homeCtrl",["$scope",function(){console.log(1)}])});
+define(["./module.js"],function(o){o.controller("homeCtrl",["$scope",function(){}])});

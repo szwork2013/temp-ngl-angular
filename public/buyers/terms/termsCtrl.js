@@ -1,1 +1,1 @@
-angular.module("buyers.controllers",[]).controller("termsCtrl",["$scope",function(){}]);
+define(["./module.js"],function(e){e.controller("termsCtrl",["$scope",function(){}])});

@@ -1,3 +1,4 @@
-angular.module('buyers.controllers', [])
-	.controller('termsCtrl', ['$scope', function($scope) {
+define(['./module.js'], function (module) {
+	module.controller('termsCtrl', ['$scope', function($scope) {
 	}]);
+});
