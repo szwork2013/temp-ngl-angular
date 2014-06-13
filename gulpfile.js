@@ -23,7 +23,8 @@ gulp.task('watch', function() {
 // Default
 gulp.task('default',[
 	'watch',
-	'livereload'
+	'nodemon',
+	// 'livereload'
 ]);
 // Deploy
 gulp.task('deploy', function() {

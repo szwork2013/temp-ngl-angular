@@ -6,44 +6,30 @@ var express = require('express'),
 	server = http.Server(app),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
-	morgan = require('morgan'),
-	io = require('socket.io')(server),
 	path = require('path');
 
 /**
  * Configuration
  */
 
-app.set('html', Path.public+'/html');
-app.set('modules', Path.public+'/modules');
+// http://localhost:3000/index.html
+
+var dir = Path.public+'/buyers',
+	blacklist = [],
+	f = require('./app/util/directoryList')(dir);
+
 app.set('port', process.env.PORT || 3000);
-app.use('/shared',express.static(Path.shared));
 app.use('/vendor',express.static('./bower_components'));
-// app.use(morgan('dev'));
-app.use(bodyParser());
-app.use(methodOverride());
-app.use(express.static(Path.public));
+app.use('/common',express.static(Path.public+'/common'));
+for (var i = f.length - 1; i >= 0; i--) {
+	if( _.indexOf(blacklist,f[i]) ) {
+		app.use('/'+f[i],express.static(dir+'/'+f[i]));
+	}
+}
+app.use(express.static(dir));
 
-/**
- * Routes
- */
-// Home
-var home = app.get('html')+'/index.html';
 app.get('/', function(req, res){
-	res.sendfile(home);
+	res.sendfile(dir);
 });
-// API
-// Catch All
-// app.get('*', function(req, res){
-// 	res.sendfile(home);
-// });
 
-/**
- * Socket IO
- */
-// io.on('connection', function(socket){});
-
-/**
- * Boot
- */
 server.listen(app.get('port'));

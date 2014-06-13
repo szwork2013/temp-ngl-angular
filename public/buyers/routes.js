@@ -1,0 +1,1 @@
+define(["angular","app"],function(e,t){return t.config(["$routeProvider",function(e){e.when("/",{templateUrl:"./home/home.html"}),e.when("/terms-and-conditions",{templateUrl:"./terms/terms.html",controller:"termsCtrl"}),e.when("/marketplace/login",{templateUrl:"./login/login.html",controller:"loginCtrl"}),e.otherwise({redirectTo:"/"})}])});
