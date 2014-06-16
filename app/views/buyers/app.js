@@ -4,6 +4,7 @@
 define([
 	'angular',
 	'angularRoute',
+	'./partials/index.js',
 	'./home/index.js',
 	'./terms/index.js',
 	'/modules/auth/index.js',
@@ -14,6 +15,7 @@ define([
 		'ngRoute',
 		'buyers.home',
 		'buyers.terms',
+		'buyers.partials',
 		'modules.auth',
 		'modules.partials',
 		// 'modules.user'

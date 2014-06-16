@@ -21,10 +21,11 @@
     "socket.io-client": "~1.0.4",
     "requirejs": "~2.1.14",
     "lodash": "~2.4.1",
-    "requirejs-domready": "~2.0.1",
-    "requirejs-plugins": "~1.0.2",
-    "angular-resource": "~1.2.17",
-    "angular-animate": "~1.2.17",
-    "angular-route": "~1.2.17"
+    "angular-animate": "~1.2.18",
+    "angular-cookies": "~1.2.18",
+    "angular-resource": "~1.2.18",
+    "angular-route": "~1.2.18",
+    "angular-sanitize": "~1.2.18",
+    "angular-touch": "~1.2.18"
   }
 }

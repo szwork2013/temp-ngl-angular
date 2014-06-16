@@ -9,27 +9,42 @@ window.name = "NG_DEFER_BOOTSTRAP!";
 require.config({
 	paths: {
 		angular: '/vendor/angular/angular',
-		angularRoute: '/vendor/angular-route/angular-route'
+		angularAnimate: '/vendor/angular-animate/angular-animate',
+		angularCookies: '/vendor/angular-cookies/angular-cookies',
+		angularResource: '/vendor/angular-resource/angular-resource',
+		angularRoute: '/vendor/angular-route/angular-route',
+		angularSanitize: '/vendor/angular-sanitize/angular-sanitize',
+		angularTouch: '/vendor/angular-touch/angular-touch',
+		jquery: '/vendor/jquery/dist/jquery.min',
+		lodash: '/vendor/lodash/dist/lodash.min',
+		socketIoClient: '/vendor/socket.io-client/socket.io.min'
 	},
 	shim: {
 		'angular' : {'exports' : 'angular'},
-		'angularRoute': ['angular']
+		'angularAnimate': ['angular'],
+		'angularCookies': ['angular'],
+		'angularResource': ['angular'],
+		'angularRoute': ['angular'],
+		'angularSanitize': ['angular'],
+		'angularTouch': ['angular']
 	},
 	priority: [
+		"lodash",
 		"angular"
-	],
-	// enforceDefine: false // makes "define()" not throw errors
+	]
 });
 
-// Angular Bootstrap
+// Page & App Dependencies
 require( [
+	'lodash',
+	'jquery',
 	'angular',
 	'app',
-	'routes'
-], function(angular, app, routes) {
+	'routes',
+	'bootstrap',
+], function(_, $, angular, app, routes, bootstrap) {
+	// Angular Document Ready
 	var $html = angular.element(document.getElementsByTagName('html')[0]);
-
-	// Document Ready
 	angular.element().ready(function() {
 		angular.resumeBootstrap([app['name']]);
 	});

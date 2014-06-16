@@ -15,7 +15,7 @@ define([
 				controller: 'termsCtrl'
 			});
 			$routeProvider.when('/marketplace/login', {
-				templateUrl: '/modules/login.html',
+				templateUrl: '/login/login.html',
 				controller: 'loginCtrl'
 			});
 			$routeProvider.otherwise({

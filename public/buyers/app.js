@@ -1,1 +1,1 @@
-define(["angular","angularRoute","./home/index.js","./terms/index.js","/modules/auth/index.js","/modules/partials/index.js"],function(e){return e.module("buyers",["ngRoute","buyers.home","buyers.terms","modules.auth","modules.partials"])});
+define(["angular","angularRoute","./partials/index.js","./home/index.js","./terms/index.js","/modules/auth/index.js","/modules/partials/index.js"],function(e){return e.module("buyers",["ngRoute","buyers.home","buyers.terms","buyers.partials","modules.auth","modules.partials"])});

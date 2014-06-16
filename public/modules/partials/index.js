@@ -1,1 +1,1 @@
-define(["./flash.js","./footer.js","./header.js"]);
+define(["./flash.js","./flashMessage.js"]);
