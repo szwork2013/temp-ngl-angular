@@ -1,11 +1,18 @@
 define(['./module.js'], function (module) {
-	module.directive('flashMessage', function(){
+	module.factory("Flash", function($rootScope) {
+		var queueMessages = [],
+			currentMessage = '';
+
+		$rootScope.$on('$routeChangeSuccess', function() {
+			currentMessage = queueMessages.shift() || '';
+			currentClass = queueClasses.shift() || '';
+		});
 		return {
-			restrict: 'E',
-			transclude: true,
-			scope: {},
-			templateUrl: '/modules/partials/flashMessage.html',
-			link: function (scope, element) {
+			setMessage: function(message) {
+				queueMessages.push(message);
+			},
+			getMessage: function() {
+				return currentMessage;
 			}
 		};
 	});

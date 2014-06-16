@@ -1,0 +1,1 @@
+define(["./module.js"],function(t){t.factory("Transaction",["$scope","API",function(t,e){var r=e.url+"/transactions";return{get:function(t){return $http({method:"GET",url:r,params:t,headers:e.header})},post:function(t){return $http({method:"POST",url:r,data:t,headers:e.header})}}}])});

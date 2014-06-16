@@ -1,0 +1,1 @@
+define(["./module.js"],function(e){e.controller("Users",["$scope",function(){}])});

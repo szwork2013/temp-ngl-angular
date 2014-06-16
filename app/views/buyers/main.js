@@ -41,8 +41,8 @@ require( [
 	'angular',
 	'app',
 	'routes',
-	'bootstrap',
-], function(_, $, angular, app, routes, bootstrap) {
+	'config',
+], function(_, $, angular, app, routes, config) {
 	// Angular Document Ready
 	var $html = angular.element(document.getElementsByTagName('html')[0]);
 	angular.element().ready(function() {

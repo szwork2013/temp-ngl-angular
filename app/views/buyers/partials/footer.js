@@ -1,5 +1,5 @@
 define(['./module.js'], function (module) {
-	module.directive('footer', function(){
+	module.directive('footer', [function(){
 		return {
 			restrict: 'E',
 			transclude: true,
@@ -8,5 +8,5 @@ define(['./module.js'], function (module) {
 			link: function (scope, element) {
 			}
 		};
-	});
+	}]);
 });

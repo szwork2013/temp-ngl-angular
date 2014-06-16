@@ -1,4 +1,6 @@
 define([
-	'./flash.js',
-	'./flashMessage.js'
+	'./Flash.js',
+	'./flashMessage.js',
+	'./menu.js',
+	'./pageLoader.js'
 ]);

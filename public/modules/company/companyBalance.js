@@ -1,0 +1,1 @@
+define(["./module.js"],function(n){n.directive("companyBalance",["Company",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"/modules/partials/companyBalance.html",link:function(){}}}])});

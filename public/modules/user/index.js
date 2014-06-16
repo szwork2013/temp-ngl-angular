@@ -1,1 +1,1 @@
-define(["./userSchema.js","./userService.js"]);
+define(["./Users.js"]);

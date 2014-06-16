@@ -1,0 +1,1 @@
+define(["./module.js"],function(o){o.controller("homeCtrl",["$scope",function(){}])});

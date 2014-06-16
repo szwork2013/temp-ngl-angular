@@ -1,4 +1,3 @@
 define([
-	'./userSchema.js',
-	'./userService.js'
+	'./Users.js'
 ]);

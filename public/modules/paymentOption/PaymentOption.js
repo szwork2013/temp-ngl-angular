@@ -1,0 +1,1 @@
+define(["./module.js"],function(n){n.factory("PaymentOption",["$scope",function(){}])});

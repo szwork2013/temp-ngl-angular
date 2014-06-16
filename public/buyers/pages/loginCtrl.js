@@ -1,0 +1,1 @@
+define(["./module.js"],function(n){n.controller("loginCtrl",["$scope","Flash",function(n){n.submit=function(){}}])});

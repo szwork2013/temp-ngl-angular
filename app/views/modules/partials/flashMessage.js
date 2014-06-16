@@ -1,20 +1,12 @@
 define(['./module.js'], function (module) {
-	module.factory("flash", function($rootScope) {
-		var queueMessages = [],
-			currentMessage = '';
-
-		$rootScope.$on('$routeChangeSuccess', function() {
-			currentMessage = queueMessages.shift() || '';
-			currentClass = queueClasses.shift() || '';
-		});
-
+	module.directive('flashMessage', [function(){
 		return {
-			setMessage: function(message) {
-				queueMessages.push(message);
-			},
-			getMessage: function() {
-				return currentMessage;
+			restrict: 'E',
+			transclude: true,
+			scope: {},
+			templateUrl: '/modules/partials/flashMessage.html',
+			link: function (scope, element) {
 			}
 		};
-	});
+	}]);
 });

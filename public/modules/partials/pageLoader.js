@@ -1,0 +1,1 @@
+define(["./module.js"],function(e){e.directive("pageLoader",[function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"/modules/partials/pageLoader.html",link:function(){}}}])});

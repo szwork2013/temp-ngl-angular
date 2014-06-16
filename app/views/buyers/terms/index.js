@@ -1,3 +1,0 @@
-define([
-	'./termsCtrl.js'
-]);

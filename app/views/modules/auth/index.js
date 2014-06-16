@@ -1,3 +1,3 @@
 define([
-	'./loginCtrl.js'
+	'./Auth.js'
 ]);
