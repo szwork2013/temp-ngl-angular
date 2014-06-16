@@ -29,7 +29,7 @@ gulp.task('default',[
 // Deploy
 gulp.task('deploy', function() {
 	$.runSequence(
-		'clean',
+		// 'clean',
 		'minifyHtml',
 		'uglify',
 		'less'

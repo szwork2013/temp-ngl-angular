@@ -1,4 +1,3 @@
 define([
-	'./footerGuest.js',
-	'./headerGuest.js'
+	'./termsCtrl.js'
 ]);

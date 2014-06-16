@@ -4,7 +4,7 @@ define(['./module.js'], function (module) {
 			restrict: 'E',
 			transclude: true,
 			scope: {},
-			templateUrl: './directives/footerGuest.html',
+			templateUrl: '/modules/partials/footer.html',
 			link: function (scope, element) {
 			}
 		};

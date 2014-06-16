@@ -1,1 +1,1 @@
-define(["./footerGuest.js","./headerGuest.js"]);
+define(["./termsCtrl.js"]);

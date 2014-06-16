@@ -4,16 +4,18 @@
 define([
 	'angular',
 	'angularRoute',
-	'/common/directives/index.js',
-	'./directives/index.js',
 	'./home/index.js',
-	'./login/index.js',
+	'./terms/index.js',
+	'/modules/auth/index.js',
+	'/modules/partials/index.js',
+	// '/modules/user/index.js'
 ], function (angular, ngRoute) {
 	return angular.module('buyers', [
 		'ngRoute',
-		'common.directives',
 		'buyers.home',
-		'buyers.directives',
-		'buyers.login',
+		'buyers.terms',
+		'modules.auth',
+		'modules.partials',
+		// 'modules.user'
 	]);
 });

@@ -4,7 +4,7 @@ define(['./module.js'], function (module) {
 			restrict: 'E',
 			transclude: true,
 			scope: {},
-			templateUrl: '/common/directives/flashMessage.html',
+			templateUrl: '/modules/partials/flashMessage.html',
 			link: function (scope, element) {
 			}
 		};

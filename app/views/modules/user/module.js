@@ -1,5 +1,5 @@
 define([
 	'angular'
 ], function (angular) {
-	return angular.module('common.user', []);
+	return angular.module('modules.user', []);
 });

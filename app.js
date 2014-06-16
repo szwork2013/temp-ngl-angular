@@ -21,7 +21,7 @@ var dir = Path.public+'/buyers',
 app.set('port', process.env.PORT || 3000);
 app.use('/vendor',express.static('./bower_components'));
 app.use('/assets',express.static(Path.public+'/assets'));
-app.use('/common',express.static(Path.public+'/common'));
+app.use('/modules',express.static(Path.public+'/modules'));
 for (var i = f.length - 1; i >= 0; i--) {
 	if( _.indexOf(blacklist,f[i]) ) {
 		app.use('/'+f[i],express.static(dir+'/'+f[i]));

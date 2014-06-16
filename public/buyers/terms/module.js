@@ -1,1 +1,1 @@
-define(["angular"],function(e){return e.module("buyers.directives",[])});
+define(["angular"],function(e){return e.module("buyers.terms",[])});
