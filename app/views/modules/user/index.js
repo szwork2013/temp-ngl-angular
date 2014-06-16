@@ -1,3 +1,4 @@
 define([
-	'./Users.js'
+	'./Users.js',
+	'./User_Roles.js'
 ]);

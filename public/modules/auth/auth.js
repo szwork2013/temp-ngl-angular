@@ -1,1 +1,1 @@
-define(["./module.js"],function(n){n.factory("Auth",["$scope",function(){}])});
+define(["./module.js"],function(e){e.service("Auth",["$scope","Session",function(e,o){console.log(e,o)}])});

@@ -1,17 +1,17 @@
 <header></header>
 <div class="login-form">
 	<div class="content">
-		<form name="login-form" ng-submit="">
+		<form name="loginForm" ng-submit="login(credentials)" novalidate>
 			<div class="control-group h">
 				<label class="control-label" for="email">Email:</label>
 				<div class="controls">
-					<input type="text" name="email">
+					<input type="text" name="email" ng-model="credentials.email" autofocus>
 				</div>
 			</div>
 			<div class="control-group h">
 				<label class="control-label" for="password">Password:</label>
 				<div class="controls">
-					<input type="password" name="password">
+					<input type="password" name="password" ng-model="credentials.password">
 				</div>
 			</div>
 			<div class="control-group h">

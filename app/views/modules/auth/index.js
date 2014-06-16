@@ -1,3 +1,4 @@
 define([
-	'./Auth.js'
+	'./Auth.js',
+	'./Auth_Events.js'
 ]);
