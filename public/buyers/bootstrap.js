@@ -1,0 +1,1 @@
+define(["angular","app"],function(e,n){n.config(function(){}).controller("bootCtrl",["$rootScope",function(e){e.pageNav=[{name:"Home",link:"/",classes:""},{name:"Link 1",link:"/",classes:""}],e.headTitle="Title",e.headKeywords="Keywords",e.headDescription="Description",e.bodyPageName="view-loading"}])});

@@ -1,16 +1,17 @@
 <!doctype html>
-<html lang="en" ng-app="buyers">
+<html lang="en" ng-app="buyers" ng-controller="bootCtrl">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ g.head.title }}</title>
+	<title>{{ headTitle }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="keywords" content="{{ g.head.keywords }}">
-	<meta name="description" content="{{ g.head.description }}">
+	<meta name="keywords" content="{{ headKeywords }}">
+	<meta name="description" content="{{ headDescription }}">
 	<link rel="stylesheet" type="text/css" media="all" href="styles.css" />
+	<script data-main="main" src="/vendor/requirejs/require.js"></script>
 </head>
-<body ng-class="pageClass(g.page_name)">
-	<flash-message></flash-message>
+<body ng-class="bodyPageName">
 	<div id="ng-view" ng-view></div>
-	<script data-main="main" src="vendor/requirejs/require.js"></script>
+	<flash-message></flash-message>
+	<page-loader></page-loader>
 </body>
 </html>
