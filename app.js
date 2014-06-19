@@ -14,7 +14,7 @@ var express = require('express'),
 
 // http://localhost:3000/index.html
 
-var dir = Path.public+'/buyers',
+var dir = Path.public+'/corporate',
 	blacklist = [],
 	f = require('./app/util/directoryList')(dir);
 

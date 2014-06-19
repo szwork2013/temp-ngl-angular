@@ -1,3 +1,0 @@
-define([
-	'./Lead.js'
-]);
