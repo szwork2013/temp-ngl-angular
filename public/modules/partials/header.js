@@ -1,1 +1,0 @@
-define(["./module.js"],function(e){e.directive("headerGuest",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"/modules/partials/header.html",link:function(){}}})});

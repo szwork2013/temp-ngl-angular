@@ -1,1 +1,0 @@
-define(["angular"],function(n){return n.module("modules.campaign",[])});

@@ -1,1 +1,0 @@
-define(["./module.js"],function(e){e.directive("footerGuest",function(){return{restrict:"E",transclude:!0,scope:{},templateUrl:"./directives/footerGuest.html",link:function(){}}})});

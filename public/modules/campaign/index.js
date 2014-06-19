@@ -1,1 +1,0 @@
-define(["./Campaign.js"]);

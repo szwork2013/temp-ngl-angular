@@ -1,1 +1,0 @@
-define(["./module.js"],function(e){e.controller("userService",["$scope",function(){}])});
