@@ -1,3 +1,0 @@
-define([
-	'./Company.js'
-]);

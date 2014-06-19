@@ -1,0 +1,1 @@
+define(["angular","app"],function(e,o){o.constant("API",{url:API_URL,header:{}}).config(["$httpProvider",function(){}]).controller("bootCtrl",["$rootScope","User_Roles","Auth",function(e,o,r){e.headTitle="Title",e.headKeywords="Keywords",e.headDescription="Description",e.bodyPageName="view-loading",e.userCurrent=null,e.userRoles=o,e.isAuthorized=r.isAuthorized}])});

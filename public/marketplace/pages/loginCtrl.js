@@ -1,0 +1,1 @@
+define(["./module.js"],function(o){o.controller("loginCtrl",["$scope",function(o){o.submit=function(o){console.log(o)}}])});

@@ -1,1 +1,1 @@
-define(["angular"],function(e){return e.module("common.directives",[])});
+define(["angular"],function(e){return e.module("modules.partials",[])});

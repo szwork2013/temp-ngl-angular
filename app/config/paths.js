@@ -14,8 +14,8 @@ for (var i = f.length - 1; i >= 0; i--) {
 	}
 }
 
-exports.root = root;
-exports.public = public;
-exports.app = app;
-
-module.exports = exports;
+module.exports = {
+	root: root,
+	public: public,
+	app: app
+};
