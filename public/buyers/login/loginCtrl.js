@@ -1,1 +1,0 @@
-define(["./module.js"],function(n){n.controller("loginCtrl",["$scope",function(){}])});

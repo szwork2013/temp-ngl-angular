@@ -1,1 +1,0 @@
-define(["./module.js"],function(c){c.factory("Vertical",["$scope",function(){}])});

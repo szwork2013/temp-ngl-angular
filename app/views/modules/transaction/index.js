@@ -1,3 +1,0 @@
-define([
-	'./Transaction.js'
-]);

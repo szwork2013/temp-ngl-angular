@@ -1,1 +1,0 @@
-define(["./module.js"],function(e){e.directive("menu",[function(){return{restrict:"E",transclude:!0,scope:{items:"="},templateUrl:"/modules/partials/menu.html",link:function(){}}}])});

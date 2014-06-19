@@ -1,4 +1,4 @@
-require('./app/bootstrap/start');
+var Gulp = require('./commands/gulp.config.js');
 
 global.Combine = require('stream-combiner');
 global.gulp = require('gulp');
@@ -7,12 +7,12 @@ global.$ = require('gulp-load-plugins')();
 
 var fs = require('fs'),
 	path = require('path'),
-	onlyScripts = require(Path.app+'/util/scriptFilter'),
-	tasks = fs.readdirSync(Path.app+'/commands/gulp/').filter(onlyScripts);
+	onlyScripts = require('./util/scriptFilter'),
+	tasks = fs.readdirSync('./commands/gulp/').filter(onlyScripts);
 
 // Set up tasks
 tasks.forEach(function(task) {
-	require(Path.app+'/commands/gulp/' + task);
+	require('./commands/gulp/' + task);
 });
 // Watch
 gulp.task('watch', function() {
@@ -23,7 +23,7 @@ gulp.task('watch', function() {
 // Default
 gulp.task('default',[
 	'watch',
-	'nodemon',
+	// 'nodemon',
 	// 'livereload'
 ]);
 // Deploy

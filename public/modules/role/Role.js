@@ -1,1 +1,0 @@
-define(["./module.js"],function(o){o.factory("Role",["$scope",function(){}])});
