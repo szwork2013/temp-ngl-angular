@@ -16,13 +16,7 @@ tasks.forEach(function(task) {
 	require('./bootstrap/commands/gulp/' + task);
 });
 
-// Default
-gulp.task('default',[
-	'watch',
-	'nodemon',
-	// 'livereload'
-]);
-
+/*
 // Echo messages
 if( Env.UI ) {
 	gutil.log( gutil.colors.cyan( 'View '+Env.Name+' '+Env.UI+' site on http:localhost:'+Env.Port ) );	
@@ -46,3 +40,4 @@ for (var i = _Envs.UIs.length - 1; i >= 0; i--) {
 uis = '['+uis+']';
 // gutil.log( gutil.colors.cyan( 'Apps: '+apps) );
 // gutil.log( gutil.colors.cyan( 'UIs: '+uis) );
+*/

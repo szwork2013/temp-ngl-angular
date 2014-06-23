@@ -8,14 +8,14 @@ input.images = [
 	input.assets+'/img/'
 ];
 input.scripts = [
-	input.assets+'/**/*.js',
+	input.assets+'/app/**/*.js',
 	'!'+input.assets+'/vendor/**/*',
 	'!'+input.assets+'/bower_components/**/*'
 ];
 input.browserify = [
-	input.assets+'/admin/app.js',
-	input.assets+'/corporate/app.js',
-	input.assets+'/marketplace/app.js'
+	input.assets+'/app/admin/admin.js',
+	input.assets+'/app/corporate/corporate.js',
+	input.assets+'/app/marketplace/marketplace.js'
 ];
 input.styles = [
 	input.assets+'/**/*.less',
@@ -23,19 +23,21 @@ input.styles = [
 	'!'+input.assets+'/vendor/**/*',
 	'!'+input.assets+'/bower_components/**/*'
 ];
-input.html = input.assets+'/**/*.html';
+input.html = input.assets+'/app/**/*.html';
+
 // Output
 output.assets = './nextgenleads';
 output.images = output.assets+'/assets/images';
-output.scripts = output.assets+'/public/js/';
-input.browserify = [
-	output.assets+'/public/admin/app.js',
-	output.assets+'/public/corporate/app.js',
-	output.assets+'/public/marketplace/app.js'
+output.scripts = output.assets+'/public';
+output.browserify = [
+	output.assets+'/public/admin',
+	output.assets+'/public/corporate',
+	output.assets+'/public/marketplace'
 ];
 output.styles = output.assets+'/assets/css';
-output.html = output.assets+'/public/html/';
+output.html = output.assets+'/public/';
 
+// Exports
 module.exports = {
 	input: input,
 	output: output

@@ -2,19 +2,14 @@
 <html lang="en" ng-app="buyers" ng-controller="bootCtrl">
 <head>
 <meta charset="UTF-8">
-<title>{{ headTitle }}</title>
+<title>NextGen Leads - High Quality Leads that Convert</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="{{ headKeywords }}">
-<meta name="description" content="{{ headDescription }}">
-<link rel="stylesheet" type="text/css" media="all" href="/assets/styles/corporate.css" />
-<script>
-API_URL = 'stage.nextgenleads.com';
-</script>
-<script data-main="main.js" src="/vendor/requirejs/require.js"></script>
+<meta name="keywords" content="health leads, health care leads, health insurance leads, insurance agency leads, lead generation">
+<meta name="description" content="NextGen Leads provides high-quality leads that convert for agencies.">
+<link rel="stylesheet" type="text/css" media="all" href="/assets/css/corporate.css" />
+<script src="/corporate/app.js"></script>
 </head>
-<body ng-class="bodyPageName">
+<body ng-class="pageName">
 	<div id="ng-view" ng-view></div>
-	<flash-message></flash-message>
-	<page-loader></page-loader>
 </body>
 </html>
