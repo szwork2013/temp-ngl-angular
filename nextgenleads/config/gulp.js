@@ -1,41 +1,39 @@
-var input = {},
+var app = './nextgenleads',
+	input = {},
 	output = {};
 
 // Input
-input.assets = './nextgenleads';
-input.nodemon = input.assets+'/app.js';
+input.nodemon = app+'/app.js';
 input.images = [
-	input.assets+'/img/'
+	app+'/img/'
 ];
 input.scripts = [
-	input.assets+'/app/**/*.js',
-	'!'+input.assets+'/vendor/**/*',
-	'!'+input.assets+'/bower_components/**/*'
+	app+'/app/**/*.js',
+	'!'+app+'/vendor/**/*',
+	'!'+app+'/bower_components/**/*'
 ];
 input.browserify = [
-	input.assets+'/app/admin/admin.js',
-	input.assets+'/app/corporate/corporate.js',
-	input.assets+'/app/marketplace/marketplace.js'
+	app+'/app/admin/admin.js',
+	app+'/app/corporate/corporate.js',
+	app+'/app/marketplace/marketplace.js'
 ];
 input.styles = [
-	input.assets+'/**/*.less',
-	'!'+input.assets+'/assets/**/*',
-	'!'+input.assets+'/vendor/**/*',
-	'!'+input.assets+'/bower_components/**/*'
+	app+'/assets/less/**/*',
+	'!'+app+'/vendor/**/*',
+	'!'+app+'/bower_components/**/*'
 ];
-input.html = input.assets+'/app/**/*.html';
+input.html = app+'/app/**/*.html';
 
 // Output
-output.assets = './nextgenleads';
-output.images = output.assets+'/assets/images';
-output.scripts = output.assets+'/public';
+output.images = app+'/assets/images';
+output.scripts = app+'/public';
 output.browserify = [
-	output.assets+'/public/admin',
-	output.assets+'/public/corporate',
-	output.assets+'/public/marketplace'
+	app+'/public/admin',
+	app+'/public/corporate',
+	app+'/public/marketplace'
 ];
-output.styles = output.assets+'/assets/css';
-output.html = output.assets+'/public/';
+output.styles = app+'/assets/css';
+output.html = app+'/public/';
 
 // Exports
 module.exports = {

@@ -15,15 +15,14 @@ var express = require('express'),
 
 var dir = Path.public+'/'+Env.UI,
 	blacklist = [],
-	f = require('../bootstrap/util/directoryList')(dir);
+	f = require('../bootstrap/util/directoryList')(Path.public);
 
 app.set('port', Env.Port);
 app.use('/vendor',express.static('../bower_components'));
-app.use('/assets',express.static('./assets'));
-app.use('/modules',express.static('./modules'));
+app.use('/assets',express.static(Path.root+'/assets'));
 for (var i = f.length - 1; i >= 0; i--) {
 	if( _.indexOf(blacklist,f[i]) ) {
-		app.use('/'+f[i],express.static(dir+'/'+f[i]));
+		app.use('/'+f[i],express.static(Path.root+'/public/'+f[i]));
 	}
 }
 app.use(express.static(dir));
