@@ -3,7 +3,13 @@ var app = './nextgenleads',
 	output = {};
 
 // Input
-input.nodemon = app+'/app.js';
+input.nodemon = [
+	app+'/app.js'
+];
+input.nodemonIgnore = [
+	app+'/app/**/*',
+	app+'/public/**/*'
+]
 input.images = [
 	app+'/img/'
 ];

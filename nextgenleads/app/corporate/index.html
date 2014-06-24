@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="buyers" ng-controller="bootCtrl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>NextGen Leads - High Quality Leads that Convert</title>
@@ -9,7 +9,9 @@
 <link rel="stylesheet" type="text/css" media="all" href="/assets/css/corporate.css" />
 <script src="/corporate/corporate.js"></script>
 </head>
-<body ng-class="pageName">
-	<div id="ng-view" ng-view></div>
+<body ng-app="Corporate" ng-controller="boot">
+	<div id="header" ui-view="header"></div>
+	<div id="body" ui-view="body"></div>
+	<div id="footer" ui-view="footer"></div>	
 </body>
 </html>

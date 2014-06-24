@@ -2,12 +2,7 @@ gulp.task('nodemon', function () {
 	$.nodemon({
 		script: Gulp.input.nodemon,
 		ext: 'html js',
-		ignore: [
-			Path.root+'/node_modules/**/*',
-			Path.root+'/bower_components/**/*',
-			Path.views+'/**/*',
-			Path.public+'/**/*'
-		]
+		ignore: Gulp.input.nodemonIgnore
 	}).on('crash',function(err){
 		if(err) {
 			console.log(err);

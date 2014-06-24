@@ -16,28 +16,9 @@ tasks.forEach(function(task) {
 	require('./bootstrap/commands/gulp/' + task);
 });
 
-/*
-// Echo messages
+var helper = 'Use `gulp help` for more info.'
 if( Env.UI ) {
-	gutil.log( gutil.colors.cyan( 'View '+Env.Name+' '+Env.UI+' site on http:localhost:'+Env.Port ) );	
+	gutil.log( gutil.colors.cyan( 'View '+Env.Name+' '+Env.UI+' site on http:localhost:'+Env.Port+'. '+helper ) );	
 } else {
-	gutil.log( gutil.colors.cyan( 'View site on http:localhost:'+Env.Port) );	
+	gutil.log( gutil.colors.cyan( 'View site on http:localhost:'+Env.Port+'. '+helper) );	
 }
-// Options
-gutil.log( 'Environment example:', gutil.colors.magenta( 'gulp --app '+Env.Name+' --ui '+Env.UI+' --port '+Env.Port) );
-var apps = '';
-for (var i = _Envs.Apps.length - 1; i >= 0; i--) {
-	apps += _Envs.Apps[i];
-	if( i !== 0 ) apps += ', ';
-}
-apps = '['+apps+']';
-
-var uis = '';
-for (var i = _Envs.UIs.length - 1; i >= 0; i--) {
-	uis += _Envs.UIs[i];
-	if( i !== 0 ) uis += ', ';
-}
-uis = '['+uis+']';
-// gutil.log( gutil.colors.cyan( 'Apps: '+apps) );
-// gutil.log( gutil.colors.cyan( 'UIs: '+uis) );
-*/
