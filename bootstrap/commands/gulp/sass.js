@@ -1,9 +1,9 @@
 gulp.task('sass', function() {
 	Combine(
-		gulp.src(Gulp.input.styles),
+		gulp.src(Gulp.sass.input),
 		$.sass(),
 		$.minifyCss(),
-		gulp.dest(Gulp.output.styles)
+		gulp.dest(Gulp.sass.output)
 	).on('error', function(err) {
 		if(err) {
 			console.log(err);

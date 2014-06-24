@@ -1,4 +1,3 @@
-global._ = require('lodash');
 global.Path = require('./config/paths');
 
 var toTitlecase = require('../bootstrap/util/toTitlecase'),

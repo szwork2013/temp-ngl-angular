@@ -1,3 +1,4 @@
+global._ = require('lodash');
 global.args = require('yargs').argv;
 
 var _Envs = {

@@ -1,5 +1,5 @@
 gulp.task('watch', function() {
-	gulp.watch(Gulp.input.html, ['minifyHtml']);
-	gulp.watch(Gulp.input.scripts, ['browserify']);
-	gulp.watch(Gulp.input.styles, ['less']);
+	for (var i = Gulp.watch.length - 1; i >= 0; i--) {
+		gulp.watch(Gulp.watch[i].src, Gulp.watch[i].task);
+	};
 });

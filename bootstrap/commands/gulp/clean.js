@@ -8,7 +8,9 @@ gulp.task('clean', function () {
 			"!"+Gulp.output.assets+'bower_components/**/*',
 			"!"+Gulp.output.assets+'vendor/**/*',
 			"!"+Gulp.output.assets+'uploads/**/*'
-		], {read: false}),
+		], {
+			read: false
+		}),
 		$.clean()
 	).on('error', function(err) {
 		if(err) {

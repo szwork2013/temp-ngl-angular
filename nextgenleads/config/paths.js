@@ -1,6 +1,6 @@
 var root = './nextgenleads',
-	public = root+'/public',
-	app = root+'/app',
+	dist = root+'/dist',
+	app = root+'/view',
 	exports = {},
 	blacklist = [];
 
@@ -16,6 +16,6 @@ for (var i = f.length - 1; i >= 0; i--) {
 
 module.exports = {
 	root: root,
-	public: public,
+	dist: dist,
 	app: app
 };

@@ -1,3 +1,6 @@
+/**
+ * This task doesn't do anything
+ */
 gulp.task('help', function () {
 	// Options
 	gutil.log( 'Environment example:', gutil.colors.magenta( 'gulp --app '+Env.Name+' --ui '+Env.UI+' --port '+Env.Port) );

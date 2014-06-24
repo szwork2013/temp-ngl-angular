@@ -1,48 +1,56 @@
 var app = './nextgenleads',
-	input = {},
-	output = {};
+	exports = {
+		default: [
+			'watch',
+			'nodemon'
+		],
+		minifyHtml: {
+			input: app+'/**/*.html',
+			output: app+'/dist/'
+		},
+		browserify: {
+			input: [
+				app+'/admin/admin.js',
+				app+'/corporate/corporate.js',
+				app+'/marketplace/marketplace.js'
+			],
+			output: [
+				app+'/dist/admin',
+				app+'/dist/corporate',
+				app+'/dist/marketplace'
+			]
+		},
+		less: {
+			input: [
+				app+'/assets/less/**/*',
+				'!'+app+'/vendor/**/*',
+				'!'+app+'/bower_components/**/*'
+			],
+			output: app+'/assets/css'
+		},
+		nodemon: {
+			app: app+'/app.js',
+			ignore: [
+				app+'/**/*',
+				app+'/dist/**/*'
+			]
+		}
+	};
 
-// Input
-input.nodemon = [
-	app+'/app.js'
+exports.watch = [
+	{
+		src: exports.minifyHtml.input,
+		task: ['minifyHtml']
+	},
+	{
+		src: exports.browserify.input,
+		task: ['browserify']
+	},
+	{
+		src: exports.less.input,
+		task: ['less']
+	}
 ];
-input.nodemonIgnore = [
-	app+'/app/**/*',
-	app+'/public/**/*'
-]
-input.images = [
-	app+'/img/'
-];
-input.scripts = [
-	app+'/app/**/*.js',
-	'!'+app+'/vendor/**/*',
-	'!'+app+'/bower_components/**/*'
-];
-input.browserify = [
-	app+'/app/admin/admin.js',
-	app+'/app/corporate/corporate.js',
-	app+'/app/marketplace/marketplace.js'
-];
-input.styles = [
-	app+'/assets/less/**/*',
-	'!'+app+'/vendor/**/*',
-	'!'+app+'/bower_components/**/*'
-];
-input.html = app+'/app/**/*.html';
-
-// Output
-output.images = app+'/assets/images';
-output.scripts = app+'/public';
-output.browserify = [
-	app+'/public/admin',
-	app+'/public/corporate',
-	app+'/public/marketplace'
-];
-output.styles = app+'/assets/css';
-output.html = app+'/public/';
 
 // Exports
-module.exports = {
-	input: input,
-	output: output
-};
+module.exports = exports;

@@ -1,9 +1,9 @@
 gulp.task('less', function() {
 	Combine(
-		gulp.src(Gulp.input.styles),
+		gulp.src(Gulp.less.input),
 		$.less(),
 		$.minifyCss(),
-		gulp.dest(Gulp.output.styles)
+		gulp.dest(Gulp.less.output)
 	).on('error', function(err) {
 		if(err) {
 			console.log(err);
