@@ -1,5 +1,4 @@
 gulp.task('minifyHtml', function() {
-	console.log(Gulp.minifyHtml);
 	Combine(
 		gulp.src(Gulp.minifyHtml.src),
 		$.minifyHtml({

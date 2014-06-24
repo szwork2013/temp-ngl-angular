@@ -23,58 +23,58 @@ var app = './nextgenleads',
 					dest: app+'/dist/marketplace'
 				}],
 			shim: {
-				jquery: {
-					path: './bower_components/jquery/dist/jquery.js',
+				'jquery': {
+					path: './bower_components/jquery/dist/jquery.min.js',
 					exports: '$'
 				},
-				lodash: {
-					path: './bower_components/lodash/dist/lodash.js',
+				'lodash': {
+					path: './bower_components/lodash/dist/lodash.min.js',
 					exports: '_'
 				},
-				angular: {
-					path: './bower_components/angular/angular.js',
+				'angular': {
+					path: './bower_components/angular/angular.min.js',
 					exports: 'angular'
 				},
 				'angular-animate': {
-					path: './bower_components/angular-animate/angular-animate.js',
+					path: './bower_components/angular-animate/angular-animate.min.js',
 					exports: 'ngAnimate',
 					depends: {
 						angular: 'angular'
 					}
 				},
 				'angular-cookies': {
-					path: './bower_components/angular-cookies/angular-cookies.js',
+					path: './bower_components/angular-cookies/angular-cookies.min.js',
 					exports: 'ngCookies',
 					depends: {
 						angular: 'angular'
 					}
 				},
 				'angular-resource': {
-					path: './bower_components/angular-resource/angular-resource.js',
+					path: './bower_components/angular-resource/angular-resource.min.js',
 					exports: 'ngResource',
 					depends: {
 						angular: 'angular'
 					}
 				},
 				'angular-sanitize': {
-					path: './bower_components/angular-sanitize/angular-sanitize.js',
+					path: './bower_components/angular-sanitize/angular-sanitize.min.js',
 					exports: 'ngSanitize',
 					depends: {
 						angular: 'angular'
 					}
 				},
 				'angular-touch': {
-					path: './bower_components/angular-touch/angular-touch.js',
+					path: './bower_components/angular-touch/angular-touch.min.js',
 					exports: 'ngTouch',
 					depends: {
 						angular: 'angular'
 					}
 				},
 				'angular-ui-router': {
-					path: './bower_components/angular-ui-router/release/angular-ui-router.js',
+					path: './bower_components/angular-ui-router/release/angular-ui-router.min.js',
 					exports: 'ui.router',
 					depends: {
-						angular: 'angular'
+						angular: 'ui'
 					}
 				}
 			}
