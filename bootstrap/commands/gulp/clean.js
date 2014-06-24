@@ -2,12 +2,12 @@ gulp.task('clean', function () {
 	Combine(
 		gulp.src([
 			// Remove compiled
-			Gulp.output.assets+'/**/*.js',
-			Gulp.output.assets+'/**/*.css',
-			Gulp.output.assets+'/**/*.html',
-			"!"+Gulp.output.assets+'bower_components/**/*',
-			"!"+Gulp.output.assets+'vendor/**/*',
-			"!"+Gulp.output.assets+'uploads/**/*'
+			Gulp.assets.dest+'/**/*.js',
+			Gulp.assets.dest+'/**/*.css',
+			Gulp.assets.dest+'/**/*.html',
+			"!"+Gulp.assets.dest+'bower_components/**/*',
+			"!"+Gulp.assets.dest+'vendor/**/*',
+			"!"+Gulp.assets.dest+'uploads/**/*'
 		], {
 			read: false
 		}),

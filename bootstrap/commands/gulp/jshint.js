@@ -1,6 +1,6 @@
 gulp.task('jshint', function() {
 	Combine(
-		gulp.src(Gulp.scripts.input),
+		gulp.src(Gulp.scripts.src),
 		$.jshint(),
 		$.jshint.reporter('default')
 	).on('error', function(err) {

@@ -1,6 +1,7 @@
 gulp.task('minifyHtml', function() {
+	console.log(Gulp.minifyHtml);
 	Combine(
-		gulp.src(Gulp.minifyHtml.input),
+		gulp.src(Gulp.minifyHtml.src),
 		$.minifyHtml({
 			conditionals: true,
 			empty: true,
@@ -8,7 +9,7 @@ gulp.task('minifyHtml', function() {
 			quotes: true,
 			spare: true
 		}),
-		gulp.dest(Gulp.minifyHtml.output)
+		gulp.dest(Gulp.minifyHtml.dest)
 	).on('error', function(err) {
 		if(err) {
 			console.log(err);

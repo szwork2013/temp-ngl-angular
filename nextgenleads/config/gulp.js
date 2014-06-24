@@ -5,52 +5,108 @@ var app = './nextgenleads',
 			'nodemon'
 		],
 		minifyHtml: {
-			input: app+'/**/*.html',
-			output: app+'/dist/'
+			src: app+'/view/**/*.html',
+			dest: app+'/dist/'
 		},
 		browserify: {
-			input: [
-				app+'/admin/admin.js',
-				app+'/corporate/corporate.js',
-				app+'/marketplace/marketplace.js'
-			],
-			output: [
-				app+'/dist/admin',
-				app+'/dist/corporate',
-				app+'/dist/marketplace'
-			]
+			app: [{
+					src: app+'/view/corporate/corporate.js',
+					concat: 'corporate.js',
+					dest: app+'/dist/corporate'
+				}, {
+					src: app+'/view/admin/admin.js',
+					concat: 'admin.js',
+					dest: app+'/dist/admin'
+				}, {
+					src: app+'/view/marketplace/marketplace.js',
+					concat: 'marketplace.js',
+					dest: app+'/dist/marketplace'
+				}],
+			shim: {
+				jquery: {
+					path: './bower_components/jquery/dist/jquery.js',
+					exports: '$'
+				},
+				lodash: {
+					path: './bower_components/lodash/dist/lodash.js',
+					exports: '_'
+				},
+				angular: {
+					path: './bower_components/angular/angular.js',
+					exports: 'angular'
+				},
+				'angular-animate': {
+					path: './bower_components/angular-animate/angular-animate.js',
+					exports: 'ngAnimate',
+					depends: {
+						angular: 'angular'
+					}
+				},
+				'angular-cookies': {
+					path: './bower_components/angular-cookies/angular-cookies.js',
+					exports: 'ngCookies',
+					depends: {
+						angular: 'angular'
+					}
+				},
+				'angular-resource': {
+					path: './bower_components/angular-resource/angular-resource.js',
+					exports: 'ngResource',
+					depends: {
+						angular: 'angular'
+					}
+				},
+				'angular-sanitize': {
+					path: './bower_components/angular-sanitize/angular-sanitize.js',
+					exports: 'ngSanitize',
+					depends: {
+						angular: 'angular'
+					}
+				},
+				'angular-touch': {
+					path: './bower_components/angular-touch/angular-touch.js',
+					exports: 'ngTouch',
+					depends: {
+						angular: 'angular'
+					}
+				},
+				'angular-ui-router': {
+					path: './bower_components/angular-ui-router/release/angular-ui-router.js',
+					exports: 'ui.router',
+					depends: {
+						angular: 'angular'
+					}
+				}
+			}
 		},
 		less: {
-			input: [
+			src: [
 				app+'/assets/less/**/*',
 				'!'+app+'/vendor/**/*',
 				'!'+app+'/bower_components/**/*'
 			],
-			output: app+'/assets/css'
+			dest: app+'/assets/css'
 		},
 		nodemon: {
 			app: app+'/app.js',
 			ignore: [
 				app+'/**/*',
-				app+'/dist/**/*'
+				app+'/dist/**/*',
+				app+'/view/**/*'
 			]
 		}
 	};
 
-exports.watch = [
-	{
-		src: exports.minifyHtml.input,
-		task: ['minifyHtml']
-	},
-	{
-		src: exports.browserify.input,
-		task: ['browserify']
-	},
-	{
-		src: exports.less.input,
-		task: ['less']
-	}
-];
+exports.watch = [{
+	src: exports.minifyHtml.src,
+	task: ['minifyHtml']
+}, {
+	src: app+'/view/**/*.js',
+	task: ['browserify']
+}, {
+	src: exports.less.src,
+	task: ['less']
+}];
 
 // Exports
 module.exports = exports;

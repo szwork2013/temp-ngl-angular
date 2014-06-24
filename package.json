@@ -22,6 +22,8 @@
     "winston": "^0.7.3"
   },
   "devDependencies": {
+    "browserify": "^4.1.11",
+    "browserify-shim": "^3.6.0",
     "gulp": "^3.7.0",
     "gulp-clean": "^0.3.0",
     "gulp-concat": "^2.2.0",
