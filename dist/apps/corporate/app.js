@@ -731,9 +731,9 @@ function isLeafNode (node) {
  * @returns {*} The copy or updated `destination`, if `destination` was specified.
  *
  * @example
- <example>
+ <example module="copyExample">
  <file name="index.html">
- <div ng-controller="Controller">
+ <div ng-controller="ExampleController">
  <form novalidate class="simple-form">
  Name: <input type="text" ng-model="user.name" /><br />
  E-mail: <input type="email" ng-model="user.email" /><br />
@@ -747,21 +747,22 @@ function isLeafNode (node) {
  </div>
 
  <script>
- function Controller($scope) {
-    $scope.master= {};
+  angular.module('copyExample')
+    .controller('ExampleController', ['$scope', function($scope) {
+      $scope.master= {};
 
-    $scope.update = function(user) {
-      // Example with 1 argument
-      $scope.master= angular.copy(user);
-    };
+      $scope.update = function(user) {
+        // Example with 1 argument
+        $scope.master= angular.copy(user);
+      };
 
-    $scope.reset = function() {
-      // Example with 2 arguments
-      angular.copy($scope.master, $scope.user);
-    };
+      $scope.reset = function() {
+        // Example with 2 arguments
+        angular.copy($scope.master, $scope.user);
+      };
 
-    $scope.reset();
-  }
+      $scope.reset();
+    }]);
  </script>
  </file>
  </example>
@@ -15007,7 +15008,22 @@ return jQuery;
 
 }));
 
-
+/**
+* Corporate Module
+*
+* Description
+*/
+angular
+	.module('Corporate', [])
+	.constant('Api', {
+		host: '',
+		port: '',
+		version: ''
+	})
+	.constant('verticals', [{
+		name: 'Health Insurance',
+		value: 'health_insurance'
+	}]);
 var Model = function() {
 	
 	// Fetch the data from the API

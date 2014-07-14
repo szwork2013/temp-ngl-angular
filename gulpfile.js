@@ -112,6 +112,7 @@ gulp.task('images', function() {
 
 // Watch for file changes
 gulp.task('watch', function() {
+	gulp.watch('src/apps/**/views/*.html',['views']);
 	gulp.watch(paths.styles, ['styles']);
 	appPaths.forEach(function(app) {
 		gulp.watch(app.paths, ['apps']);
