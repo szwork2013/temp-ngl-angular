@@ -1,16 +1,10 @@
 /**
 * Corporate Module
-*
-* Description
 */
-angular
-	.module('Corporate', [])
-	.constant('Api', {
-		host: '',
-		port: '',
-		version: ''
-	})
-	.constant('verticals', [{
-		name: 'Health Insurance',
-		value: 'health_insurance'
-	}]);
+var Time = new Date();
+angular.module('Corporate', ['Verticals'])
+	.value('Time', {
+		dd: Time.getDate(),
+		mm: Time.getMonth()+1,
+		yyyy: Time.getFullYear()
+	});

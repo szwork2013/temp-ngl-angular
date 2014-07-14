@@ -1,7 +1,7 @@
-(function() {
+// (function() {
 
-	app.controller('UsersController', ['$scope', '$rootScope', function($scope, $rootScope) {
+// 	// app.controller('UsersController', ['$scope', '$rootScope', function($scope, $rootScope) {
 		
-	}]);
+// 	// }]);
 
-})();
+// })();

@@ -25,13 +25,13 @@ var paths = {
 		corporate: {
 			dest: 'corporate',
 			paths: [
-				'src/assets/bower_components/Angular/index.js',				// Angular
-				// 'src/assets/bower_components/angular-ui-router/index.js',	// Angular UI-Router
-				// 'src/assets/bower_components/jquery/index.js',				// jQuery
-				// 'src/apps/corporate/app.js',								// App Controller
-				// 'src/common/**/*.js',										// Common Scripts
-				// 'src/modules/**/*.js',										// Modules
-				// 'src/apps/corporate/routes.js'								// Routes
+				'src/assets/bower_components/angular/angular.js',				// Angular
+				'src/assets/bower_components/angular-ui-router/index.js',	// Angular UI-Router
+				'src/assets/bower_components/jquery/index.js',				// jQuery
+				'src/apps/corporate/**/*.js',								// App Controller
+				'src/common/**/*.js',										// Common Scripts
+				'src/modules/**/*.js',										// Modules
+				'src/apps/corporate/routes.js'								// Routes
 			]
 		},
 		marketplace: {
@@ -95,7 +95,7 @@ gulp.task('apps', function() {
 
 // Move views to dist
 gulp.task('views', function() {
-	gulp.src('src/apps/**/views/*.html')
+	gulp.src('src/apps/**/*.html')
 		.pipe(htmlMin({ collapseWhitespace: true }))
 		.pipe(gulp.dest('./dist/apps'));
 });
@@ -112,7 +112,7 @@ gulp.task('images', function() {
 
 // Watch for file changes
 gulp.task('watch', function() {
-	gulp.watch('src/apps/**/views/*.html',['views']);
+	gulp.watch('src/apps/**/*.html',['views']);
 	gulp.watch(paths.styles, ['styles']);
 	appPaths.forEach(function(app) {
 		gulp.watch(app.paths, ['apps']);
