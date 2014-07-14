@@ -26,12 +26,12 @@ var paths = {
 			dest: 'corporate',
 			paths: [
 				'src/assets/bower_components/Angular/index.js',				// Angular
-				'src/assets/bower_components/angular-ui-router/index.js',	// Angular UI-Router
-				'src/assets/bower_components/jquery/index.js',				// jQuery
-				'src/apps/corporate/app.js',								// App Controller
-				'src/common/**/*.js',										// Common Scripts
-				'src/modules/**/*.js',										// Modules
-				'src/apps/corporate/routes.js'								// Routes
+				// 'src/assets/bower_components/angular-ui-router/index.js',	// Angular UI-Router
+				// 'src/assets/bower_components/jquery/index.js',				// jQuery
+				// 'src/apps/corporate/app.js',								// App Controller
+				// 'src/common/**/*.js',										// Common Scripts
+				// 'src/modules/**/*.js',										// Modules
+				// 'src/apps/corporate/routes.js'								// Routes
 			]
 		},
 		marketplace: {
