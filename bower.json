@@ -16,7 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "Angular": "https://raw.githubusercontent.com/angular/angular.js/g3_v1_2/src/Angular.js",
+    "angular": "~1.2.20",
     "angular-ui-router": "https://raw.githubusercontent.com/angular-ui/ui-router/master/release/angular-ui-router.js",
     "jquery": "https://raw.githubusercontent.com/jquery/jquery/1.11.1/dist/jquery.js",
     "reboot": "https://github.com/RonnieSan/reboot.git"

@@ -1,7 +1,10 @@
-(function() {
-
-	app.controller('UsersController', ['$scope', '$rootScope', function($scope, $rootScope) {
-		
-	}]);
-
-})();
+routes.push({
+	state: 'user',
+	options: {
+		url: '/user',
+		templateUrl: '/modules/users/views/default.html'
+		controller: function($scope, $rootScope) {
+			
+		}
+	}
+})

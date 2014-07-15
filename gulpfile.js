@@ -18,14 +18,15 @@ var argv    = require('yargs').argv;
 // Paths Object
 var paths = {
 	styles: [
-		'src/assets/less/*.less'
+		'src/assets/less/*.less',
+		'!src/assets/less/ngl-interface.less'
 	],
 
 	app: {
 		corporate: {
 			dest: 'corporate',
 			paths: [
-				'src/assets/bower_components/Angular/index.js',				// Angular
+				'src/assets/bower_components/Angular/angular.js',			// Angular
 				'src/assets/bower_components/angular-ui-router/index.js',	// Angular UI-Router
 				'src/assets/bower_components/jquery/index.js',				// jQuery
 				'src/apps/corporate/app.js',								// App Controller
@@ -37,7 +38,7 @@ var paths = {
 		marketplace: {
 			dest: 'marketplace',
 			paths: [
-				'src/assets/bower_components/Angular/index.js',				// Angular
+				'src/assets/bower_components/Angular/angular.js',			// Angular
 				'src/assets/bower_components/angular-ui-router/index.js',	// Angular UI-Router
 				'src/assets/bower_components/jquery/index.js',				// jQuery
 				'src/apps/marketplace/app.js',								// App Controller
@@ -49,7 +50,7 @@ var paths = {
 		admin: {
 			dest: 'admin',
 			paths: [
-				'src/assets/bower_components/Angular/index.js',				// Angular
+				'src/assets/bower_components/Angular/angular.js',			// Angular
 				'src/assets/bower_components/angular-ui-router/index.js',	// Angular UI-Router
 				'src/assets/bower_components/jquery/index.js',				// jQuery
 				'src/apps/admin/app.js',									// App Controller
@@ -58,7 +59,15 @@ var paths = {
 				'src/apps/admin/routes.js'									// Routes
 			]
 		}
-	}
+	},
+
+	views: [
+		'src/apps/**/views/*.html'
+	],
+
+	modules: [
+		'src/modules/**/*.html'
+	]
 }
 
 // Set the default app
@@ -95,29 +104,36 @@ gulp.task('apps', function() {
 
 // Move views to dist
 gulp.task('views', function() {
-	gulp.src('src/apps/**/views/*.html')
+	gulp.src(paths.views)
 		.pipe(htmlMin({ collapseWhitespace: true }))
 		.pipe(gulp.dest('./dist/apps'));
 });
 
+// Move module views to dist
+gulp.task('modules', function() {
+	gulp.src(paths.modules)
+		.pipe(htmlMin({ collapseWhitespace: true }))
+		.pipe(gulp.dest('./dist/modules'));
+});
+
 // Move images to dist
-gulp.task('images', function() {
-	appPaths.forEach(function(app) {
-		gulp.src(app.paths)
-			.pipe(concat('app.js'))
-			// .pipe(uglify())
-			.pipe(gulp.dest('./dist/apps/' + app.dest));
-	});
+gulp.task('assets', function() {
+	gulp.src('src/assets/img/**/*.*')
+		.pipe(gulp.dest('./dist/assets/img'));
+	gulp.src('src/assets/reboot/fonts/*.*')
+		.pipe(gulp.dest('./dist/assets/fonts'));
 });
 
 // Watch for file changes
 gulp.task('watch', function() {
-	gulp.watch('src/apps/**/views/*.html',['views']);
-	gulp.watch(paths.styles, ['styles']);
+	gulp.watch(['src/assets/less/*.less', 'src/assets/reboot/less/**/*.less'], ['styles']);
 	appPaths.forEach(function(app) {
 		gulp.watch(app.paths, ['apps']);
-	})
+	});
+	gulp.watch(paths.views,['views']);
+	gulp.watch(paths.modules,['modules']);
+	gulp.watch('src/assets/img/**/*',['images']);
 });
 
 // Set the default tasks
-gulp.task('default', ['styles', 'apps', 'watch']);
+gulp.task('default', ['styles', 'apps', 'views', 'modules', 'assets', 'watch']);

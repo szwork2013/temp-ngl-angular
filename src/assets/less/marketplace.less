@@ -1,0 +1,125 @@
+// --------------------------------------------------
+// NEXTGEN LEADS MARKETPLACE - MAIN CSS FILE
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// REQUIRE STYLES
+
+@import url('/src/assets/reboot/less/variables.less');
+@import url('/src/assets/reboot/less/reboot.less');
+
+// END REQUIRE STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// COMMON STYLES
+
+// Make everything boder-box
+* {
+	.border-box;
+}
+
+// Make all sections start a new layer order
+section {
+	position: relative;
+}
+
+.wrapper {
+	height: 100%;
+	width: 100%;
+}
+
+// END COMMON STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// HEADER STYLES
+
+section#header {
+	.box-shadow(0 2px 0 rgba(0,0,0,0.15));
+	height: 60px;
+	width: 100%;
+	z-index: 50;
+}
+
+// END HEADER STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// BODY STYLES
+
+section#body {
+	background-color: #ECECEC;
+	bottom: 0;
+	position: absolute;
+	top: 60px;
+	width: 100%;
+}
+
+// END BODY STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// MAIN STYLES
+
+section#main {
+	bottom: 0;
+	left: 0;
+	overflow-y: auto;
+	position: absolute;
+	right: 250px;
+	top: 0;
+
+	> .breadcrumbs {
+		background-color: #E1E1E1;
+		color: #808080;
+		font-size: 12px;
+		height: 30px;
+		line-height: 30px;
+		padding: 0 20px;
+	}
+
+	> .stage {
+		.box-shadow(2px 2px 0 rgba(0,0,0,0.1));
+		background-color: #FFF;
+		margin: 20px;
+
+		> .content {
+			padding: 30px;
+		}
+	}
+}
+
+// END MAIN STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// SIDEBAR STYLES
+
+section#sidebar {
+	background-color: #636363;
+	bottom: 0;
+	color: #FFF;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 250px;
+}
+
+// END SIDEBAR STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// IMPORT NEXTGEN LEADS STYLES
+
+@import 'ngl-interface.less';
+
+// END IMPORT NEXTGEN LEADS STYLES
+// --------------------------------------------------

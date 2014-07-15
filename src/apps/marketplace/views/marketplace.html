@@ -3,13 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>MarketPlace - NextGen Leads - High Quality Leads that Convert</title>
+	<link rel="stylesheet" href="/assets/css/marketplace.css">
 </head>
 <body>
 	<div class="wrapper">
 		<section id="header">
 			<div class="branding">
 				<a class="link-home" href="/marketplace">
-					<img src="/assets/img/logos/" alt="NextGen Leads">
+					<img src="/assets/img/logos/nextgen-leads-logo-220x60.png" alt="NextGen Leads">
 				</a>
 			</div>
 
@@ -18,7 +19,13 @@
 					<li id="nav-campaigns"><a href="/marketplace/campaigns">Campaigns</a></li>
 					<li id="nav-leads"><a href="/marketplace/leads">Leads</a></li>
 					<li id="nav-reports"><a href="/marketplace/reports">Reports</a></li>
-					<li id="nav-settings"><a href="/marketplace/settings">Settings</a></li>
+					<li id="nav-settings">
+						<a href="javascript:void(0)">Settings</a>
+						<ol class="sub-nav">
+							<li><a href="/marketplace/settings/billing"><i class="re-x"></i>Billing Settings</a></li>
+							<li><a href="/marketplace/settings/company"><i class="re-x"></i>Company Settings</a></li>
+						</ol>
+					</li>
 				</ol>
 			</nav>
 
@@ -34,8 +41,8 @@
 				</div>
 				<div class="sub-menu">
 					<ol>
-						<li><a href="/marketplace/user/edit">Edit My Profile</a></li>
-						<li><a href="/marketplace/logout">Logout</a></li>
+						<li><a href="/marketplace/user/edit"><i class="re-x"></i>Edit My Profile</a></li>
+						<li><a href="/marketplace/logout"><i class="re-x"></i>Logout</a></li>
 					</ol>
 				</div>
 			</div>
@@ -50,11 +57,11 @@
 				</div>
 
 				<div class="stage">
-					<div class="tabs">
-						<li class="tab">Tab One</li>
+					<ol class="tabs">
+						<li class="tab active">Tab One</li>
 						<li class="tab">Tab Two</li>
 						<li class="tab">Tab Three</li>
-					</div>
+					</ol>
 
 					<div class="content">
 						<h1>Page Name</h1>
@@ -95,16 +102,19 @@
 							<p class="name">Chris Kelly</p>
 							<p class="phone"><strong>P:</strong> (619) 555-1212</p>
 							<p class="email"><strong>E:</strong> <a href="mailto:chris.kelly@nextgenleads.com">chris.kelly@nextgenleads.com</a></p>
+							<p class="email truncated"><strong>E:</strong> <a href="mailto:chris.kelly@nextgenleads.com">chris.kelly@nextgen...</a></p>
 						</div>
 					</div>
 				</div>
 
 				<div class="notifications">
 					<div class="notification warning">
+						<a href="javascript:void(0)" class="close"><i class="re-x"></i></a>
 						<h2>Notification Title</h2>
 						<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna.</p>
 					</div>
 					<div class="notification warning">
+						<a href="javascript:void(0)" class="close"><i class="re-x"></i></a>
 						<h2>Notification Title</h2>
 						<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna.</p>
 					</div>

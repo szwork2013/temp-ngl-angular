@@ -1,0 +1,398 @@
+// --------------------------------------------------
+// NEXTGEN LEADS COMPONENT STYLES
+// --------------------------------------------------
+
+// --------------------------------------------------
+// HEADER STYLES
+
+section#header {
+
+	// Logo
+	.branding {
+		float: left;
+		margin-right: 10px;
+	}
+
+	// Primary navigation in the header
+	nav.primary {
+		float: left;
+
+		> ol > li {
+			float: left;
+			position: relative;
+
+			> .sub-nav {
+				.box-shadow(2px 2px 0 rgba(0,0,0,0.15));
+				background-color: #FFF;
+				border-top: 0;
+				border: 1px solid #CCC;
+				display: none;
+				left: 0;
+				position: absolute;
+				top: 60px;
+				width: 200px;
+
+				> li {
+					border-top: 1px solid #E2E2E2;
+
+					a {
+						height: 50px;
+						line-height: 50px;
+
+						&:hover {
+							background-color: #F5F5F5;
+							color: @colorPrimary;
+						}
+					}
+				}
+			}
+
+			&:hover > .sub-nav {
+				display: block;
+			}
+
+			a {
+				color: #333;
+				display: block;
+				font: bold 12px @fontNormal;
+				height: 60px;
+				line-height: 62px;
+				padding: 0 20px;
+				text-transform: uppercase;
+
+				&:hover {
+					color: @colorPrimary;
+					text-decoration: none;
+				}
+
+				&.active {
+					background-color: #EEF7E2;
+					color: #333;
+				}
+			}
+		}
+	}
+
+	// User profile section in the header
+	.profile {
+		border-left: 1px solid #ECECEC;
+		cursor: pointer;
+		float: right;
+		height: 60px;
+		position: relative;
+		width: 250px;
+
+		.user-info {
+			.clearfix;
+
+			.avatar {
+				float: left;
+				padding: 8px;
+
+				img {
+					.border-radius(20px);
+					border: 2px solid #D7D7D7;
+					height: 40px;
+					width: 40px;
+				}
+			}
+
+			> .content {
+				float: left;
+				line-height: 1.15em;
+
+				.company-name {
+					font-weight: bold;
+					margin: 0;
+					padding-top: 13px;
+				}
+
+				.user-name {
+					color: #808080;
+					font-size: 12px;
+				}
+			}
+		}
+
+		.sub-menu {
+			.box-shadow(0 2px 0 rgba(0,0,0,0.15));
+			background-color: #FFF;
+			border-left: 1px solid #E2E2E2;
+			border-top: 1px solid #E2E2E2;
+			display: none;
+			left: -1px;
+			position: absolute;
+			top: 60px;
+			width: 250px;
+
+			ol li {
+				border-bottom: 1px solid #E2E2E2;
+
+				a {
+					color: #555;
+					display: block;
+					height: 50px;
+					line-height: 50px;
+					padding: 0 10px;
+
+					&:hover {
+						background-color: #EEF7E2;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		&:hover .sub-menu {
+			display: block;
+		}
+	}
+}
+
+// END HEADER STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// MAIN STYLES
+
+section#main {
+
+	// Tab styles
+	.tabs {
+		border-bottom: 1px solid #E2E2E2;
+		height: 50px;
+		padding: 10px 10px 0;
+
+		li {
+			background-color: #ECECEC;
+			color: #9F9F9F;
+			cursor: pointer;
+			float: left;
+			font-size: 13px;
+			font-weight: bold;
+			height: 39px;
+			line-height: 41px;
+			margin-right: 5px;
+			padding: 0 20px;
+
+			&:hover {
+				color: #000;
+			}
+
+			&.active {
+				background-color: #FFF;
+				border: 1px solid #E2E2E2;
+				border-bottom: 0;
+				color: #333;
+				height: 40px;
+			}
+		}
+	}
+	// End tab styles
+
+	// --------------------------------------------------
+
+	// Basic text style
+	h1 {
+		color: #333;
+		font-weight: bold;
+	}
+	// End basic text style
+}
+
+// END MAIN STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// SIDEBAR STYLES
+
+section#sidebar {
+
+	// Account Balance Box
+	.account-balance {
+		background-color: #555;
+		padding: 20px 20px 25px;
+
+		.label {
+			color: #ACACAC;
+			font-size: 12px;
+			margin: 0 0 3px;
+		}
+
+		.balance {
+			.clearfix;
+
+			.amount {
+				float: left;
+				font-size: 28px;
+				font-weight: bold;
+			}
+
+			.autofund {
+				float: right;
+				background-color: #FFF;
+				height: 24px;
+				width: 24px;
+			}
+		}
+	}
+	// End account balance box
+
+	// --------------------------------------------------
+
+	// Vitals Box
+	.vitals {
+		border-top: 1px solid #707070;
+		padding: 15px 20px;
+
+		.metric {
+			.clearfix;
+			margin: 5px 0;
+
+			.label {
+				float: left;
+			}
+
+			.value {
+				float: right;
+				font-weight: bold;
+			}
+		}
+	}
+	// End vitals box
+
+	// --------------------------------------------------
+
+	// Account manager box
+	.account-manager {
+		border-top: 1px solid #707070;
+		padding: 20px;
+
+		h3 {
+			color: #333;
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		.account-manager-info {
+			.clearfix;
+
+			.avatar {
+				float: left;
+
+				img {
+					.border-radius(20px);
+					border: 2px solid #808080;
+					height: 36px;
+					width: 36px
+				}
+			}
+
+			> .content {
+				margin-left: 50px;
+
+				p {
+					line-height: 1.35em;
+					margin: 0;
+				}
+
+				.name {
+					font-size: 14px;
+					font-weight: bold;
+					margin-bottom: 3px;
+				}
+
+				.phone,
+				.email {
+					color: #CCC;
+					font-size: 12px;
+				}
+
+				.email {
+					display: none;
+
+					a {
+						color: #CCC;
+					}
+				}
+
+				.email.truncated {
+					display: block;
+				}
+			}
+		}
+
+		&:hover {
+			.box-shadow(2px 2px 0 rgba(0,0,0,0.15));
+			background-color: #636363;
+			margin-left: -70px;
+			width: 320px;
+
+			.email {
+				display: block !important;
+			}
+
+			.email.truncated {
+				display: none !important;
+			}
+		}
+	}
+	// End account manager box
+
+	// --------------------------------------------------
+
+	// Notifications
+	.notifications {
+		border-top: 1px solid #707070;
+		padding: 10px;
+
+		.notification {
+			background-color: #595959;
+			margin-bottom: 10px;
+			padding: 12px 10px 12px 42px;
+			position: relative;
+
+			a.close {
+				color: #808080;
+				display: none;
+				position: absolute;
+				right: 5px;
+				top: 5px;
+
+				&:hover {
+					color: #FFF;
+					text-decoration: none;
+				}
+			}
+
+			h2 {
+				color: #FFF;
+				font-size: 12px;
+				font-weight: bold;
+				margin-bottom: 2px;
+			}
+
+			p {
+				color: #CCC;
+				font-size: 11px;
+				line-height: 14px;
+				margin: 0;
+			}
+
+			&:hover {
+
+				a.close {
+					display: block;
+				}
+			}
+		}
+	}
+	// End notifications
+
+}
+
+// END SIDEBAR STYLES
+// --------------------------------------------------

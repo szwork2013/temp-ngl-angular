@@ -1,0 +1,102 @@
+// --------------------------------------------------
+// REACTIVE FORM STYLES
+// Basic Styling
+// --------------------------------------------------
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+.textarea-wrapper,
+.select-wrapper,
+.multi-select-wrapper {
+	.border-radius(3px);
+	border: 1px solid @tableBorderColor;
+
+	&.focus {
+		.box-shadow(0 0 3px @colorPrimary);
+	}
+}
+
+.textarea-wrapper {
+	overflow: hidden;
+}
+
+.checkbox-wrapper {
+
+	.box {
+		.border-radius(2px);
+		border: 2px solid @tableBorderColor;
+	}
+
+	&.focus {
+		.box-shadow(0 0 3px @colorPrimary);
+		.border-radius(2px);
+	}
+}
+
+.radio-wrapper {
+
+	.radio {
+		.border-radius(20px);
+		border: 2px solid @tableBorderColor;
+	}
+
+	&.focus {
+		.box-shadow(0 0 3px @colorPrimary);
+		.border-radius(20px);
+	}
+}
+
+.toggle-wrapper {
+
+	.groove {
+		.border-radius(100px);
+		overflow: hidden;
+
+		.toggle-on {
+			padding-left: 3px;
+		}
+
+		.toggle-off {
+			padding-right: 3px;
+		}
+	}
+
+	.handle {
+		.border-radius(100px);
+		.gradient(#E5E5E5, #E5E5E5, #F5F5F5);
+	}
+
+	&.focus {
+		.box-shadow(0 0 3px @colorPrimary);
+		.border-radius(20px);
+	}
+}
+
+.button-maker(@text: #FFF, @bkg: #808080) {
+	.gradient(@bkg, @bkg, lighten(@bkg, 10%));
+	color: @text;
+
+	&:hover {
+		@hoverBkg: lighten(@bkg, 5%);
+		.gradient(@hoverBkg, @hoverBkg, lighten(@hoverBkg, 10%));
+	}
+
+	&:active {
+		@activeBkg: lighten(@bkg, 10%);
+		.gradient(@activeBkg, @activeBkg, lighten(@activeBkg, 10%));	
+	}
+}
+
+button {
+	.button-maker();
+	.border-radius(3px);
+	font-size: 0.875em;
+	font-weight: bold;
+	text-transform: uppercase;
+
+	&.focus {
+		.box-shadow(0 0 3px @colorPrimary);
+	}
+}
