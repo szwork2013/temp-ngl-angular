@@ -8,11 +8,6 @@ angular.module('RebootForms')
 
 			// This directive should be used as <reboot-textarea></reboot-textarea>
 			restrict: 'E',
-
-			// Pass scope into the directive
-			scope: {
-				value: '='
-			},
 			
 			// The controller for this element
 			link: function (scope, el, attrs) {

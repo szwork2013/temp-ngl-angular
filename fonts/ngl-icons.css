@@ -1,0 +1,88 @@
+@font-face {
+  font-family: 'ngl-icons';
+  src: url('/assets/fonts/ngl-icons.eot?26225026');
+  src: url('/assets/fonts/ngl-icons.eot?26225026#iefix') format('embedded-opentype'),
+       url('/assets/fonts/ngl-icons.woff?26225026') format('woff'),
+       url('/assets/fonts/ngl-icons.ttf?26225026') format('truetype'),
+       url('/assets/fonts/ngl-icons.svg?26225026#ngl-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'ngl-icons';
+    src: url('../font/ngl-icons.svg?26225026#ngl-icons') format('svg');
+  }
+}
+*/
+ 
+ [class^="ngl-"]:before, [class*=" ngl-"]:before {
+  font-family: "ngl-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.ngl-trash:before { content: '\e800'; } /* '' */
+.ngl-calendar:before { content: '\e801'; } /* '' */
+.ngl-refresh:before { content: '\e802'; } /* '' */
+.ngl-logout:before { content: '\e803'; } /* '' */
+.ngl-credit-card:before { content: '\e804'; } /* '' */
+.ngl-settings:before { content: '\e805'; } /* '' */
+.ngl-edit:before { content: '\e806'; } /* '' */
+.ngl-add-box:before { content: '\e807'; } /* '' */
+.ngl-edit-1:before { content: '\e808'; } /* '' */
+.ngl-add-round:before { content: '\e809'; } /* '' */
+.ngl-add:before { content: '\e80a'; } /* '' */
+.ngl-menu:before { content: '\e80b'; } /* '' */
+.ngl-exclamation-circle:before { content: '\e80c'; } /* '' */
+.ngl-triangle-down:before { content: '\e80d'; } /* '' */
+.ngl-arrow-circle-down:before { content: '\e80e'; } /* '' */
+.ngl-arrow-circle-left:before { content: '\e80f'; } /* '' */
+.ngl-triangle-left:before { content: '\e810'; } /* '' */
+.ngl-triangle-right:before { content: '\e811'; } /* '' */
+.ngl-arrow-circle-right:before { content: '\e812'; } /* '' */
+.ngl-arrow-circle-up:before { content: '\e813'; } /* '' */
+.ngl-triangle-up:before { content: '\e814'; } /* '' */
+.ngl-x-round:before { content: '\e815'; } /* '' */
+.ngl-arrow-down:before { content: '\e816'; } /* '' */
+.ngl-arrow-left:before { content: '\e817'; } /* '' */
+.ngl-x:before { content: '\e818'; } /* '' */
+.ngl-arrow-right:before { content: '\e819'; } /* '' */
+.ngl-arrow-up:before { content: '\e81a'; } /* '' */
+.ngl-bullet:before { content: '\e81b'; } /* '' */
+.ngl-check-round:before { content: '\e81c'; } /* '' */
+.ngl-check-square:before { content: '\e81d'; } /* '' */
+.ngl-chevron-down:before { content: '\e81e'; } /* '' */
+.ngl-chevron-left:before { content: '\e81f'; } /* '' */
+.ngl-chevron-right:before { content: '\e820'; } /* '' */
+.ngl-chevron-up:before { content: '\e821'; } /* '' */
+.ngl-delete-box:before { content: '\e822'; } /* '' */
+.ngl-delete:before { content: '\e823'; } /* '' */

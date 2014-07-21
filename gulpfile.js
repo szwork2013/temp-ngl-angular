@@ -22,6 +22,11 @@ var paths = {
 		'!src/assets/less/ngl-interface.less'
 	],
 
+	styles_watch: [
+		'src/assets/less/*.less',
+		'src/assets/reboot/less/**/*.less'
+	],
+
 	app: {
 		corporate: {
 			dest: 'corporate',
@@ -60,6 +65,8 @@ var paths = {
 			]
 		}
 	},
+
+
 
 	views: [
 		'src/apps/**/views/*.html'
@@ -120,13 +127,15 @@ gulp.task('modules', function() {
 gulp.task('assets', function() {
 	gulp.src('src/assets/img/**/*.*')
 		.pipe(gulp.dest('./dist/assets/img'));
+	gulp.src('src/assets/fonts/*.*')
+		.pipe(gulp.dest('./dist/assets/fonts'));
 	gulp.src('src/assets/reboot/fonts/*.*')
 		.pipe(gulp.dest('./dist/assets/fonts'));
 });
 
 // Watch for file changes
 gulp.task('watch', function() {
-	gulp.watch(['src/assets/less/*.less', 'src/assets/reboot/less/**/*.less'], ['styles']);
+	gulp.watch(paths.styles_watch, ['styles']);
 	appPaths.forEach(function(app) {
 		gulp.watch(app.paths, ['apps']);
 	});
