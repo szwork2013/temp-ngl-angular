@@ -35356,9 +35356,14 @@ return jQuery;
 // NEXTGEN LEADS ANGULAR APP - MARKETPLACE
 // --------------------------------------------------
 
-angular.module('marketplace', ['$scope', '$rootScope', function($scope, $rootScope) {
-	
-}]);
+angular.module('Marketplace', ['$scope', '$rootScope']);
+
+angular.module('Marketplace')
+	.controller('MainCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+		$scope.title = 'Hello, World.';
+	}]);
+
+var routes = [];
 var Model = function() {
 	
 	// Fetch the data from the API
@@ -35394,51 +35399,52 @@ var Model = function() {
 
 }
 
-app.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
-	var Model = {};
+// angular.module('Marketplace')
+// 	.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+// 		var Model = {};
 
-	Model.fetch = function() {
+// 		Model.fetch = function() {
 
-	}
+// 		}
 
-	return Model;
-}]);
+// 		return Model;
+// 	}]);
 // --------------------------------------------------
 // REBOOT FORMS MODULE
 // --------------------------------------------------
 
-angular.module('RebootForms', []);
-routes.push({
-	state: 'user',
-	options: {
-		url: '/user',
-		templateUrl: '/modules/users/views/default.html'
-		controller: function($scope, $rootScope) {
+// angular.module('RebootForms', []);
+// routes.push({
+// 	state: 'user',
+// 	options: {
+// 		url: '/user',
+// 		templateUrl: '/modules/users/views/default.html',
+// 		controller: function($scope, $rootScope) {
 			
-		}
-	}
-})
-angular.module('shared.users', []);
+// 		}
+// 	}
+// })
+// angular.module('shared.users', []);
 // --------------------------------------------------
 // REBOOT FORMS - TEXTAREA
 // --------------------------------------------------
 
-angular.module('RebootForms')
-	.directive('rebootTextarea', function() {
-		return {
+// angular.module('RebootForms')
+// 	.directive('rebootTextarea', function() {
+// 		return {
 
-			// This directive should be used as <reboot-textarea></reboot-textarea>
-			restrict: 'E',
+// 			// This directive should be used as <reboot-textarea></reboot-textarea>
+// 			restrict: 'E',
 			
-			// The controller for this element
-			link: function (scope, el, attrs) {
+// 			// The controller for this element
+// 			link: function (scope, el, attrs) {
 
-			},
+// 			},
 
-			// The template for this element
-			template: '/modules/forms/views/reboot-textarea.html'
-		}
-	});
+// 			// The template for this element
+// 			template: '/modules/forms/views/reboot-textarea.html'
+// 		}
+// 	});
 
 var UserSchema = {
 	"$schema": "http://json-schema.org/draft-04/schema#",
@@ -35506,18 +35512,18 @@ var UserSchema = {
 // NEXTGEN LEADS ROUTES - MARKETPLACE
 // --------------------------------------------------
 
-angular.module('marketplace')
-	.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+// angular.module('marketplace')
+// 	.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-		// Set the default route
-		$urlRouterProvider.otherwise('/login');
+// 		// Set the default route
+// 		$urlRouterProvider.otherwise('/login');
 
-		// Iterate through the routes array
-		routes.forEach(function(route) {
-			$stateProvider.state(route.state, route.options);
-		});
+// 		// Iterate through the routes array
+// 		routes.forEach(function(route) {
+// 			$stateProvider.state(route.state, route.options);
+// 		});
 
-		// Use the HTML5 history API
-		$locationProvider.html5Mode(true);
+// 		// Use the HTML5 history API
+// 		$locationProvider.html5Mode(true);
 
-	});
+// 	});

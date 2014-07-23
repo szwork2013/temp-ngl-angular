@@ -1,1 +1,1 @@
-angular.module('shared.users', []);
+// angular.module('shared.users', []);

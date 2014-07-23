@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="Marketplace">
 <head>
 	<meta charset="UTF-8">
 	<title>MarketPlace - NextGen Leads - High Quality Leads that Convert</title>
+	<script src="/apps/marketplace/app.js"></script>
 	<link rel="stylesheet" href="/assets/css/marketplace.css">
 </head>
-<body>
+<body ng-controller="MainCtrl">
 	<div class="wrapper">
 		<section id="header">
 			<div class="branding">
@@ -22,8 +23,8 @@
 					<li id="nav-settings">
 						<a href="javascript:void(0)">Settings</a>
 						<ol class="sub-nav">
-							<li><a href="/marketplace/settings/billing"><i class="re-x"></i>Billing Settings</a></li>
-							<li><a href="/marketplace/settings/company"><i class="re-x"></i>Company Settings</a></li>
+							<li><a href="/marketplace/settings/billing"><i class="ngl-credit-card"></i>Billing Settings</a></li>
+							<li><a href="/marketplace/settings/company"><i class="ngl-settings"></i>Company Settings</a></li>
 						</ol>
 					</li>
 				</ol>
@@ -41,8 +42,8 @@
 				</div>
 				<div class="sub-menu">
 					<ol>
-						<li><a href="/marketplace/user/edit"><i class="re-x"></i>Edit My Profile</a></li>
-						<li><a href="/marketplace/logout"><i class="re-x"></i>Logout</a></li>
+						<li><a href="/marketplace/user/edit"><i class="ngl-edit"></i>Edit My Profile</a></li>
+						<li><a href="/marketplace/logout"><i class="ngl-logout"></i>Logout</a></li>
 					</ol>
 				</div>
 			</div>
@@ -63,22 +64,62 @@
 						<li class="tab">Tab Three</li>
 					</ol>
 
-					<div class="content">
-						<h1>Page Name</h1>
+					<div class="content has-form">
+						<h1>{{title}}</h1>
 
 						<p>Fields in <strong>bold</strong> are required.</p>
 
 						<form name="example" id="form-example" class="ngl">
 							
-							<div class="control-group required">
-								<label class="control-label" for="">Campaign Name</label>
-								<div class="controls">
-									<input type="text"><i class="validation-icon re-x"></i>
-									<p class="error-msg">This field is required</p>
+							<fieldset>
+								<legend>Text Inputs</legend>
+
+								<div class="control-group required">
+									<label class="control-label" for="">Field Label</label>
+									<div class="controls">
+										<input type="text">
+									</div>
 								</div>
-							</div>
+
+								<div class="control-group required valid">
+									<label class="control-label" for="">Field Label</label>
+									<div class="controls">
+										<input type="text" class="ng-valid"><i class="validation-icon ngl-check"></i>
+									</div>
+								</div>
+
+								<div class="control-group required invalid">
+									<label class="control-label" for="">Field Label</label>
+									<div class="controls">
+										<input type="text" class="ng-invalid"><i class="validation-icon ngl-exclamation-circle"></i>
+										<p class="error-msg">This field is required</p>
+									</div>
+								</div>
+
+							</fieldset>
+
+							<fieldset>
+								<legend>Radio Buttons</legend>
+
+								<div class="control-group">
+									<label class="control-label" for="">Radio Button</label>
+									<div class="controls">
+										<div class="radio-group h">
+											<label><input type="radio"> Yes</label>
+											<label><input type="radio"> No</label>
+											<label><input type="radio"> Maybe</label>
+										</div>
+									</div>
+								</div>
+								asdasdasd
+
+							</fieldset>
 
 						</form>
+					</div>
+
+					<div class="buttons">
+						
 					</div>
 				</div>
 
@@ -123,12 +164,12 @@
 
 				<div class="notifications">
 					<div class="notification warning">
-						<a href="javascript:void(0)" class="close"><i class="re-x"></i></a>
+						<a href="javascript:void(0)" class="close"><i class="ngl-x"></i></a>
 						<h2>Notification Title</h2>
 						<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna.</p>
 					</div>
 					<div class="notification warning">
-						<a href="javascript:void(0)" class="close"><i class="re-x"></i></a>
+						<a href="javascript:void(0)" class="close"><i class="ngl-x"></i></a>
 						<h2>Notification Title</h2>
 						<p>Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna.</p>
 					</div>

@@ -35403,51 +35403,52 @@ var Model = function() {
 
 }
 
-app.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
-	var Model = {};
+// angular.module('Marketplace')
+// 	.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+// 		var Model = {};
 
-	Model.fetch = function() {
+// 		Model.fetch = function() {
 
-	}
+// 		}
 
-	return Model;
-}]);
+// 		return Model;
+// 	}]);
 // --------------------------------------------------
 // REBOOT FORMS MODULE
 // --------------------------------------------------
 
-angular.module('RebootForms', []);
-routes.push({
-	state: 'user',
-	options: {
-		url: '/user',
-		templateUrl: '/modules/users/views/default.html'
-		controller: function($scope, $rootScope) {
+// angular.module('RebootForms', []);
+// routes.push({
+// 	state: 'user',
+// 	options: {
+// 		url: '/user',
+// 		templateUrl: '/modules/users/views/default.html',
+// 		controller: function($scope, $rootScope) {
 			
-		}
-	}
-})
-angular.module('shared.users', []);
+// 		}
+// 	}
+// })
+// angular.module('shared.users', []);
 // --------------------------------------------------
 // REBOOT FORMS - TEXTAREA
 // --------------------------------------------------
 
-angular.module('RebootForms')
-	.directive('rebootTextarea', function() {
-		return {
+// angular.module('RebootForms')
+// 	.directive('rebootTextarea', function() {
+// 		return {
 
-			// This directive should be used as <reboot-textarea></reboot-textarea>
-			restrict: 'E',
+// 			// This directive should be used as <reboot-textarea></reboot-textarea>
+// 			restrict: 'E',
 			
-			// The controller for this element
-			link: function (scope, el, attrs) {
+// 			// The controller for this element
+// 			link: function (scope, el, attrs) {
 
-			},
+// 			},
 
-			// The template for this element
-			template: '/modules/forms/views/reboot-textarea.html'
-		}
-	});
+// 			// The template for this element
+// 			template: '/modules/forms/views/reboot-textarea.html'
+// 		}
+// 	});
 
 var UserSchema = {
 	"$schema": "http://json-schema.org/draft-04/schema#",

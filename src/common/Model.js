@@ -33,12 +33,13 @@ var Model = function() {
 
 }
 
-app.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
-	var Model = {};
+// angular.module('Marketplace')
+// 	.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+// 		var Model = {};
 
-	Model.fetch = function() {
+// 		Model.fetch = function() {
 
-	}
+// 		}
 
-	return Model;
-}]);
+// 		return Model;
+// 	}]);

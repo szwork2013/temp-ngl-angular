@@ -2,6 +2,18 @@
 // NEXTGEN LEADS - FORM STYLES
 // --------------------------------------------------
 
+
+// --------------------------------------------------
+// VARIABLES
+
+@colorValid: #B3CE8D;
+@colorInvalid: #E89294;
+@colorIconValid: #8DC63F;
+@colorIconInvalid: #B12B2B;
+
+// END VARIABLES
+// --------------------------------------------------
+
 .control-group {
 
 	&.required .control-label {
@@ -22,6 +34,7 @@
 	}
 }
 
+// Text Inputs
 input[type='text'],
 input[type='email'],
 input[type='password'],
@@ -35,9 +48,33 @@ input[type='number'] {
 	}
 }
 
+// Radio Inputs
+.radio-group {
+
+	&.h {
+		
+		label {
+			float: left;
+			margin-left: 30px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+
+	.v {
+
+	}
+}
 
 // --------------------------------------------------
 // VALIDATION STYLES
+
+// Default styles for valid icons
+.validation-icon {
+	font-size: 16px;
+}
 
 // Input fields
 input[type='text'],
@@ -46,7 +83,28 @@ input[type='password'],
 input[type='number'] {
 
 	&.ng-valid {
-		border: 1px solid #B3CE8D;
+		border: 1px solid @colorValid;
+	}
+
+	&.ng-invalid {
+		border: 1px solid @colorInvalid;
+	}
+}
+
+.control-group {
+
+	&.valid {
+
+		i {
+			color: @colorIconValid;
+		}
+	}
+
+	&.invalid {
+
+		i {
+			color: @colorIconInvalid;
+		}
 	}
 }
 

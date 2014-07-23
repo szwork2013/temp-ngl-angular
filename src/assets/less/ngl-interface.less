@@ -5,8 +5,6 @@
 // --------------------------------------------------
 // HEADER STYLES
 
-@import '/assets/fonts/ngl-icons.css';
-
 section#header {
 
 	// Logo
@@ -51,6 +49,15 @@ section#header {
 
 			&:hover > .sub-nav {
 				display: block;
+				width: 250px;
+
+				i {
+					border-right: 1px solid #E2E2E2;
+					color: #555 !important;
+					font-size: 16px;
+					margin-right: 10px;
+					padding-right: 10px;
+				}
 			}
 
 			a {
@@ -130,15 +137,25 @@ section#header {
 			ol li {
 				border-bottom: 1px solid #E2E2E2;
 
+				i {
+					border-right: 1px solid #E2E2E2;
+					color: #555 !important;
+					font-size: 16px;
+					margin-right: 10px;
+					padding-right: 10px;
+				}
+
 				a {
 					color: #555;
 					display: block;
+					font-weight: bold;
 					height: 50px;
 					line-height: 50px;
 					padding: 0 10px;
 
 					&:hover {
-						background-color: #EEF7E2;
+						background-color: #F5F5F5;
+						color: @colorPrimary;
 						text-decoration: none;
 					}
 				}
@@ -234,8 +251,9 @@ section#sidebar {
 			}
 
 			.autofund {
+				color: @colorPrimary;
 				float: right;
-				background-color: #FFF;
+				font-size: 16px;
 				height: 24px;
 				width: 24px;
 			}
@@ -332,7 +350,9 @@ section#sidebar {
 			.box-shadow(2px 2px 0 rgba(0,0,0,0.15));
 			background-color: #636363;
 			margin-left: -70px;
+			position: relative;
 			width: 320px;
+			z-index: 500;
 
 			.email {
 				display: block !important;

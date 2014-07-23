@@ -2,19 +2,19 @@
 // REBOOT FORMS - TEXTAREA
 // --------------------------------------------------
 
-angular.module('RebootForms')
-	.directive('rebootTextarea', function() {
-		return {
+// angular.module('RebootForms')
+// 	.directive('rebootTextarea', function() {
+// 		return {
 
-			// This directive should be used as <reboot-textarea></reboot-textarea>
-			restrict: 'E',
+// 			// This directive should be used as <reboot-textarea></reboot-textarea>
+// 			restrict: 'E',
 			
-			// The controller for this element
-			link: function (scope, el, attrs) {
+// 			// The controller for this element
+// 			link: function (scope, el, attrs) {
 
-			},
+// 			},
 
-			// The template for this element
-			template: '/modules/forms/views/reboot-textarea.html'
-		}
-	});
+// 			// The template for this element
+// 			template: '/modules/forms/views/reboot-textarea.html'
+// 		}
+// 	});

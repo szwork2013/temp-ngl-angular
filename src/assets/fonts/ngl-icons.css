@@ -79,7 +79,7 @@
 .ngl-arrow-up:before { content: '\e81a'; } /* '' */
 .ngl-bullet:before { content: '\e81b'; } /* '' */
 .ngl-check-round:before { content: '\e81c'; } /* '' */
-.ngl-check-square:before { content: '\e81d'; } /* '' */
+.ngl-check:before { content: '\e81d'; } /* '' */
 .ngl-chevron-down:before { content: '\e81e'; } /* '' */
 .ngl-chevron-left:before { content: '\e81f'; } /* '' */
 .ngl-chevron-right:before { content: '\e820'; } /* '' */
