@@ -35356,48 +35356,50 @@ return jQuery;
 // NEXTGEN LEADS ANGULAR APP - MARKETPLACE
 // --------------------------------------------------
 
-angular.module('Marketplace', ['$scope', '$rootScope']);
+angular.module('Marketplace', ['Forms']);
 
 angular.module('Marketplace')
-	.controller('MainCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+	.controller('Marketplace_Ctrl', ['$scope', '$rootScope', function($scope, $rootScope) {
 		$scope.title = 'Hello, World.';
+		$scope.test  = 'F00';
+		$scope.testOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
 	}]);
 
 var routes = [];
-var Model = function() {
+// var Model = function() {
 	
-	// Fetch the data from the API
-	this.fetch = function() {
-		// Make a call to the API
-		$http({method: 'GET', url: API_URL + this.endpoint})
+// 	// Fetch the data from the API
+// 	this.fetch = function() {
+// 		// Make a call to the API
+// 		$http({method: 'GET', url: API_URL + this.endpoint})
 
-		// When the fetch completes
-		.success(function(data, status, headers, config) {
+// 		// When the fetch completes
+// 		.success(function(data, status, headers, config) {
 
-		})
+// 		})
 
-		// If an error occurs
-		.error(function(data, status, headers, config) {
+// 		// If an error occurs
+// 		.error(function(data, status, headers, config) {
 
-		});
-	}
+// 		});
+// 	}
 
-	// Load new data into the model
-	this.load = function() {
+// 	// Load new data into the model
+// 	this.load = function() {
 
-	}
+// 	}
 
-	// Save the data to the API
-	this.save = function() {
+// 	// Save the data to the API
+// 	this.save = function() {
 
-	}
+// 	}
 
-	// Delete the data via the API
-	this.delete = function() {
+// 	// Delete the data via the API
+// 	this.delete = function() {
 		
-	}
+// 	}
 
-}
+// }
 
 // angular.module('Marketplace')
 // 	.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
@@ -35413,7 +35415,7 @@ var Model = function() {
 // REBOOT FORMS MODULE
 // --------------------------------------------------
 
-// angular.module('RebootForms', []);
+angular.module('Forms', []);
 // routes.push({
 // 	state: 'user',
 // 	options: {
@@ -35425,6 +35427,90 @@ var Model = function() {
 // 	}
 // })
 // angular.module('shared.users', []);
+// /**
+// * Verticals Module
+// */
+// angular.module('Verticals',[])
+// 	.constant('vertical_list', [{
+// 		name: 'Health Insurance',
+// 		value: 'health_insurance'
+// 	},{
+// 		name: 'Auto Insurance',
+// 		value: 'auto_insurance'
+// 	},{
+// 		name: 'Medicaid',
+// 		value: 'medicaid'
+// 	},{
+// 		name: 'Life Insurance',
+// 		value: 'life_insurance'
+// 	},{
+// 		name: 'Home Insurance',
+// 		value: 'home_insurance'
+// 	},{
+// 		name: 'Renter/Condo Insurance',
+// 		value: 'renter_insurance'
+// 	}]);
+// --------------------------------------------------
+// REBOOT FORMS - RADIO BUTTON
+// --------------------------------------------------
+
+// This directive should be used as <radio></radio>
+
+angular.module('Forms')
+	.directive('radio', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet     : '@',
+				classes    : '@class',
+				id         : '@',
+				ngModel    : '=',
+				name       : '@',
+				validation : '=',
+				value      : '@'
+			},
+			
+			link: function (scope, el, attrs) {				
+				// Watch for changes to the model
+				scope.$watch('ngModel', function() {
+					scope.isChecked = (scope.ngModel == scope.value);
+				});
+			},
+
+			templateUrl: '/modules/Forms/directives/radio/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - RADIO GROUP
+// --------------------------------------------------
+
+// This directive should be used as <radio-group></radio-group>
+
+angular.module('Forms')
+	.directive('radioGroup', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				bullet       : '@',
+				classes      : '@class',
+				id           : '@',
+				inputClasses : '@inputClass',
+				ngModel      : '=',
+				name         : '@',
+				options      : '=',
+				validation   : '='
+			},
+
+			templateUrl: '/modules/Forms/directives/radio-group/view.html'
+		}
+	});
 // --------------------------------------------------
 // REBOOT FORMS - TEXTAREA
 // --------------------------------------------------
@@ -35446,68 +35532,68 @@ var Model = function() {
 // 		}
 // 	});
 
-var UserSchema = {
-	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title" : "User",
-	"description" : "A NextGen Leads user",
-	"type" : "object",
-	"properties" : {
-		"id" : {
-			"type" : "string",
-			"description" : "A unique hash that identifies the user in the DB",
-			"required" : true
-		},
-		"name" : {
-			"description" : "An object containing parts of the user's real name",
-			"type" : "object",
-			"properties" : {
-				"first" : {
-					"description" : "The user's first name",
-					"type" : "string",
-					"required" : true
-				},
-				"last" : {
-					"description" : "The user's last name",
-					"type" : "string",
-					"required" : true
-				}
-			},
-			"required" : true
-		},
-		"password" : {
-			"description" : "An encrypted hash of the user's password for logging into the application",
-			"type" : "string",
-			"required" : true
-		},
-		"email" : {
-			"description" : "The user's email address",
-			"pattern" : "[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}",
-			"type" : "string",
-			"required" : true
-		},
-		"company_id" : {
-			"description" : "The id for the company associated with the user",
-			"type" : "string",
-			"required" : true
-		},
-		"role" : {
-			"description" : "The id for the role associated with the user",
-			"type" : "string",
-			"required" : true
-		},
-		"created" : {
-			"description" : "The date the user account was created",
-			"type" : "string",
-			"required" : true
-		},
-		"updated" : {
-			"description" : "The date the user account was last modified",
-			"type" : "string",
-			"format" : "date-time",
-			"required" : false
-		}
-	}
-}
+// var UserSchema = {
+// 	"$schema": "http://json-schema.org/draft-04/schema#",
+// 	"title" : "User",
+// 	"description" : "A NextGen Leads user",
+// 	"type" : "object",
+// 	"properties" : {
+// 		"id" : {
+// 			"type" : "string",
+// 			"description" : "A unique hash that identifies the user in the DB",
+// 			"required" : true
+// 		},
+// 		"name" : {
+// 			"description" : "An object containing parts of the user's real name",
+// 			"type" : "object",
+// 			"properties" : {
+// 				"first" : {
+// 					"description" : "The user's first name",
+// 					"type" : "string",
+// 					"required" : true
+// 				},
+// 				"last" : {
+// 					"description" : "The user's last name",
+// 					"type" : "string",
+// 					"required" : true
+// 				}
+// 			},
+// 			"required" : true
+// 		},
+// 		"password" : {
+// 			"description" : "An encrypted hash of the user's password for logging into the application",
+// 			"type" : "string",
+// 			"required" : true
+// 		},
+// 		"email" : {
+// 			"description" : "The user's email address",
+// 			"pattern" : "[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}",
+// 			"type" : "string",
+// 			"required" : true
+// 		},
+// 		"company_id" : {
+// 			"description" : "The id for the company associated with the user",
+// 			"type" : "string",
+// 			"required" : true
+// 		},
+// 		"role" : {
+// 			"description" : "The id for the role associated with the user",
+// 			"type" : "string",
+// 			"required" : true
+// 		},
+// 		"created" : {
+// 			"description" : "The date the user account was created",
+// 			"type" : "string",
+// 			"required" : true
+// 		},
+// 		"updated" : {
+// 			"description" : "The date the user account was last modified",
+// 			"type" : "string",
+// 			"format" : "date-time",
+// 			"required" : false
+// 		}
+// 	}
+// }
 // --------------------------------------------------
 // NEXTGEN LEADS ROUTES - MARKETPLACE
 // --------------------------------------------------

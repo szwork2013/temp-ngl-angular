@@ -35397,6 +35397,7 @@ angular.module('Corporate', ['Verticals'])
 
 // }
 
+<<<<<<< HEAD
 // angular.module('Marketplace')
 // 	.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
 // 		var Model = {};
@@ -35407,11 +35408,47 @@ angular.module('Corporate', ['Verticals'])
 
 // 		return Model;
 // 	}]);
+=======
+// app.factory('Model', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+// 	var Model = {};
+
+// 	Model.fetch = function() {
+
+// 	}
+
+// 	return Model;
+// }]);
+>>>>>>> 9c8ab8ad73e25983b8b675a49905701dc8a7c420
+
+/**
+* Verticals Module
+*/
+angular.module('Verticals',[])
+	.constant('vertical_list', [{
+		name: 'Health Insurance',
+		value: 'health_insurance'
+	},{
+		name: 'Auto Insurance',
+		value: 'auto_insurance'
+	},{
+		name: 'Medicaid',
+		value: 'medicaid'
+	},{
+		name: 'Life Insurance',
+		value: 'life_insurance'
+	},{
+		name: 'Home Insurance',
+		value: 'home_insurance'
+	},{
+		name: 'Renter/Condo Insurance',
+		value: 'renter_insurance'
+	}]);
 // --------------------------------------------------
 // REBOOT FORMS MODULE
 // --------------------------------------------------
 
-angular.module('Forms', []);
+// angular.module('RebootForms', []);
+<<<<<<< HEAD
 // routes.push({
 // 	state: 'user',
 // 	options: {
@@ -35422,91 +35459,17 @@ angular.module('Forms', []);
 // 		}
 // 	}
 // })
+=======
+// (function() {
+
+// 	// app.controller('UsersController', ['$scope', '$rootScope', function($scope, $rootScope) {
+		
+// 	// }]);
+
+// })();
+>>>>>>> 9c8ab8ad73e25983b8b675a49905701dc8a7c420
+
 // angular.module('shared.users', []);
-// /**
-// * Verticals Module
-// */
-// angular.module('Verticals',[])
-// 	.constant('vertical_list', [{
-// 		name: 'Health Insurance',
-// 		value: 'health_insurance'
-// 	},{
-// 		name: 'Auto Insurance',
-// 		value: 'auto_insurance'
-// 	},{
-// 		name: 'Medicaid',
-// 		value: 'medicaid'
-// 	},{
-// 		name: 'Life Insurance',
-// 		value: 'life_insurance'
-// 	},{
-// 		name: 'Home Insurance',
-// 		value: 'home_insurance'
-// 	},{
-// 		name: 'Renter/Condo Insurance',
-// 		value: 'renter_insurance'
-// 	}]);
-// --------------------------------------------------
-// REBOOT FORMS - RADIO BUTTON
-// --------------------------------------------------
-
-// This directive should be used as <radio></radio>
-
-angular.module('Forms')
-	.directive('radio', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-
-			scope: {
-				bullet     : '@',
-				classes    : '@class',
-				id         : '@',
-				ngModel    : '=',
-				name       : '@',
-				validation : '=',
-				value      : '@'
-			},
-			
-			link: function (scope, el, attrs) {				
-				// Watch for changes to the model
-				scope.$watch('ngModel', function() {
-					scope.isChecked = (scope.ngModel == scope.value);
-				});
-			},
-
-			templateUrl: '/modules/Forms/directives/radio/view.html'
-		}
-	});
-// --------------------------------------------------
-// REBOOT FORMS - RADIO GROUP
-// --------------------------------------------------
-
-// This directive should be used as <radio-group></radio-group>
-
-angular.module('Forms')
-	.directive('radioGroup', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-
-			scope: {
-				bullet       : '@',
-				classes      : '@class',
-				id           : '@',
-				inputClasses : '@inputClass',
-				ngModel      : '=',
-				name         : '@',
-				options      : '=',
-				validation   : '='
-			},
-
-			templateUrl: '/modules/Forms/directives/radio-group/view.html'
-		}
-	});
 // --------------------------------------------------
 // REBOOT FORMS - TEXTAREA
 // --------------------------------------------------
@@ -35528,68 +35491,68 @@ angular.module('Forms')
 // 		}
 // 	});
 
-// var UserSchema = {
-// 	"$schema": "http://json-schema.org/draft-04/schema#",
-// 	"title" : "User",
-// 	"description" : "A NextGen Leads user",
-// 	"type" : "object",
-// 	"properties" : {
-// 		"id" : {
-// 			"type" : "string",
-// 			"description" : "A unique hash that identifies the user in the DB",
-// 			"required" : true
-// 		},
-// 		"name" : {
-// 			"description" : "An object containing parts of the user's real name",
-// 			"type" : "object",
-// 			"properties" : {
-// 				"first" : {
-// 					"description" : "The user's first name",
-// 					"type" : "string",
-// 					"required" : true
-// 				},
-// 				"last" : {
-// 					"description" : "The user's last name",
-// 					"type" : "string",
-// 					"required" : true
-// 				}
-// 			},
-// 			"required" : true
-// 		},
-// 		"password" : {
-// 			"description" : "An encrypted hash of the user's password for logging into the application",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"email" : {
-// 			"description" : "The user's email address",
-// 			"pattern" : "[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"company_id" : {
-// 			"description" : "The id for the company associated with the user",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"role" : {
-// 			"description" : "The id for the role associated with the user",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"created" : {
-// 			"description" : "The date the user account was created",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"updated" : {
-// 			"description" : "The date the user account was last modified",
-// 			"type" : "string",
-// 			"format" : "date-time",
-// 			"required" : false
-// 		}
-// 	}
-// }
+var UserSchema = {
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title" : "User",
+	"description" : "A NextGen Leads user",
+	"type" : "object",
+	"properties" : {
+		"id" : {
+			"type" : "string",
+			"description" : "A unique hash that identifies the user in the DB",
+			"required" : true
+		},
+		"name" : {
+			"description" : "An object containing parts of the user's real name",
+			"type" : "object",
+			"properties" : {
+				"first" : {
+					"description" : "The user's first name",
+					"type" : "string",
+					"required" : true
+				},
+				"last" : {
+					"description" : "The user's last name",
+					"type" : "string",
+					"required" : true
+				}
+			},
+			"required" : true
+		},
+		"password" : {
+			"description" : "An encrypted hash of the user's password for logging into the application",
+			"type" : "string",
+			"required" : true
+		},
+		"email" : {
+			"description" : "The user's email address",
+			"pattern" : "[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}",
+			"type" : "string",
+			"required" : true
+		},
+		"company_id" : {
+			"description" : "The id for the company associated with the user",
+			"type" : "string",
+			"required" : true
+		},
+		"role" : {
+			"description" : "The id for the role associated with the user",
+			"type" : "string",
+			"required" : true
+		},
+		"created" : {
+			"description" : "The date the user account was created",
+			"type" : "string",
+			"required" : true
+		},
+		"updated" : {
+			"description" : "The date the user account was last modified",
+			"type" : "string",
+			"format" : "date-time",
+			"required" : false
+		}
+	}
+}
 angular.module('Corporate.Router', ['ui.router'])
 	.run(function($rootScope, $urlRouter) {
 		$rootScope.$on('$locationChangeSuccess', function() {

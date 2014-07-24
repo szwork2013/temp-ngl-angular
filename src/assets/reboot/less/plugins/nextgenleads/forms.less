@@ -14,6 +14,9 @@
 // END VARIABLES
 // --------------------------------------------------
 
+// --------------------------------------------------
+// CONTROL GROUP STYLES
+
 .control-group {
 
 	&.required .control-label {
@@ -34,6 +37,13 @@
 	}
 }
 
+// END CONTROL GROUP STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// TEXT INPPUT STYLES
+
 // Text Inputs
 input[type='text'],
 input[type='email'],
@@ -48,8 +58,15 @@ input[type='number'] {
 	}
 }
 
-// Radio Inputs
+// END TEXT INPPUT STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// RADIO STYLES
+
 .radio-group {
+	.clearfix;
 
 	&.h {
 		
@@ -67,6 +84,74 @@ input[type='number'] {
 
 	}
 }
+
+.radio-wrapper {
+
+	.radio {
+		.border-radius(20px);
+		border: 2px solid @tableBorderColor;
+	}
+
+	&.focus {
+		.box-shadow(0 0 3px @colorPrimary);
+		.border-radius(20px);
+	}
+}
+
+// END RADIO STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// BUTTON STYLES
+
+.button(@lighter: #0072BC, @light: #0061A1, @dark: #0062B0, @darker: #005497) {
+	.border-radius(3px);
+	.box-shadow(0 3px 0 #004B7C);
+	.gradient(@light, @light, @lighter);
+	border-bottom: 1px solid @lighter;
+	color: #FFF;
+	cursor: pointer;
+	font-weight: bold;
+	text-transform: uppercase;
+
+	i {
+		.gradient(@darker, @darker, @dark);
+		float: left;
+		margin: 0 20px 0 -20px;
+		width: 40px;
+	}
+
+	&:hover {
+		.gradient(lighten(@light, 7%), lighten(@light, 7%), lighten(@lighter, 7%));
+
+		i {
+			.gradient(lighten(@darker, 7%), lighten(@darker, 7%), lighten(@dark, 7%));
+		}
+	}
+
+	&:active {
+		.gradient(lighten(@light, 7%), lighten(@light, 7%), lighten(@lighter, 7%));
+		.box-shadow(0 1px 0 #004B7C);
+		margin-top: 2px;
+
+		i {
+			.gradient(lighten(@darker, 7%), lighten(@darker, 7%), lighten(@dark, 7%));
+		}
+	}
+}
+
+button {
+	.button();
+}
+
+button.green {
+	.button();
+}
+
+// END BUTTON STYLES
+// --------------------------------------------------
+
 
 // --------------------------------------------------
 // VALIDATION STYLES

@@ -6,7 +6,7 @@
 	<script src="/apps/marketplace/app.js"></script>
 	<link rel="stylesheet" href="/assets/css/marketplace.css">
 </head>
-<body ng-controller="MainCtrl">
+<body ng-controller="Marketplace_Ctrl">
 	<div class="wrapper">
 		<section id="header">
 			<div class="branding">
@@ -105,13 +105,28 @@
 									<label class="control-label" for="">Radio Button</label>
 									<div class="controls">
 										<div class="radio-group h">
-											<label><input type="radio"> Yes</label>
-											<label><input type="radio"> No</label>
-											<label><input type="radio"> Maybe</label>
+											<radio name="test" bullet="re-bullet" class="test" value="yes" ng-model="test">Yes</radio>
+											<radio name="test" bullet="re-bullet" class="test" value="no" ng-model="test">No</radio>
+											<radio name="test" bullet="re-bullet" class="test" value="maybe" ng-model="test">Maybe</radio>
 										</div>
 									</div>
 								</div>
-								asdasdasd
+
+								<div class="control-group">
+									<label class="control-label" for="">Radio Button</label>
+									<div class="controls">
+										<radio-group 
+											options="testOptions" 
+											id="form-null--test" 
+											name="color" 
+											class="h" 
+											ng-model="test" 
+											input-class="input-class">
+										</radio-group>
+									</div>
+								</div>
+
+								<p>The value is {{test}}</p>
 
 							</fieldset>
 
@@ -119,7 +134,7 @@
 					</div>
 
 					<div class="buttons">
-						
+						<button><i class="ngl-x"></i>Hello</button>
 					</div>
 				</div>
 
