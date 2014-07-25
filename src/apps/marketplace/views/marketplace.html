@@ -104,17 +104,6 @@
 								<div class="control-group">
 									<label class="control-label" for="">Radio Button</label>
 									<div class="controls">
-										<div class="radio-group h">
-											<radio name="test" bullet="re-bullet" class="test" value="yes" ng-model="test">Yes</radio>
-											<radio name="test" bullet="re-bullet" class="test" value="no" ng-model="test">No</radio>
-											<radio name="test" bullet="re-bullet" class="test" value="maybe" ng-model="test">Maybe</radio>
-										</div>
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="">Radio Button</label>
-									<div class="controls">
 										<radio-group 
 											options="testOptions" 
 											id="form-null--test" 
@@ -126,8 +115,18 @@
 									</div>
 								</div>
 
-								<p>The value is {{test}}</p>
+							</fieldset>
 
+							<fieldset>
+								<legend>Text Box</legend>
+
+								<div class="control-group">
+									<label class="control-label" for="">Textarea</label>
+									<div class="controls">
+										<textbox name="something"></textbox>
+									</div>
+								</div>
+								
 							</fieldset>
 
 						</form>

@@ -1,13 +1,9 @@
 // --------------------------------------------------
-// REBOOT FORMS - RADIO GROUP
+// REBOOT FORMS - TEXTAREA
 // --------------------------------------------------
 
-// !!! This doesn't work yet, so don't use it.
-
-// This directive should be used as <radio-group></radio-group>
-
 angular.module('Forms')
-	.directive('radioGroup', function() {
+	.directive('textbox', function() {
 		return {
 
 			restrict: 'E',
@@ -15,20 +11,19 @@ angular.module('Forms')
 			transclude: true,
 
 			scope: {
-				bullet       : '@?',
 				class        : '@?',
 				id           : '@?',
-				inputClass   : '@?',
 				ngModel      : '=?',
 				name         : '@',
-				options      : '=',
 				validation   : '=?'
 			},
 
 			link: function(scope, el, attrs) {
-
+				el.find('textarea').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
 			},
 
-			templateUrl: '/modules/Forms/directives/radio-group/view.html'
+			templateUrl: '/modules/Forms/directives/textbox/view.html'
 		}
 	});

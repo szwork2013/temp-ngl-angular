@@ -1,1 +1,1 @@
-<div class="radio-group {{classes}}"><radio ng-repeat="option in options" id="{{id}}-{{$index}}" class="{{inputClasses}}" name="{{name}}" value="{{option.value}}" bullet="{{bullet}}" validation="validation" ng-model="ngModel">{{option.label}}</radio></div>
+<div class="radio-group {{class}}"><label ng-repeat="option in options"><radio id="{{id}}-{{$index}}" class="{{inputClass}}" name="{{name}}" value="{{option.value}}" validation="$parent.validation" ng-model="$parent.ngModel"></radio>{{option.label}}</label></div>

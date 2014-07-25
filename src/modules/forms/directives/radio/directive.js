@@ -10,22 +10,25 @@ angular.module('Forms')
 
 			restrict: 'E',
 			replace: true,
-			transclude: true,
 
 			scope: {
-				bullet     : '@',
-				classes    : '@class',
-				id         : '@',
-				ngModel    : '=',
+				bullet     : '@?',
+				class      : '@?',
+				id         : '@?',
+				ngModel    : '=?',
 				name       : '@',
-				validation : '=',
+				validation : '=?',
 				value      : '@'
 			},
 			
-			link: function (scope, el, attrs) {				
+			link: function (scope, el, attrs) {
 				// Watch for changes to the model
 				scope.$watch('ngModel', function() {
 					scope.isChecked = (scope.ngModel == scope.value);
+				});
+
+				el.find('input').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
 				});
 			},
 

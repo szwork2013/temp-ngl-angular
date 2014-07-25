@@ -35412,17 +35412,6 @@ angular.module('Corporate', ['Verticals'])
 // --------------------------------------------------
 
 angular.module('Forms', []);
-// routes.push({
-// 	state: 'user',
-// 	options: {
-// 		url: '/user',
-// 		templateUrl: '/modules/users/views/default.html',
-// 		controller: function($scope, $rootScope) {
-			
-// 		}
-// 	}
-// })
-// angular.module('shared.users', []);
 // /**
 // * Verticals Module
 // */
@@ -35446,6 +35435,17 @@ angular.module('Forms', []);
 // 		name: 'Renter/Condo Insurance',
 // 		value: 'renter_insurance'
 // 	}]);
+// routes.push({
+// 	state: 'user',
+// 	options: {
+// 		url: '/user',
+// 		templateUrl: '/modules/users/views/default.html',
+// 		controller: function($scope, $rootScope) {
+			
+// 		}
+// 	}
+// })
+// angular.module('shared.users', []);
 // --------------------------------------------------
 // REBOOT FORMS - RADIO BUTTON
 // --------------------------------------------------
@@ -35458,22 +35458,25 @@ angular.module('Forms')
 
 			restrict: 'E',
 			replace: true,
-			transclude: true,
 
 			scope: {
-				bullet     : '@',
-				classes    : '@class',
-				id         : '@',
-				ngModel    : '=',
+				bullet     : '@?',
+				class      : '@?',
+				id         : '@?',
+				ngModel    : '=?',
 				name       : '@',
-				validation : '=',
+				validation : '=?',
 				value      : '@'
 			},
 			
-			link: function (scope, el, attrs) {				
+			link: function (scope, el, attrs) {
 				// Watch for changes to the model
 				scope.$watch('ngModel', function() {
 					scope.isChecked = (scope.ngModel == scope.value);
+				});
+
+				el.find('input').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
 				});
 			},
 
@@ -35484,6 +35487,8 @@ angular.module('Forms')
 // REBOOT FORMS - RADIO GROUP
 // --------------------------------------------------
 
+// !!! This doesn't work yet, so don't use it.
+
 // This directive should be used as <radio-group></radio-group>
 
 angular.module('Forms')
@@ -35492,16 +35497,21 @@ angular.module('Forms')
 
 			restrict: 'E',
 			replace: true,
+			transclude: true,
 
 			scope: {
-				bullet       : '@',
-				classes      : '@class',
-				id           : '@',
-				inputClasses : '@inputClass',
-				ngModel      : '=',
+				bullet       : '@?',
+				class        : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
 				name         : '@',
 				options      : '=',
-				validation   : '='
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+
 			},
 
 			templateUrl: '/modules/Forms/directives/radio-group/view.html'
@@ -35511,22 +35521,31 @@ angular.module('Forms')
 // REBOOT FORMS - TEXTAREA
 // --------------------------------------------------
 
-// angular.module('RebootForms')
-// 	.directive('rebootTextarea', function() {
-// 		return {
+angular.module('Forms')
+	.directive('textbox', function() {
+		return {
 
-// 			// This directive should be used as <reboot-textarea></reboot-textarea>
-// 			restrict: 'E',
-			
-// 			// The controller for this element
-// 			link: function (scope, el, attrs) {
+			restrict: 'E',
+			replace: true,
+			transclude: true,
 
-// 			},
+			scope: {
+				class        : '@?',
+				id           : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				validation   : '=?'
+			},
 
-// 			// The template for this element
-// 			template: '/modules/forms/views/reboot-textarea.html'
-// 		}
-// 	});
+			link: function(scope, el, attrs) {
+				el.find('textarea').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
+			},
+
+			templateUrl: '/modules/Forms/directives/textbox/view.html'
+		}
+	});
 
 // var UserSchema = {
 // 	"$schema": "http://json-schema.org/draft-04/schema#",
