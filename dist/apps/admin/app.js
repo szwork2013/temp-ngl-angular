@@ -35437,6 +35437,240 @@ angular.module('Forms', []);
 // 		name: 'Renter/Condo Insurance',
 // 		value: 'renter_insurance'
 // 	}]);
+// --------------------------------------------------
+// REBOOT FORMS - CHECKBOX
+// --------------------------------------------------
+
+// This directive should be used as <radio></radio>
+
+angular.module('Forms')
+	.directive('checkbox', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				bullet      : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngModel     : '=?',
+				name        : '@',
+				validation  : '=?',
+				value       : '@',
+			},
+			
+			link: function (scope, el, attrs) {
+				el.find('input').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
+
+				// Watch for changes to the model
+				scope.$watch('ngModel', function() {
+					scope.isChecked = (($.isArray(scope.ngModel) && scope.ngModel.indexOf(scope.value) > -1) || scope.ngModel === true);
+				}, true);
+
+				scope.toggleChecked = function() {
+					if (typeof scope.ngModel === 'boolean') {
+						scope.ngModel = ($(el).find('input').is(':checked'));
+					}
+
+					// The model is an array
+					else {
+						var valueIndex = scope.ngModel.indexOf(scope.value);
+
+					    // Remove the value
+					    if (valueIndex > -1) {
+					    	scope.ngModel.splice(valueIndex, 1);
+					    }
+
+					    // Add the value
+					    else {
+					    	scope.ngModel.push(scope.value);
+					    }
+					}
+				}
+			},
+
+			templateUrl: '/modules/Forms/directives/checkbox/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - CHECKBOX GROUP
+// --------------------------------------------------
+
+// !!! This doesn't work yet, so don't use it.
+
+// This directive should be used as <radio-group></radio-group>
+
+angular.module('Forms')
+	.directive('checkboxGroup', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '=',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - RADIO BUTTON
+// --------------------------------------------------
+
+// This directive should be used as <radio></radio>
+
+angular.module('Forms')
+	.directive('radio', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				bullet      : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngModel     : '=?',
+				name        : '@',
+				validation  : '=?',
+				value       : '@'
+			},
+			
+			link: function (scope, el, attrs) {
+				// Watch for changes to the model
+				scope.$watch('ngModel', function() {
+					scope.isChecked = (scope.ngModel == scope.value);
+				});
+
+				el.find('input').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
+			},
+
+			templateUrl: '/modules/Forms/directives/radio/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - RADIO GROUP
+// --------------------------------------------------
+
+// !!! This doesn't work yet, so don't use it.
+
+// This directive should be used as <radio-group></radio-group>
+
+angular.module('Forms')
+	.directive('radioGroup', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '=',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/radio-group/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - TEXTAREA
+// --------------------------------------------------
+
+angular.module('Forms')
+	.directive('textbox', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				class        : '@?',
+				id           : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				// Set focus styles for the wrapper
+				el.find('textarea').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
+
+				// Should the textbox auto-expand?
+				if (attrs.autosize == '') {
+					$textarea = $(el.find('textarea'));
+					textarea  = $textarea[0];
+
+					// Hide overflow on element
+					$(el).css('padding', '10px');
+					$textarea.addClass('autosize');
+
+					var createMirror = function(textarea) {
+						$(textarea).after('<div class="autogrow-textarea-mirror"></div>');
+						return $(textarea).next('.autogrow-textarea-mirror')[0];
+					}
+
+					var sendContentToMirror = function (textarea) {
+						mirror.innerHTML = String(textarea.value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />') + '.<br/>.';
+
+						if ($(textarea).height() != $(mirror).height())
+							$(textarea).height($(mirror).height());
+					}
+
+					var growTextarea = function () {
+						sendContentToMirror(textarea);
+					}
+
+					// Create a mirror
+					var mirror = createMirror(textarea);
+					
+					// Style the mirror
+
+					// Style the textarea
+					textarea.style.overflow = "hidden";
+					textarea.style.minHeight = textarea.rows + "em";
+
+					// Bind the textarea's event
+					textarea.onkeyup = growTextarea;
+
+					// Fire the event for text already present
+					sendContentToMirror(textarea);
+				}
+			},
+
+			templateUrl: '/modules/Forms/directives/textbox/view.html'
+		}
+	});
 
 // var UserSchema = {
 // 	"$schema": "http://json-schema.org/draft-04/schema#",
@@ -35500,103 +35734,3 @@ angular.module('Forms', []);
 // 		}
 // 	}
 // }
-// --------------------------------------------------
-// REBOOT FORMS - RADIO BUTTON
-// --------------------------------------------------
-
-// This directive should be used as <radio></radio>
-
-angular.module('Forms')
-	.directive('radio', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-
-			scope: {
-				bullet     : '@?',
-				class      : '@?',
-				id         : '@?',
-				ngModel    : '=?',
-				name       : '@',
-				validation : '=?',
-				value      : '@'
-			},
-			
-			link: function (scope, el, attrs) {
-				// Watch for changes to the model
-				scope.$watch('ngModel', function() {
-					scope.isChecked = (scope.ngModel == scope.value);
-				});
-
-				el.find('input').on('focus blur', function(event) {
-					el.toggleClass('focus', $(this).is(document.activeElement));
-				});
-			},
-
-			templateUrl: '/modules/Forms/directives/radio/view.html'
-		}
-	});
-// --------------------------------------------------
-// REBOOT FORMS - RADIO GROUP
-// --------------------------------------------------
-
-// !!! This doesn't work yet, so don't use it.
-
-// This directive should be used as <radio-group></radio-group>
-
-angular.module('Forms')
-	.directive('radioGroup', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-
-			scope: {
-				bullet       : '@?',
-				class        : '@?',
-				id           : '@?',
-				inputClass   : '@?',
-				ngModel      : '=?',
-				name         : '@',
-				options      : '=',
-				validation   : '=?'
-			},
-
-			link: function(scope, el, attrs) {
-
-			},
-
-			templateUrl: '/modules/Forms/directives/radio-group/view.html'
-		}
-	});
-// --------------------------------------------------
-// REBOOT FORMS - TEXTAREA
-// --------------------------------------------------
-
-angular.module('Forms')
-	.directive('textbox', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-
-			scope: {
-				class        : '@?',
-				id           : '@?',
-				ngModel      : '=?',
-				name         : '@',
-				validation   : '=?'
-			},
-
-			link: function(scope, el, attrs) {
-				el.find('textarea').on('focus blur', function(event) {
-					el.toggleClass('focus', $(this).is(document.activeElement));
-				});
-			},
-
-			templateUrl: '/modules/Forms/directives/textbox/view.html'
-		}
-	});

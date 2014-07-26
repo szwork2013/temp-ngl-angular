@@ -1,12 +1,12 @@
-<div class="radio-group {{groupClass}}">
+<div class="checkbox-group {{groupClass}}">
 	<label ng-repeat="option in options">
-		<radio id="{{id}}-{{$index}}"
+		<checkbox id="{{id}}-{{$index}}"
 			custom-class="{{inputClass}}"
 			name="{{name}}"
 			value="{{option.value}}"
 			validation="$parent.validation"
 			ng-model="$parent.ngModel">
-		</radio>
+		</checkbox>
 		{{option.label}}
 	</label>
 </div>

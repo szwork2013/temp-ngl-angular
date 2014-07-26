@@ -1,5 +1,5 @@
 // --------------------------------------------------
-// REBOOT FORMS - RADIO GROUP
+// REBOOT FORMS - CHECKBOX GROUP
 // --------------------------------------------------
 
 // !!! This doesn't work yet, so don't use it.
@@ -7,7 +7,7 @@
 // This directive should be used as <radio-group></radio-group>
 
 angular.module('Forms')
-	.directive('radioGroup', function() {
+	.directive('checkboxGroup', function() {
 		return {
 
 			restrict: 'E',
@@ -29,6 +29,6 @@ angular.module('Forms')
 				
 			},
 
-			templateUrl: '/modules/Forms/directives/radio-group/view.html'
+			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
 		}
 	});

@@ -8,8 +8,11 @@
 
 @colorValid: #B3CE8D;
 @colorInvalid: #E89294;
-@colorIconValid: #8DC63F;
-@colorIconInvalid: #B12B2B;
+@colorValidLight: #ECF3E2;
+@colorInvalidLight: #F9E4E4;
+@colorValidDark: #8DC63F;
+@colorInvalidDark: #B12B2B;
+@colorFocus: rgba(0,0,0,0.5);
 
 // END VARIABLES
 // --------------------------------------------------
@@ -42,7 +45,7 @@
 
 
 // --------------------------------------------------
-// TEXT INPPUT STYLES
+// TEXT INPUT STYLES
 
 // Text Inputs
 input[type='text'],
@@ -55,12 +58,28 @@ input[type='number'],
 
 	&:focus,
 	&.focus {
-		.box-shadow(0 0 3px rgba(0,0,0,0.25));
+		.box-shadow(0 0 3px @colorFocus);
 		outline: 0;
 	}
 }
 
-// END TEXT INPPUT STYLES
+.textarea-wrapper {
+	.inline-block;
+	padding: 0;
+	vertical-align: top;
+
+	textarea {
+		padding: 10px;
+	}
+
+	.autogrow-textarea-mirror {
+		display: none;
+		font-family: @fontNormal;
+		width: 100%;
+	}
+}
+
+// END TEXT INPUT STYLES
 // --------------------------------------------------
 
 
@@ -73,7 +92,7 @@ input[type='number'],
 	border: 1px solid #CCC;
 
 	&:focus {
-		.box-shadow(0 0 3px rgba(0,0,0,0.25));
+		.box-shadow(0 0 3px @colorFocus);
 		outline: 0;
 	}
 }
@@ -86,7 +105,13 @@ input[type='number'],
 // RADIO STYLES
 
 .radio-group {
+	.border-radius(3px);
 	.clearfix;
+	.inline-block;
+	line-height: 40px;
+	min-height: 40px;
+	padding: 0 10px;
+	vertical-align: top;
 
 	&.h {
 		
@@ -110,16 +135,62 @@ input[type='number'],
 
 	.radio {
 		.border-radius(20px);
-		border: 2px solid @tableBorderColor;
+		border: 2px solid #333;
 	}
 
 	&.focus {
-		.box-shadow(0 0 3px rgba(0,0,0,0.25));
+		.box-shadow(0 0 3px @colorFocus);
 		outline: 0;
 	}
 }
 
 // END RADIO STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// CHECKBOX STYLES
+
+.checkbox-group {
+	.border-radius(3px);
+	.clearfix;
+	.inline-block;
+	line-height: 40px;
+	min-height: 40px;
+	padding: 0 10px;
+	vertical-align: top;
+
+	&.h {
+		
+		label {
+			float: left;
+			margin-left: 30px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+
+	.v {
+
+	}
+}
+
+.checkbox-wrapper {
+
+	.box {
+		.border-radius(2px);
+		border: 2px solid #333;
+	}
+
+	&.focus {
+		.box-shadow(0 0 3px @colorFocus);
+		outline: 0;
+	}
+}
+
+// END CHECKBOX STYLES
 // --------------------------------------------------
 
 
@@ -179,7 +250,10 @@ button.green {
 
 // Default styles for valid icons
 .validation-icon {
+	.inline-block;
 	font-size: 16px;
+	height: 40px;
+	line-height: 40px;
 }
 
 // Input fields
@@ -201,15 +275,39 @@ input[type='number'] {
 
 	&.valid {
 
-		i {
-			color: @colorIconValid;
+		i.validation-icon {
+			color: @colorValidDark;
+		}
+
+		.radio-group,
+		.checkbox-group {
+			background-color: @colorValidLight;
+		}
+
+		.textarea-wrapper,
+		.select-wrapper {
+			border: 1px solid @colorValid;
 		}
 	}
 
 	&.invalid {
 
-		i {
-			color: @colorIconInvalid;
+		i.validation-icon {
+			color: @colorInvalidDark;
+		}
+
+		.radio-group,
+		.checkbox-group {
+			background-color: @colorInvalidLight;
+		}
+
+		.radio {
+			border: 2px solid @colorInvalid;
+		}
+
+		.textarea-wrapper,
+		.select-wrapper {
+			border: 1px solid @colorInvalid;
 		}
 	}
 }

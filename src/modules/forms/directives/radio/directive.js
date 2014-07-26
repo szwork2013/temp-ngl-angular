@@ -12,13 +12,13 @@ angular.module('Forms')
 			replace: true,
 
 			scope: {
-				bullet     : '@?',
-				class      : '@?',
-				id         : '@?',
-				ngModel    : '=?',
-				name       : '@',
-				validation : '=?',
-				value      : '@'
+				bullet      : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngModel     : '=?',
+				name        : '@',
+				validation  : '=?',
+				value       : '@'
 			},
 			
 			link: function (scope, el, attrs) {

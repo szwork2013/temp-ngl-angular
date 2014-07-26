@@ -1,0 +1,7 @@
+<div class="checkbox-wrapper {{customClass}}">
+	<input type="checkbox" name="{{name}}" id="{{id}}" value="{{value}}" ng-checked="isChecked" ng-click="toggleChecked()" data-validation-rules="validation">
+	<div class="box"></div>
+	<div class="checkmark">
+		<i class="{{bullet || 'ngl-check'}}" ng-show="isChecked"></i>
+	</div>
+</div>

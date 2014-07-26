@@ -35362,7 +35362,9 @@ angular.module('Marketplace')
 	.controller('Marketplace_Ctrl', ['$scope', '$rootScope', function($scope, $rootScope) {
 		$scope.title = 'Hello, World.';
 		$scope.test  = 'F00';
+		$scope.checkTest = true;
 		$scope.testOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
+		$scope.checkOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
 	}]);
 
 var routes = [];
@@ -35451,6 +35453,98 @@ angular.module('Forms', []);
 // 		value: 'renter_insurance'
 // 	}]);
 // --------------------------------------------------
+// REBOOT FORMS - CHECKBOX
+// --------------------------------------------------
+
+// This directive should be used as <radio></radio>
+
+angular.module('Forms')
+	.directive('checkbox', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				bullet      : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngModel     : '=?',
+				name        : '@',
+				validation  : '=?',
+				value       : '@',
+			},
+			
+			link: function (scope, el, attrs) {
+				el.find('input').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
+
+				// Watch for changes to the model
+				scope.$watch('ngModel', function() {
+					scope.isChecked = (($.isArray(scope.ngModel) && scope.ngModel.indexOf(scope.value) > -1) || scope.ngModel === true);
+				}, true);
+
+				scope.toggleChecked = function() {
+					if (typeof scope.ngModel === 'boolean') {
+						scope.ngModel = ($(el).find('input').is(':checked'));
+					}
+
+					// The model is an array
+					else {
+						var valueIndex = scope.ngModel.indexOf(scope.value);
+
+					    // Remove the value
+					    if (valueIndex > -1) {
+					    	scope.ngModel.splice(valueIndex, 1);
+					    }
+
+					    // Add the value
+					    else {
+					    	scope.ngModel.push(scope.value);
+					    }
+					}
+				}
+			},
+
+			templateUrl: '/modules/Forms/directives/checkbox/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - CHECKBOX GROUP
+// --------------------------------------------------
+
+// !!! This doesn't work yet, so don't use it.
+
+// This directive should be used as <radio-group></radio-group>
+
+angular.module('Forms')
+	.directive('checkboxGroup', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '=',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
+		}
+	});
+// --------------------------------------------------
 // REBOOT FORMS - RADIO BUTTON
 // --------------------------------------------------
 
@@ -35464,13 +35558,13 @@ angular.module('Forms')
 			replace: true,
 
 			scope: {
-				bullet     : '@?',
-				class      : '@?',
-				id         : '@?',
-				ngModel    : '=?',
-				name       : '@',
-				validation : '=?',
-				value      : '@'
+				bullet      : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngModel     : '=?',
+				name        : '@',
+				validation  : '=?',
+				value       : '@'
 			},
 			
 			link: function (scope, el, attrs) {
@@ -35505,7 +35599,7 @@ angular.module('Forms')
 
 			scope: {
 				bullet       : '@?',
-				class        : '@?',
+				groupClass   : '@?',
 				id           : '@?',
 				inputClass   : '@?',
 				ngModel      : '=?',
@@ -35515,7 +35609,7 @@ angular.module('Forms')
 			},
 
 			link: function(scope, el, attrs) {
-
+				
 			},
 
 			templateUrl: '/modules/Forms/directives/radio-group/view.html'
@@ -35542,9 +35636,51 @@ angular.module('Forms')
 			},
 
 			link: function(scope, el, attrs) {
+				// Set focus styles for the wrapper
 				el.find('textarea').on('focus blur', function(event) {
 					el.toggleClass('focus', $(this).is(document.activeElement));
 				});
+
+				// Should the textbox auto-expand?
+				if (attrs.autosize == '') {
+					$textarea = $(el.find('textarea'));
+					textarea  = $textarea[0];
+
+					// Hide overflow on element
+					$(el).css('padding', '10px');
+					$textarea.addClass('autosize');
+
+					var createMirror = function(textarea) {
+						$(textarea).after('<div class="autogrow-textarea-mirror"></div>');
+						return $(textarea).next('.autogrow-textarea-mirror')[0];
+					}
+
+					var sendContentToMirror = function (textarea) {
+						mirror.innerHTML = String(textarea.value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />') + '.<br/>.';
+
+						if ($(textarea).height() != $(mirror).height())
+							$(textarea).height($(mirror).height());
+					}
+
+					var growTextarea = function () {
+						sendContentToMirror(textarea);
+					}
+
+					// Create a mirror
+					var mirror = createMirror(textarea);
+					
+					// Style the mirror
+
+					// Style the textarea
+					textarea.style.overflow = "hidden";
+					textarea.style.minHeight = textarea.rows + "em";
+
+					// Bind the textarea's event
+					textarea.onkeyup = growTextarea;
+
+					// Fire the event for text already present
+					sendContentToMirror(textarea);
+				}
 			},
 
 			templateUrl: '/modules/Forms/directives/textbox/view.html'

@@ -108,10 +108,93 @@
 											options="testOptions" 
 											id="form-null--test" 
 											name="color" 
-											class="h" 
+											group-class="h l" 
 											ng-model="test" 
 											input-class="input-class">
 										</radio-group>
+									</div>
+								</div>
+
+								<div class="control-group valid">
+									<label class="control-label" for="">Radio Button</label>
+									<div class="controls">
+										<radio-group 
+											options="testOptions" 
+											id="form-null--test" 
+											name="color" 
+											group-class="h l" 
+											ng-model="test" 
+											input-class="input-class">
+										</radio-group>
+										<i class="validation-icon ngl-check"></i>
+									</div>
+								</div>
+
+								<div class="control-group invalid">
+									<label class="control-label" for="">Radio Button</label>
+									<div class="controls">
+										<radio-group 
+											options="testOptions" 
+											id="form-null--test" 
+											name="color" 
+											group-class="h l" 
+											ng-model="test" 
+											input-class="input-class">
+										</radio-group>
+										<i class="validation-icon ngl-exclamation-circle"></i>
+										<p class="error-msg">This field is required</p>
+									</div>
+								</div>
+
+							</fieldset>
+
+							<fieldset>
+								<legend>Checkboxes</legend>
+
+								{{checkTest}}
+
+								<div class="control-group">
+									<label class="control-label" for="">Checkboxes</label>
+									<div class="controls">
+										<checkbox-group 
+											options="checkOptions" 
+											id="form-null--test" 
+											name="color" 
+											group-class="h l" 
+											ng-model="checkTest" 
+											input-class="input-class">
+										</checkbox-group>
+									</div>
+								</div>
+
+								<div class="control-group valid">
+									<label class="control-label" for="">Checkboxes</label>
+									<div class="controls">
+										<checkbox-group 
+											options="checkOptions" 
+											id="form-null--test" 
+											name="color" 
+											group-class="h l" 
+											ng-model="checkTest" 
+											input-class="input-class">
+										</checkbox-group>
+										<i class="validation-icon ngl-check"></i>
+									</div>
+								</div>
+
+								<div class="control-group invalid">
+									<label class="control-label" for="">Checkboxes</label>
+									<div class="controls">
+										<checkbox-group 
+											options="checkOptions" 
+											id="form-null--test" 
+											name="color" 
+											group-class="h l" 
+											ng-model="checkTest" 
+											input-class="input-class">
+										</checkbox-group>
+										<i class="validation-icon ngl-exclamation-circle"></i>
+										<p class="error-msg">This field is required</p>
 									</div>
 								</div>
 
@@ -124,6 +207,30 @@
 									<label class="control-label" for="">Textarea</label>
 									<div class="controls">
 										<textbox name="something"></textbox>
+									</div>
+								</div>
+
+								<div class="control-group valid">
+									<label class="control-label" for="">Textarea</label>
+									<div class="controls">
+										<textbox name="something"></textbox>
+										<i class="validation-icon ngl-check"></i>
+									</div>
+								</div>
+
+								<div class="control-group invalid">
+									<label class="control-label" for="">Textarea</label>
+									<div class="controls">
+										<textbox name="something"></textbox>
+										<i class="validation-icon ngl-exclamation-circle"></i>
+										<p class="error-msg">This field is required</p>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="">Textarea</label>
+									<div class="controls">
+										<textbox name="something" autosize></textbox>
 									</div>
 								</div>
 								
