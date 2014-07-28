@@ -1,0 +1,1 @@
+<div class="select-wrapper {{groupClass}}"><select name="{{name}}" id="{{id}}" multiple="multiple" ng-model="ngModel" ng-options="option.value as option.label for option in options" dtaa-validation-rules="validation"></select><ol><li ng-repeat="option in options" ng-click="$parent.toggleOption()" rel="{{option.value}}">{{option.label}}</li></ol></div>

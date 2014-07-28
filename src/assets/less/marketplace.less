@@ -10,6 +10,7 @@
 @import '/src/assets/reboot/less/reboot.less';
 @import '/src/assets/fonts/ngl-icons.css';
 @import '/src/assets/less/theme/forms.less';
+@import '/src/assets/less/theme/tables.less';
 
 // END REQUIRE STYLES
 // --------------------------------------------------
@@ -29,6 +30,7 @@ section {
 }
 
 .wrapper {
+	border-top: 3px solid @colorPrimary;
 	height: 100%;
 	width: 100%;
 }
@@ -42,7 +44,7 @@ section {
 
 section#header {
 	.box-shadow(0 2px 0 rgba(0,0,0,0.15));
-	height: 60px;
+	height: 57px;
 	width: 100%;
 	z-index: 50;
 }
@@ -103,10 +105,25 @@ section#main {
 			padding: 30px;
 			position: absolute;
 			right: 0;
-			top: 50px;
+			top: 0;
+
+			&.has-tabs {
+				top: 50px;
+			}
 
 			&.has-form {
 				bottom: 83px;
+			}
+
+			.row .group {
+				border-left: 1px solid #E1E1E1;
+				float: left;
+				margin: 0 10px;
+
+				&:first-child {
+					border-left: 0;
+					margin-left: 0;
+				}
 			}
 		}
 

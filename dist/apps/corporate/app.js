@@ -35412,17 +35412,6 @@ angular.module('Corporate', ['Verticals'])
 // --------------------------------------------------
 
 angular.module('Forms', []);
-// routes.push({
-// 	state: 'user',
-// 	options: {
-// 		url: '/user',
-// 		templateUrl: '/modules/users/views/default.html',
-// 		controller: function($scope, $rootScope) {
-			
-// 		}
-// 	}
-// })
-// angular.module('shared.users', []);
 // /**
 // * Verticals Module
 // */
@@ -35446,6 +35435,17 @@ angular.module('Forms', []);
 // 		name: 'Renter/Condo Insurance',
 // 		value: 'renter_insurance'
 // 	}]);
+// routes.push({
+// 	state: 'user',
+// 	options: {
+// 		url: '/user',
+// 		templateUrl: '/modules/users/views/default.html',
+// 		controller: function($scope, $rootScope) {
+			
+// 		}
+// 	}
+// })
+// angular.module('shared.users', []);
 // --------------------------------------------------
 // REBOOT FORMS - CHECKBOX
 // --------------------------------------------------
@@ -35539,6 +35539,85 @@ angular.module('Forms')
 		}
 	});
 // --------------------------------------------------
+// REBOOT FORMS - DROPDOWN
+// --------------------------------------------------
+
+// This directive should be used as <radio></radio>
+
+angular.module('Forms')
+	.directive('dropdown', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				arrow       : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngModel     : '=?',
+				name        : '@',
+				options     : '=',
+				validation  : '=?',
+				value       : '@'
+			},
+			
+			link: function (scope, el, attrs) {
+
+				// Watch for changes to the model
+				scope.$watch('ngModel', function() {
+					scope.options.some(function(option) {
+						if (option.value == scope.ngModel) {
+							scope.valueLabel = option.label;
+							return true;
+						}
+					});
+				});
+
+				// Add the focus class when focused
+				el.find('input').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
+			},
+
+			templateUrl: '/modules/Forms/directives/dropdown/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - CHECKBOX GROUP
+// --------------------------------------------------
+
+// !!! This doesn't work yet, so don't use it.
+
+// This directive should be used as <radio-group></radio-group>
+
+angular.module('Forms')
+	.directive('multiSelect', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '=',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/multi-select/view.html'
+		}
+	});
+// --------------------------------------------------
 // REBOOT FORMS - RADIO BUTTON
 // --------------------------------------------------
 
@@ -35621,7 +35700,7 @@ angular.module('Forms')
 			replace: true,
 
 			scope: {
-				class        : '@?',
+				customClass  : '@?',
 				id           : '@?',
 				ngModel      : '=?',
 				name         : '@',
@@ -35674,68 +35753,7 @@ angular.module('Forms')
 		}
 	});
 
-// var UserSchema = {
-// 	"$schema": "http://json-schema.org/draft-04/schema#",
-// 	"title" : "User",
-// 	"description" : "A NextGen Leads user",
-// 	"type" : "object",
-// 	"properties" : {
-// 		"id" : {
-// 			"type" : "string",
-// 			"description" : "A unique hash that identifies the user in the DB",
-// 			"required" : true
-// 		},
-// 		"name" : {
-// 			"description" : "An object containing parts of the user's real name",
-// 			"type" : "object",
-// 			"properties" : {
-// 				"first" : {
-// 					"description" : "The user's first name",
-// 					"type" : "string",
-// 					"required" : true
-// 				},
-// 				"last" : {
-// 					"description" : "The user's last name",
-// 					"type" : "string",
-// 					"required" : true
-// 				}
-// 			},
-// 			"required" : true
-// 		},
-// 		"password" : {
-// 			"description" : "An encrypted hash of the user's password for logging into the application",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"email" : {
-// 			"description" : "The user's email address",
-// 			"pattern" : "[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"company_id" : {
-// 			"description" : "The id for the company associated with the user",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"role" : {
-// 			"description" : "The id for the role associated with the user",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"created" : {
-// 			"description" : "The date the user account was created",
-// 			"type" : "string",
-// 			"required" : true
-// 		},
-// 		"updated" : {
-// 			"description" : "The date the user account was last modified",
-// 			"type" : "string",
-// 			"format" : "date-time",
-// 			"required" : false
-// 		}
-// 	}
-// }
+
 angular.module('Corporate.Router', ['ui.router'])
 	.run(function($rootScope, $urlRouter) {
 		$rootScope.$on('$locationChangeSuccess', function() {

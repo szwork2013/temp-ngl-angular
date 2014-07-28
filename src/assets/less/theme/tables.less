@@ -1,0 +1,54 @@
+// --------------------------------------------------
+// NEXTGEN LEADS - TABLE STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// VARIABLES
+
+
+
+// END VARIABLES
+// --------------------------------------------------
+
+// Bordered
+table {
+
+	> thead {
+		border: 1px solid @tableHeaderBkg;
+
+		> tr {
+			> th {
+				border-left: 1px dotted #6E6E6E;
+				font-size: 13px;
+
+				&.s { width: 80px; }
+				&.m { width: 120px; }
+			}
+ 
+			> th:first-child {
+				border-left: 0;
+			}
+		}
+	}
+ 
+	> tbody {
+		border: 1px solid @tableBorderColor;
+
+		> tr {
+			> td {
+				border-left: 1px solid @tableBorderColor;
+				border-top: 1px solid @tableBorderColor;
+				font-size: 13px;
+			}
+ 
+			> td:first-child {
+				border-left: 0;
+			}
+
+			&:first-child > td {
+				border-top: 0;
+			}
+		}
+	}
+}

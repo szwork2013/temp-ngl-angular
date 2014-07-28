@@ -10,7 +10,7 @@ angular.module('Forms')
 			replace: true,
 
 			scope: {
-				class        : '@?',
+				customClass  : '@?',
 				id           : '@?',
 				ngModel      : '=?',
 				name         : '@',

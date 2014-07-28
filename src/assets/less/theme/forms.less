@@ -17,6 +17,27 @@
 // END VARIABLES
 // --------------------------------------------------
 
+
+// --------------------------------------------------
+// GENERAL FORM STYLE OVERRRIDES
+
+legend {
+	color: @colorSecondary;
+}
+
+fieldset p {
+	margin-top: 15px;
+
+	&.info {
+		color: #888;
+		font-style: italic;
+	}
+}
+
+// END GENERAL FORM STYLE OVERRRIDES
+// --------------------------------------------------
+
+
 // --------------------------------------------------
 // CONTROL GROUP STYLES
 
@@ -198,7 +219,7 @@ input[type='number'],
 
 .button(@lighter: #0072BC, @light: #0061A1, @dark: #0062B0, @darker: #005497) {
 	.border-radius(3px);
-	.box-shadow(0 3px 0 #004B7C);
+	.box-shadow(0 3px 0 darken(@darker, 10%));
 	.gradient(@light, @light, @lighter);
 	border-bottom: 1px solid @lighter;
 	color: #FFF;
@@ -223,7 +244,7 @@ input[type='number'],
 
 	&:active {
 		.gradient(lighten(@light, 7%), lighten(@light, 7%), lighten(@lighter, 7%));
-		.box-shadow(0 1px 0 #004B7C);
+		.box-shadow(0 1px 0 darken(@darker, 15%));
 		margin-top: 2px;
 
 		i {
@@ -237,7 +258,7 @@ button {
 }
 
 button.green {
-	.button();
+	.button(#8DC63F, #79A936, #70B32C, #609926);
 }
 
 // END BUTTON STYLES
@@ -261,11 +282,11 @@ input[type='email'],
 input[type='password'],
 input[type='number'] {
 
-	&.ng-valid {
+	&.ng-dirty.ng-valid {
 		border: 1px solid @colorValid;
 	}
 
-	&.ng-invalid {
+	&.ng-dirty.ng-invalid {
 		border: 1px solid @colorInvalid;
 	}
 }

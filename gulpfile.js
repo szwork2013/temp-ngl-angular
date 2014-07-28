@@ -46,7 +46,12 @@ var paths = {
 				'src/assets/bower_components/Angular/angular.js',			// Angular
 				'src/assets/bower_components/angular-ui-router/index.js',	// Angular UI-Router
 				'src/assets/bower_components/jquery/index.js',				// jQuery
+
+				'src/assets/bower_components/moment/moment.js',				// Moment
+				'src/assets/bower_components/daterangepicker/index.js',		// Date Range Picker
+				
 				'src/apps/marketplace/app.js',								// App Controller
+				'src/apps/marketplace/modules/**/*.js',						// App Modules
 				'src/common/**/*.js',										// Common Scripts
 				'src/modules/**/*.js',										// Modules
 				'src/apps/marketplace/routes.js'							// Routes
@@ -69,7 +74,7 @@ var paths = {
 
 
 	views: [
-		'src/apps/**/views/*.html'
+		'src/apps/**/*.html'
 	],
 
 	modules: [

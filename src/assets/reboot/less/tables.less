@@ -72,12 +72,13 @@ table.striped {
  
 // Bordered
 table.bordered {
-	border: 1px solid @tableBorderColor;
 
 	> thead {
+		border: 1px solid @tableHeaderBkg;
+
 		> tr {
 			> th {
-				border-left: 1px solid @tableBorderColor;
+				border-left: 1px dotted #6E6E6E;
 			}
  
 			> th:first-child {
@@ -87,6 +88,8 @@ table.bordered {
 	}
  
 	> tbody {
+		border: 1px solid @tableBorderColor;
+
 		> tr {
 			> td {
 				border-left: 1px solid @tableBorderColor;

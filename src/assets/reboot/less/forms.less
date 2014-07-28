@@ -8,14 +8,14 @@ form {
 
 legend {
 	font-weight: bold;
-	margin-left: -20px;
+	margin-left: -10px;
 	padding: 0 10px;
 }
 
 fieldset {
 	border: 1px solid #E5E5E5;
 	margin-bottom: 20px;
-	padding: 25px 30px 30px;
+	padding: 5px 30px 30px;
 }
 
 label {
@@ -114,6 +114,10 @@ input[disabled='disabled'] {
 	width: 500px;
 
 	&.xl { width: 100%; }
+
+	&.code textarea {
+		font-family: @fontMono;
+	}
 }
 
 textarea {
@@ -130,10 +134,6 @@ textarea {
 	&:focus {
 		border: 0;
 		outline: none;
-	}
-
-	&.code {
-		font-family: @fontMono;
 	}
 }
 
