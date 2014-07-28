@@ -35362,9 +35362,10 @@ angular.module('Marketplace')
 	.controller('Marketplace_Ctrl', ['$scope', '$rootScope', function($scope, $rootScope) {
 		$scope.title = 'Hello, World.';
 		$scope.test  = 'F00';
-		$scope.checkTest = true;
+		$scope.checkTest = ['00F'];
 		$scope.testOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
 		$scope.checkOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
+		$scope.textbox = 'Some textbox text.';
 	}]);
 
 var routes = [];
@@ -35625,7 +35626,6 @@ angular.module('Forms')
 
 			restrict: 'E',
 			replace: true,
-			transclude: true,
 
 			scope: {
 				class        : '@?',
@@ -35636,51 +35636,45 @@ angular.module('Forms')
 			},
 
 			link: function(scope, el, attrs) {
+
+				el.ready(function() {
+					// Should the textbox auto-expand?
+					if (attrs.autosize == '') {
+						var $textarea = $(el.find('textarea'));
+
+						var $mirror = $('<div class="textarea-mirror"></div>');
+						$textarea.after($mirror);
+						
+						// Style the mirror
+						$mirror.css({
+							'font-family' : $textarea.css('font-family'),
+							'font-size'   : $textarea.css('font-size'),
+							'line-height' : $textarea.css('line-height'),
+							'padding'     : '10px',
+							'width'       : el[0].clientWidth + 'px'
+						});
+
+						// Style the textarea
+						$textarea.css({
+							'overflow'   : 'hidden',
+							'min-height' : '2em',
+							'resize'     : 'vertical'
+						});
+
+						$textarea.on('keyup', function() {
+							$mirror.html(String($textarea.val()).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />') + '.<br/>.');
+
+							if ($textarea.height() != $mirror.height()) {
+								$textarea.height($mirror.height());
+							}
+						});
+					}
+				});
+
 				// Set focus styles for the wrapper
 				el.find('textarea').on('focus blur', function(event) {
 					el.toggleClass('focus', $(this).is(document.activeElement));
 				});
-
-				// Should the textbox auto-expand?
-				if (attrs.autosize == '') {
-					$textarea = $(el.find('textarea'));
-					textarea  = $textarea[0];
-
-					// Hide overflow on element
-					$(el).css('padding', '10px');
-					$textarea.addClass('autosize');
-
-					var createMirror = function(textarea) {
-						$(textarea).after('<div class="autogrow-textarea-mirror"></div>');
-						return $(textarea).next('.autogrow-textarea-mirror')[0];
-					}
-
-					var sendContentToMirror = function (textarea) {
-						mirror.innerHTML = String(textarea.value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />') + '.<br/>.';
-
-						if ($(textarea).height() != $(mirror).height())
-							$(textarea).height($(mirror).height());
-					}
-
-					var growTextarea = function () {
-						sendContentToMirror(textarea);
-					}
-
-					// Create a mirror
-					var mirror = createMirror(textarea);
-					
-					// Style the mirror
-
-					// Style the textarea
-					textarea.style.overflow = "hidden";
-					textarea.style.minHeight = textarea.rows + "em";
-
-					// Bind the textarea's event
-					textarea.onkeyup = growTextarea;
-
-					// Fire the event for text already present
-					sendContentToMirror(textarea);
-				}
 			},
 
 			templateUrl: '/modules/Forms/directives/textbox/view.html'

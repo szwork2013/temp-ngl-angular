@@ -123,6 +123,7 @@ textarea {
 	font-size: @textNormal;
 	line-height: @lineHeight;
 	padding: 10px;
+	position: relative;
 	vertical-align: top;
 	width: 100%;
 
@@ -133,11 +134,6 @@ textarea {
 
 	&.code {
 		font-family: @fontMono;
-	}
-
-	&.autosize {
-		.box-sizing(content-box) !important;
-		padding: 0 !important;
 	}
 }
 

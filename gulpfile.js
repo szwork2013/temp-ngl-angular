@@ -23,7 +23,7 @@ var paths = {
 	],
 
 	styles_watch: [
-		'src/assets/less/*.less',
+		'src/assets/less/**/*.less',
 		'src/assets/reboot/less/**/*.less'
 	],
 

@@ -72,10 +72,9 @@ input[type='number'],
 		padding: 10px;
 	}
 
-	.autogrow-textarea-mirror {
-		display: none;
-		font-family: @fontNormal;
-		width: 100%;
+	.textarea-mirror {
+		left: -9999px;
+		position: absolute;
 	}
 }
 
@@ -301,8 +300,9 @@ input[type='number'] {
 			background-color: @colorInvalidLight;
 		}
 
-		.radio {
-			border: 2px solid @colorInvalid;
+		.radio,
+		.box {
+			border: 2px solid @colorInvalidDark;
 		}
 
 		.textarea-wrapper,
