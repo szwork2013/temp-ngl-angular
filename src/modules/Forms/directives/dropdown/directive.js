@@ -15,6 +15,7 @@ angular.module('Forms')
 				arrow       : '@?',
 				customClass : '@?',
 				id          : '@?',
+				ngChange    : '&?',
 				ngModel     : '=?',
 				name        : '@',
 				options     : '=',
@@ -35,7 +36,7 @@ angular.module('Forms')
 				});
 
 				// Add the focus class when focused
-				el.find('input').on('focus blur', function(event) {
+				el.find('select').on('focus blur', function(event) {
 					el.toggleClass('focus', $(this).is(document.activeElement));
 				});
 			},

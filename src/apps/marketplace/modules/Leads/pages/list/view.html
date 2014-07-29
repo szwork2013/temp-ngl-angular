@@ -1,0 +1,48 @@
+<!-- CAMPAIGN LIST -->
+
+<div class="content">
+	<h1>Leads</h1>
+
+	<!-- TABLE FILTERING -->
+	<div class="row tight">
+		<div class="group">
+			<div class="filter">
+				<dropdown ng-model="campaigns_filter" options="campaigns"></dropdown>
+			</div>
+			<div class="filter">
+				<dropdown ng-model="status_filter" options="statuses"></dropdown>
+			</div>
+		</div>
+		<div class="group">
+			<date-range-picker timeframe="timeframe" callback="setTimeframe()"></date-range-picker>
+		</div>
+	</div>
+
+	<div class="row tight">
+		<table cellspacing="0">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Name</th>
+					<th>Phone</th>
+					<th>Campaign</th>
+					<th>Vertical</th>
+					<th>Status</th>
+					<th>Tools</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>

@@ -2,26 +2,37 @@
 // NEXTGEN LEADS ANGULAR APP - MARKETPLACE
 // --------------------------------------------------
 
-angular.module('Marketplace', ['ui.router', 'Forms']);
+angular.module('Marketplace', dependencies);
 
 angular.module('Marketplace')
-	.controller('Marketplace_Ctrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-
-		$scope.title = 'Hello, World.';
-
-		$scope.radioOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
-		$scope.radioModel   = 'F00';
+	.controller('Marketplace_Ctrl', ['$scope', '$rootScope', '$compile', '$state', function($scope, $rootScope, $compile, $state) {
 		
-		$scope.checkOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
-		$scope.checkModel   = ['F00'];
-		
-		$scope.textboxModel = 'Some textbox text.';
+		// Link the breadcrumbs to states
+		$(document).on('click', '.breadcrumbs a', function() {
+			$state.go($(this).attr('ui-sref'));
+		});
 
-		$scope.dropdownOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
-		$scope.dropdownModel   = 'F00';
+		// Watch the currentScope
+		$rootScope.appState = $state;
 
-		$scope.multiSelectOptions = [{label: 'Red', value: 'F00'}, {label: 'Green', value: '0F0'}, {label: 'Blue', value: '00F'}];
-		$scope.multiSelectModel   = ['F00'];
+	}])
+
+
+	// Breadcrumbs Filter
+	.filter('breadcrumbs', ['$compile', '$sce', function($compile, $sce) {
+		return function(input) {
+			var breadcrumbs = [];
+
+			input.forEach(function(section) {
+				if (section.state) {
+					breadcrumbs.push('<a ui-sref="' + section.state + '">' + section.name + '</a>');
+				} else {
+					breadcrumbs.push(section.name);
+				}
+			});
+
+			var output = $sce.trustAsHtml(breadcrumbs.join(' <i class="ngl-chevron-right"></i> '));
+
+			return output;
+		}
 	}]);
-
-var routes = [];

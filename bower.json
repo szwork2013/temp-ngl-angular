@@ -19,9 +19,12 @@
     "angular": "~1.2.20",
     "restangular": "~1.4.0",
     "angular-ui-router": "https://raw.githubusercontent.com/angular-ui/ui-router/master/release/angular-ui-router.js",
+    "angular-sanitize": "~1.2.21",
     "jquery": "https://raw.githubusercontent.com/jquery/jquery/1.11.1/dist/jquery.js",
     "reboot": "https://github.com/RonnieSan/reboot.git",
     "moment": "~2.7.0",
-    "daterangepicker": "https://raw.githubusercontent.com/dangrossman/bootstrap-daterangepicker/master/daterangepicker.js"
+    "daterangepicker": "https://raw.githubusercontent.com/dangrossman/bootstrap-daterangepicker/master/daterangepicker.js",
+    "usmap": "https://raw.githubusercontent.com/NewSignature/us-map/master/jquery.usmap.js",
+    "raphael": "~2.1.2"
   }
 }

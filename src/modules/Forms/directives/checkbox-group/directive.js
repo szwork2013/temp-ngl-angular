@@ -2,9 +2,7 @@
 // REBOOT FORMS - CHECKBOX GROUP
 // --------------------------------------------------
 
-// !!! This doesn't work yet, so don't use it.
-
-// This directive should be used as <radio-group></radio-group>
+// This directive should be used as <checkbox-group></checkbox-group>
 
 angular.module('Forms')
 	.directive('checkboxGroup', function() {

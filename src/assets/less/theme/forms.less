@@ -25,12 +25,64 @@ legend {
 	color: @colorSecondary;
 }
 
-fieldset p {
-	margin-top: 15px;
+fieldset {
 
-	&.info {
-		color: #888;
-		font-style: italic;
+	p {
+		legend + & {
+			margin-top: 15px;
+		}
+
+		&.info {
+			color: #888;
+			font-style: italic;
+		}
+	}
+
+	&.collapsed {
+		height: 0;
+		overflow: hidden;
+	}
+
+	&.disabled {
+		background-color: #F5F5F5;
+
+		* {
+			cursor: no-drop;
+		}
+
+		legend {
+			color: #808080;
+		}
+	}
+}
+
+.helper {
+	.gradient(#E1E1E1, #E1E1E1, #ECECEC);
+	.inline-block;
+	border: 1px solid #CCC;
+	color: #555;
+	font-weight: bold;
+	line-height: 40px;
+	height: 40px;
+	position: relative;
+	text-align: center;
+	vertical-align: middle;
+	width: 40px;
+
+	&.left {
+		.border-radius(3px 0 0 3px);
+		border-right: 0;
+		margin-right: -40px;
+	}
+
+	&.right {
+		.border-radius(0 3px 3px 0);
+		border-left: 0;
+		margin-left: -40px;
+	}
+
+	&.help {
+		cursor: help;
 	}
 }
 
@@ -84,6 +136,19 @@ input[type='number'],
 	}
 }
 
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'] {
+	.helper.left + & {
+		padding-left: 50px;
+	}
+
+	&.currency {
+		text-align: right;
+	}
+}
+
 .textarea-wrapper {
 	.inline-block;
 	padding: 0;
@@ -106,12 +171,19 @@ input[type='number'],
 // --------------------------------------------------
 // SELECT STYLES
 
+.select-wrapper {
+
+	.select-content {
+		line-height: 38px;
+	}
+}
+
 .select-wrapper,
 .multi-select-wrapper {
 	.border-radius(3px);
 	border: 1px solid #CCC;
 
-	&:focus {
+	&.focus {
 		.box-shadow(0 0 3px @colorFocus);
 		outline: 0;
 	}
@@ -259,6 +331,15 @@ button {
 
 button.green {
 	.button(#8DC63F, #79A936, #70B32C, #609926);
+}
+
+button.red {
+	.button(#B12B2B, #972525, #9A1E1E, #841A1A);
+}
+
+button.gray {
+	.button(#B7B7B7, #9C9C9C, #9B9B9B, #848484);
+	color: #C7C7C7;
 }
 
 // END BUTTON STYLES
