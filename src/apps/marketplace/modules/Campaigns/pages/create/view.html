@@ -57,8 +57,14 @@
 		<fieldset>
 			<legend>Step 3: Location Targeting</legend>
 			<p>Target your campaign so you only receive leads from certain states or zip codes.</p>
-
-			<state-selector></state-selector>
+			<div class="row">
+				<div id="state-list">
+					<div class="state-group" ng-repeat="stateGroup in stateOptions">
+						<checkbox-group ng-model="campaign.targeting.states" options="stateGroup"></checkbox-group>
+					</div>
+				</div>
+				<state-selector id="state-map" ng-model="campaign.targeting.states"></state-selector>
+			</div>
 		</fieldset>
 
 		<fieldset>

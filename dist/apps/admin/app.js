@@ -35464,40 +35464,6 @@ return jQuery;
 // --------------------------------------------------
 
 angular.module('Forms', []);
-// routes.push({
-// 	state: 'user',
-// 	options: {
-// 		url: '/user',
-// 		templateUrl: '/modules/users/views/default.html',
-// 		controller: function($scope, $rootScope) {
-			
-// 		}
-// 	}
-// })
-// angular.module('shared.users', []);
-// /**
-// * Verticals Module
-// */
-// angular.module('Verticals',[])
-// 	.constant('vertical_list', [{
-// 		name: 'Health Insurance',
-// 		value: 'health_insurance'
-// 	},{
-// 		name: 'Auto Insurance',
-// 		value: 'auto_insurance'
-// 	},{
-// 		name: 'Medicaid',
-// 		value: 'medicaid'
-// 	},{
-// 		name: 'Life Insurance',
-// 		value: 'life_insurance'
-// 	},{
-// 		name: 'Home Insurance',
-// 		value: 'home_insurance'
-// 	},{
-// 		name: 'Renter/Condo Insurance',
-// 		value: 'renter_insurance'
-// 	}]);
 // --------------------------------------------------
 // REBOOT FORMS - CHECKBOX
 // --------------------------------------------------
@@ -35702,6 +35668,40 @@ angular.module('Forms')
 		}
 	});
 // --------------------------------------------------
+// REBOOT FORMS - CHECKBOX GROUP
+// --------------------------------------------------
+
+// !!! This doesn't work yet, so don't use it.
+
+// This directive should be used as <radio-group></radio-group>
+
+angular.module('Forms')
+	.directive('multiSelect', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '=',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/multi-select/view.html'
+		}
+	});
+// --------------------------------------------------
 // REBOOT FORMS - RADIO BUTTON
 // --------------------------------------------------
 
@@ -35736,40 +35736,6 @@ angular.module('Forms')
 			},
 
 			templateUrl: '/modules/Forms/directives/radio/view.html'
-		}
-	});
-// --------------------------------------------------
-// REBOOT FORMS - CHECKBOX GROUP
-// --------------------------------------------------
-
-// !!! This doesn't work yet, so don't use it.
-
-// This directive should be used as <radio-group></radio-group>
-
-angular.module('Forms')
-	.directive('multiSelect', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-
-			scope: {
-				bullet       : '@?',
-				groupClass   : '@?',
-				id           : '@?',
-				inputClass   : '@?',
-				ngModel      : '=?',
-				name         : '@',
-				options      : '=',
-				validation   : '=?'
-			},
-
-			link: function(scope, el, attrs) {
-				
-			},
-
-			templateUrl: '/modules/Forms/directives/multi-select/view.html'
 		}
 	});
 // --------------------------------------------------
@@ -35823,16 +35789,46 @@ angular.module('Forms')
 				customClass : '@?',
 				id          : '@?',
 				ngModel     : '=?',
+				settings    : '=?'
 			},
 			
 			link: function (scope, el, attrs) {
 
 				el.ready(function() {
 					$(el).usmap({
+						stateStyles: {
+							fill: '#555',
+							stroke: 'transparent'
+						},
+						stateHoverStyles: {
+							fill: '#888'
+						},
+						// Add the state to the model on click
 						click: function(event, data) {
-							toggleArrayValue(scope.ngModel, data.name);
-						}
+							var added = toggleArrayValue(scope.ngModel, data.name);
+							scope.$apply();
+						},
+						// Highlight states in the model
+						select: function(event, data) {
+							if (scope.ngModel.indexOf(data.name) !== -1) {
+								data.shape[0].style.fill = '#8DC63F';
+							} else {
+								data.shape[0].style.fill = '#555';
+							}
+						},
+						selectState: {} // We have to do this to workaround a bug
 					});
+
+					// Watch for changes to the model and highlight the states
+					// We create an old values array so we can unselect removed states
+					scope.oldValues = [];
+					scope.$watch('ngModel', function() {
+						scope.oldValues.concat(scope.ngModel).forEach(function(state) {
+							$(el).usmap('trigger', state, 'select');
+						});
+
+						scope.oldValues = scope.ngModel.slice(); // Use slice to get the array by value not reference
+					}, true);
 				});
 
 			},
@@ -35904,4 +35900,3 @@ angular.module('Forms')
 			templateUrl: '/modules/Forms/directives/textbox/view.html'
 		}
 	});
-

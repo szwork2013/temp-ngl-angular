@@ -3,17 +3,17 @@
 		<img src="/assets/img/logos/nextgen-leads-logo-220x57.png" alt="NextGen Leads">
 	</a>
 </div>
-<nav class="primary">
-	<ol>
-		<li id="nav-campaigns"><a ui-sref=".campaigns.list" ng-class="{ active : appState.includes('*.campaigns.*') }">Campaigns</a></li>
-		<li id="nav-leads"><a ui-sref=".leads.list" ng-class="{ active : appState.includes('*.leads.*') }">Leads</a></li>
-		<li id="nav-reports">
+<nav class="header-nav">
+	<ol class="primary">
+		<li><a ui-sref=".campaigns.list" ng-class="{ active : appState.includes('*.campaigns.*') }">Campaigns</a></li>
+		<li><a ui-sref=".leads.list" ng-class="{ active : appState.includes('*.leads.*') }">Leads</a></li>
+		<li>
 			<a ng-class="{ active : appState.includes('*.reports.*') }">Reports</a>
 			<ol class="sub-nav">
 				<li><a ui-sref=".reports.leads_spend"><i class="ngl-chart-line"></i>Leads and Spend</a></li>
 			</ol>
 		</li>
-		<li id="nav-settings">
+		<li>
 			<a  ng-class="{ active : appState.includes('*.settings.*') }">Settings</a>
 			<ol class="sub-nav">
 				<li><a ui-sref=".settings.billing"><i class="ngl-credit-card"></i>Billing Settings</a></li>

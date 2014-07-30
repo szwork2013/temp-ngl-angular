@@ -24,7 +24,9 @@ function toggleArrayValue(arr, value) {
 
 	if (valueIndex !== -1) {
 		arr.splice(valueIndex, 1);
+		return false;
 	} else {
 		arr.push(value);
+		return true;
 	}
 }

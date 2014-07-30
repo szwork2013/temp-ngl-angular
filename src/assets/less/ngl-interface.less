@@ -5,167 +5,164 @@
 // --------------------------------------------------
 // HEADER STYLES
 
-section#header {
+// Logo
+.branding {
+	float: left;
+	margin-right: 10px;
+}
 
-	// Logo
-	.branding {
+// Primary navigation in the header
+nav.header-nav {
+	float: left;
+
+	.primary > li {
+		cursor: pointer;
 		float: left;
-		margin-right: 10px;
+		position: relative;
+
+		&:hover > .sub-nav {
+			display: block;
+			width: 250px;
+		}
 	}
 
-	// Primary navigation in the header
-	nav.primary {
-		float: left;
+	.sub-nav {
+		.box-shadow(2px 2px 0 rgba(0,0,0,0.15));
+		background-color: #FFF;
+		border-top: 0;
+		border: 1px solid #CCC;
+		display: none;
+		left: 0;
+		position: absolute;
+		top: 57px;
+		width: 200px;
 
-		> ol > li {
-			cursor: pointer;
+		i {
+			border-right: 1px solid #E2E2E2;
+			color: #555 !important;
+			font-size: 16px;
+			margin-right: 10px;
+			padding-right: 10px;
+		}
+
+		> li {
+			border-top: 1px solid #E2E2E2;
+		}
+
+		a {
+			height: 50px;
+			line-height: 50px;
+
+			&:hover {
+				background-color: #F5F5F5;
+				color: @colorPrimary;
+			}
+		}
+	}
+
+	a {
+		color: #333;
+		display: block;
+		font: bold 12px @fontNormal;
+		height: 57px;
+		line-height: 60px;
+		padding: 0 20px;
+		text-transform: uppercase;
+
+		&:hover {
+			color: @colorPrimary;
+			text-decoration: none;
+		}
+
+		&.active {
+			background-color: #EEF7E2;
+			color: #333;
+		}
+	}
+}
+
+// User profile section in the header
+.profile {
+	border-left: 1px solid #ECECEC;
+	cursor: pointer;
+	float: right;
+	height: 57px;
+	position: relative;
+	width: 250px;
+
+	.user-info {
+		.clearfix;
+
+		.avatar {
 			float: left;
-			position: relative;
+			padding: 8px;
 
-			> .sub-nav {
-				.box-shadow(2px 2px 0 rgba(0,0,0,0.15));
-				background-color: #FFF;
-				border-top: 0;
-				border: 1px solid #CCC;
-				display: none;
-				left: 0;
-				position: absolute;
-				top: 57px;
-				width: 200px;
+			img {
+				.border-radius(20px);
+				border: 2px solid #D7D7D7;
+				height: 40px;
+				width: 40px;
+			}
+		}
 
-				> li {
-					border-top: 1px solid #E2E2E2;
+		> .content {
+			float: left;
+			line-height: 1.15em;
 
-					a {
-						height: 50px;
-						line-height: 50px;
-
-						&:hover {
-							background-color: #F5F5F5;
-							color: @colorPrimary;
-						}
-					}
-				}
+			.company-name {
+				font-weight: bold;
+				margin: 0;
+				padding-top: 13px;
 			}
 
-			&:hover > .sub-nav {
-				display: block;
-				width: 250px;
+			.user-name {
+				color: #808080;
+				font-size: 12px;
+			}
+		}
+	}
 
-				i {
-					border-right: 1px solid #E2E2E2;
-					color: #555 !important;
-					font-size: 16px;
-					margin-right: 10px;
-					padding-right: 10px;
-				}
+	.sub-menu {
+		.box-shadow(0 2px 0 rgba(0,0,0,0.15));
+		background-color: #FFF;
+		border-left: 1px solid #E2E2E2;
+		border-top: 1px solid #E2E2E2;
+		display: none;
+		left: -1px;
+		position: absolute;
+		top: 57px;
+		width: 250px;
+
+		ol li {
+			border-bottom: 1px solid #E2E2E2;
+
+			i {
+				border-right: 1px solid #E2E2E2;
+				color: #555 !important;
+				font-size: 16px;
+				margin-right: 10px;
+				padding-right: 10px;
 			}
 
 			a {
-				color: #333;
+				color: #555;
 				display: block;
-				font: bold 12px @fontNormal;
-				height: 57px;
-				line-height: 60px;
-				padding: 0 20px;
-				text-transform: uppercase;
+				font-weight: bold;
+				height: 50px;
+				line-height: 50px;
+				padding: 0 10px;
 
 				&:hover {
+					background-color: #F5F5F5;
 					color: @colorPrimary;
 					text-decoration: none;
-				}
-
-				&.active {
-					background-color: #EEF7E2;
-					color: #333;
 				}
 			}
 		}
 	}
 
-	// User profile section in the header
-	.profile {
-		border-left: 1px solid #ECECEC;
-		cursor: pointer;
-		float: right;
-		height: 57px;
-		position: relative;
-		width: 250px;
-
-		.user-info {
-			.clearfix;
-
-			.avatar {
-				float: left;
-				padding: 8px;
-
-				img {
-					.border-radius(20px);
-					border: 2px solid #D7D7D7;
-					height: 40px;
-					width: 40px;
-				}
-			}
-
-			> .content {
-				float: left;
-				line-height: 1.15em;
-
-				.company-name {
-					font-weight: bold;
-					margin: 0;
-					padding-top: 13px;
-				}
-
-				.user-name {
-					color: #808080;
-					font-size: 12px;
-				}
-			}
-		}
-
-		.sub-menu {
-			.box-shadow(0 2px 0 rgba(0,0,0,0.15));
-			background-color: #FFF;
-			border-left: 1px solid #E2E2E2;
-			border-top: 1px solid #E2E2E2;
-			display: none;
-			left: -1px;
-			position: absolute;
-			top: 57px;
-			width: 250px;
-
-			ol li {
-				border-bottom: 1px solid #E2E2E2;
-
-				i {
-					border-right: 1px solid #E2E2E2;
-					color: #555 !important;
-					font-size: 16px;
-					margin-right: 10px;
-					padding-right: 10px;
-				}
-
-				a {
-					color: #555;
-					display: block;
-					font-weight: bold;
-					height: 50px;
-					line-height: 50px;
-					padding: 0 10px;
-
-					&:hover {
-						background-color: #F5F5F5;
-						color: @colorPrimary;
-						text-decoration: none;
-					}
-				}
-			}
-		}
-
-		&:hover .sub-menu {
-			display: block;
-		}
+	&:hover .sub-menu {
+		display: block;
 	}
 }
 

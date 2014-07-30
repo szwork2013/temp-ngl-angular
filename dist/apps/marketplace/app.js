@@ -48275,8 +48275,7 @@ return jQuery;
         labelHitArea: labelHitArea
       };
     },
-    
-    
+
     
     /**
      * The mouseout handler
@@ -48517,8 +48516,10 @@ function toggleArrayValue(arr, value) {
 
 	if (valueIndex !== -1) {
 		arr.splice(valueIndex, 1);
+		return false;
 	} else {
 		arr.push(value);
+		return true;
 	}
 }
 // --------------------------------------------------
@@ -48808,10 +48809,80 @@ routes.push(
 							$scope.campaign = {
 									vertical_id: 'health-insurance',
 									name: 'Daily Health Leads',
-									description: 'Some description.'
+									description: 'Some description.',
+									targeting: {
+										states: ['CA']
+									}
 								};
 							
 							// END CAMPAIGN
+							// --------------------------------------------------
+
+
+							// --------------------------------------------------
+							// STATE TARGETING
+							
+							$scope.stateOptions = [
+									[
+										{ label: "Alabama", value: "AL" },
+										{ label: "Alaska", value: "AK" },
+										{ label: "Arizona", value: "AZ" },
+										{ label: "Arkansas", value: "AR" },
+										{ label: "California", value: "CA" },
+										{ label: "Colorado", value: "CO" },
+										{ label: "Connecticut", value: "CT" },
+										{ label: "Delaware", value: "DE" },
+										{ label: "Dist. of Columbia", value: "DC" },
+										{ label: "Florida", value: "FL" },
+										{ label: "Georgia", value: "GA" },
+										{ label: "Hawaii", value: "HI" },
+										{ label: "Idaho", value: "ID" },
+										{ label: "Illinois", value: "IL" },
+										{ label: "Indiana", value: "IN" },
+										{ label: "Iowa", value: "IA" },
+										{ label: "Kansas", value: "KS" }
+									],
+									[
+										{ label: "Kentucky", value: "KY" },
+										{ label: "Louisiana", value: "LA" },
+										{ label: "Maine", value: "ME" },
+										{ label: "Maryland", value: "MD" },
+										{ label: "Massachusetts", value: "MA" },
+										{ label: "Michigan", value: "MI" },
+										{ label: "Minnesota", value: "MN" },
+										{ label: "Mississippi", value: "MS" },
+										{ label: "Missouri", value: "MO" },
+										{ label: "Montana", value: "MT" },
+										{ label: "Nebraska", value: "NE" },
+										{ label: "Nevada", value: "NV" },
+										{ label: "New Hampshire", value: "NH" },
+										{ label: "New Jersey", value: "NJ" },
+										{ label: "New Mexico", value: "NM" },
+										{ label: "New York", value: "NY" },
+										{ label: "North Carolina", value: "NC" }
+									],
+									[
+										{ label: "North Dakota", value: "ND" },
+										{ label: "Ohio", value: "OH" },
+										{ label: "Oklahoma", value: "OK" },
+										{ label: "Oregon", value: "OR" },
+										{ label: "Pennsylvania", value: "PA" },
+										{ label: "Rhode Island", value: "RI" },
+										{ label: "South Carolina", value: "SC" },
+										{ label: "South Dakota", value: "SD" },
+										{ label: "Tennessee", value: "TN" },
+										{ label: "Texas", value: "TX" },
+										{ label: "Utah", value: "UT" },
+										{ label: "Vermont", value: "VT" },
+										{ label: "Virginia", value: "VA" },
+										{ label: "Washington", value: "WA" },
+										{ label: "West Virginia", value: "WV" },
+										{ label: "Wisconsin", value: "WI" },
+										{ label: "Wyoming", value: "WY" }
+									]
+								];
+
+							// END STATE TARGETING
 							// --------------------------------------------------
 
 						}
@@ -49067,40 +49138,6 @@ routes.push(
 // --------------------------------------------------
 
 angular.module('Forms', []);
-// routes.push({
-// 	state: 'user',
-// 	options: {
-// 		url: '/user',
-// 		templateUrl: '/modules/users/views/default.html',
-// 		controller: function($scope, $rootScope) {
-			
-// 		}
-// 	}
-// })
-// angular.module('shared.users', []);
-// /**
-// * Verticals Module
-// */
-// angular.module('Verticals',[])
-// 	.constant('vertical_list', [{
-// 		name: 'Health Insurance',
-// 		value: 'health_insurance'
-// 	},{
-// 		name: 'Auto Insurance',
-// 		value: 'auto_insurance'
-// 	},{
-// 		name: 'Medicaid',
-// 		value: 'medicaid'
-// 	},{
-// 		name: 'Life Insurance',
-// 		value: 'life_insurance'
-// 	},{
-// 		name: 'Home Insurance',
-// 		value: 'home_insurance'
-// 	},{
-// 		name: 'Renter/Condo Insurance',
-// 		value: 'renter_insurance'
-// 	}]);
 // --------------------------------------------------
 // REBOOT FORMS - CHECKBOX
 // --------------------------------------------------
@@ -49426,16 +49463,46 @@ angular.module('Forms')
 				customClass : '@?',
 				id          : '@?',
 				ngModel     : '=?',
+				settings    : '=?'
 			},
 			
 			link: function (scope, el, attrs) {
 
 				el.ready(function() {
 					$(el).usmap({
+						stateStyles: {
+							fill: '#555',
+							stroke: 'transparent'
+						},
+						stateHoverStyles: {
+							fill: '#888'
+						},
+						// Add the state to the model on click
 						click: function(event, data) {
-							toggleArrayValue(scope.ngModel, data.name);
-						}
+							var added = toggleArrayValue(scope.ngModel, data.name);
+							scope.$apply();
+						},
+						// Highlight states in the model
+						select: function(event, data) {
+							if (scope.ngModel.indexOf(data.name) !== -1) {
+								data.shape[0].style.fill = '#8DC63F';
+							} else {
+								data.shape[0].style.fill = '#555';
+							}
+						},
+						selectState: {} // We have to do this to workaround a bug
 					});
+
+					// Watch for changes to the model and highlight the states
+					// We create an old values array so we can unselect removed states
+					scope.oldValues = [];
+					scope.$watch('ngModel', function() {
+						scope.oldValues.concat(scope.ngModel).forEach(function(state) {
+							$(el).usmap('trigger', state, 'select');
+						});
+
+						scope.oldValues = scope.ngModel.slice(); // Use slice to get the array by value not reference
+					}, true);
 				});
 
 			},
@@ -49507,8 +49574,6 @@ angular.module('Forms')
 			templateUrl: '/modules/Forms/directives/textbox/view.html'
 		}
 	});
-
-
 // --------------------------------------------------
 // NEXTGEN LEADS ANGULAR APP - MARKETPLACE
 // --------------------------------------------------
