@@ -44,7 +44,8 @@ routes.push(
 									name: 'Daily Health Leads',
 									description: 'Some description.',
 									targeting: {
-										states: ['CA']
+										states: ['CA'],
+										zip: []
 									}
 								};
 							
@@ -53,7 +54,7 @@ routes.push(
 
 
 							// --------------------------------------------------
-							// STATE TARGETING
+							// TARGETING
 							
 							$scope.stateOptions = [
 									[
@@ -115,7 +116,12 @@ routes.push(
 									]
 								];
 
-							// END STATE TARGETING
+							// Convert zip codes into an array
+							$scope.$watch('zipRaw', function() {
+								$scope.campaign.targeting.zip = $scope.zipRaw.split('\n');
+							});
+
+							// END TARGETING
 							// --------------------------------------------------
 
 						}

@@ -57,7 +57,10 @@
 		<fieldset>
 			<legend>Step 3: Location Targeting</legend>
 			<p>Target your campaign so you only receive leads from certain states or zip codes.</p>
-			<div class="row">
+			<dropdown options="[{label: 'Select Targeting Type'}, {label: 'Target by State', value: 'state'}, {label: 'Target by Zip Code', value: 'zip'}]" ng-model="targetingType"></dropdown>
+			
+			<!-- STATE TARGETING -->
+			<div class="row" ng-show="targetingType=='state'">
 				<div id="state-list">
 					<div class="state-group" ng-repeat="stateGroup in stateOptions">
 						<checkbox-group ng-model="campaign.targeting.states" options="stateGroup"></checkbox-group>
@@ -65,6 +68,19 @@
 				</div>
 				<state-selector id="state-map" ng-model="campaign.targeting.states"></state-selector>
 			</div>
+			<!-- END STATE TARGETING -->
+
+			<!-- ZIP TARGETING -->
+			<div class="row" ng-show="targetingType=='zip'">
+				<div class="control-group">
+					<label class="control-label" for="campaign[targeting]">Enter zip codes in the box below, one per line.</label>
+					<div class="controls">
+						<textbox ng-model="zipRaw" autosize></textbox>
+					</div>
+				</div>
+			</div>
+			<!-- END ZIP TARGETING -->
+
 		</fieldset>
 
 		<fieldset>

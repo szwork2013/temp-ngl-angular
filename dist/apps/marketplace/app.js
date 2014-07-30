@@ -48275,7 +48275,8 @@ return jQuery;
         labelHitArea: labelHitArea
       };
     },
-
+    
+    
     
     /**
      * The mouseout handler
@@ -48811,7 +48812,8 @@ routes.push(
 									name: 'Daily Health Leads',
 									description: 'Some description.',
 									targeting: {
-										states: ['CA']
+										states: ['CA'],
+										zip: []
 									}
 								};
 							
@@ -48820,7 +48822,7 @@ routes.push(
 
 
 							// --------------------------------------------------
-							// STATE TARGETING
+							// TARGETING
 							
 							$scope.stateOptions = [
 									[
@@ -48882,7 +48884,12 @@ routes.push(
 									]
 								];
 
-							// END STATE TARGETING
+							// Convert zip codes into an array
+							$scope.$watch('zipRaw', function() {
+								$scope.campaign.targeting.zip = $scope.zipRaw.split('\n');
+							});
+
+							// END TARGETING
 							// --------------------------------------------------
 
 						}
@@ -49197,38 +49204,6 @@ angular.module('Forms')
 		}
 	});
 // --------------------------------------------------
-// REBOOT FORMS - CHECKBOX GROUP
-// --------------------------------------------------
-
-// This directive should be used as <checkbox-group></checkbox-group>
-
-angular.module('Forms')
-	.directive('checkboxGroup', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-
-			scope: {
-				bullet       : '@?',
-				groupClass   : '@?',
-				id           : '@?',
-				inputClass   : '@?',
-				ngModel      : '=?',
-				name         : '@',
-				options      : '=',
-				validation   : '=?'
-			},
-
-			link: function(scope, el, attrs) {
-				
-			},
-
-			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
-		}
-	});
-// --------------------------------------------------
 // REBOOT FORMS - DATE RANGE PICKER
 // --------------------------------------------------
 
@@ -49293,6 +49268,38 @@ angular.module('Forms')
 			}
 
 			return output;
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - CHECKBOX GROUP
+// --------------------------------------------------
+
+// This directive should be used as <checkbox-group></checkbox-group>
+
+angular.module('Forms')
+	.directive('checkboxGroup', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '=',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
 		}
 	});
 // --------------------------------------------------

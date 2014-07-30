@@ -35465,6 +35465,38 @@ return jQuery;
 
 angular.module('Forms', []);
 // --------------------------------------------------
+// REBOOT FORMS - CHECKBOX GROUP
+// --------------------------------------------------
+
+// This directive should be used as <checkbox-group></checkbox-group>
+
+angular.module('Forms')
+	.directive('checkboxGroup', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '=',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
+		}
+	});
+// --------------------------------------------------
 // REBOOT FORMS - CHECKBOX
 // --------------------------------------------------
 
@@ -35523,35 +35555,49 @@ angular.module('Forms')
 		}
 	});
 // --------------------------------------------------
-// REBOOT FORMS - CHECKBOX GROUP
+// REBOOT FORMS - DROPDOWN
 // --------------------------------------------------
 
-// This directive should be used as <checkbox-group></checkbox-group>
+// This directive should be used as <radio></radio>
 
 angular.module('Forms')
-	.directive('checkboxGroup', function() {
+	.directive('dropdown', function() {
 		return {
 
 			restrict: 'E',
 			replace: true,
-			transclude: true,
 
 			scope: {
-				bullet       : '@?',
-				groupClass   : '@?',
-				id           : '@?',
-				inputClass   : '@?',
-				ngModel      : '=?',
-				name         : '@',
-				options      : '=',
-				validation   : '=?'
+				arrow       : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngChange    : '&?',
+				ngModel     : '=?',
+				name        : '@',
+				options     : '=',
+				validation  : '=?',
+				value       : '@'
+			},
+			
+			link: function (scope, el, attrs) {
+
+				// Watch for changes to the model
+				scope.$watch('ngModel', function() {
+					scope.options.some(function(option) {
+						if (option.value == scope.ngModel) {
+							scope.valueLabel = option.label;
+							return true;
+						}
+					});
+				});
+
+				// Add the focus class when focused
+				el.find('select').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
 			},
 
-			link: function(scope, el, attrs) {
-				
-			},
-
-			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
+			templateUrl: '/modules/Forms/directives/dropdown/view.html'
 		}
 	});
 // --------------------------------------------------
@@ -35619,52 +35665,6 @@ angular.module('Forms')
 			}
 
 			return output;
-		}
-	});
-// --------------------------------------------------
-// REBOOT FORMS - DROPDOWN
-// --------------------------------------------------
-
-// This directive should be used as <radio></radio>
-
-angular.module('Forms')
-	.directive('dropdown', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-
-			scope: {
-				arrow       : '@?',
-				customClass : '@?',
-				id          : '@?',
-				ngChange    : '&?',
-				ngModel     : '=?',
-				name        : '@',
-				options     : '=',
-				validation  : '=?',
-				value       : '@'
-			},
-			
-			link: function (scope, el, attrs) {
-
-				// Watch for changes to the model
-				scope.$watch('ngModel', function() {
-					scope.options.some(function(option) {
-						if (option.value == scope.ngModel) {
-							scope.valueLabel = option.label;
-							return true;
-						}
-					});
-				});
-
-				// Add the focus class when focused
-				el.find('select').on('focus blur', function(event) {
-					el.toggleClass('focus', $(this).is(document.activeElement));
-				});
-			},
-
-			templateUrl: '/modules/Forms/directives/dropdown/view.html'
 		}
 	});
 // --------------------------------------------------
@@ -35773,6 +35773,70 @@ angular.module('Forms')
 		}
 	});
 // --------------------------------------------------
+// REBOOT FORMS - TEXTAREA
+// --------------------------------------------------
+
+angular.module('Forms')
+	.directive('textbox', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				customClass  : '@?',
+				id           : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+
+				el.ready(function() {
+					// Should the textbox auto-expand?
+					if (attrs.autosize == '') {
+						var $textarea = $(el.find('textarea'));
+
+						var $mirror = $('<div class="textarea-mirror"></div>');
+						$textarea.after($mirror);
+						
+						// Style the mirror
+						$mirror.css({
+							'font-family' : $textarea.css('font-family'),
+							'font-size'   : $textarea.css('font-size'),
+							'line-height' : $textarea.css('line-height'),
+							'padding'     : '10px',
+							'width'       : el[0].clientWidth + 'px'
+						});
+
+						// Style the textarea
+						$textarea.css({
+							'overflow'   : 'hidden',
+							'min-height' : '2em',
+							'resize'     : 'vertical'
+						});
+
+						$textarea.on('keyup', function() {
+							$mirror.html(String($textarea.val()).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />') + '.<br/>.');
+
+							if ($textarea.height() != $mirror.height()) {
+								$textarea.height($mirror.height());
+							}
+						});
+					}
+				});
+
+				// Set focus styles for the wrapper
+				el.find('textarea').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
+			},
+
+			templateUrl: '/modules/Forms/directives/textbox/view.html'
+		}
+	});
+// --------------------------------------------------
 // REBOOT FORMS - STATE SELECTOR
 // --------------------------------------------------
 
@@ -35843,69 +35907,5 @@ angular.module('Forms')
 			},
 
 			templateUrl: '/modules/Forms/directives/state-selector/view.html'
-		}
-	});
-// --------------------------------------------------
-// REBOOT FORMS - TEXTAREA
-// --------------------------------------------------
-
-angular.module('Forms')
-	.directive('textbox', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-
-			scope: {
-				customClass  : '@?',
-				id           : '@?',
-				ngModel      : '=?',
-				name         : '@',
-				validation   : '=?'
-			},
-
-			link: function(scope, el, attrs) {
-
-				el.ready(function() {
-					// Should the textbox auto-expand?
-					if (attrs.autosize == '') {
-						var $textarea = $(el.find('textarea'));
-
-						var $mirror = $('<div class="textarea-mirror"></div>');
-						$textarea.after($mirror);
-						
-						// Style the mirror
-						$mirror.css({
-							'font-family' : $textarea.css('font-family'),
-							'font-size'   : $textarea.css('font-size'),
-							'line-height' : $textarea.css('line-height'),
-							'padding'     : '10px',
-							'width'       : el[0].clientWidth + 'px'
-						});
-
-						// Style the textarea
-						$textarea.css({
-							'overflow'   : 'hidden',
-							'min-height' : '2em',
-							'resize'     : 'vertical'
-						});
-
-						$textarea.on('keyup', function() {
-							$mirror.html(String($textarea.val()).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />') + '.<br/>.');
-
-							if ($textarea.height() != $mirror.height()) {
-								$textarea.height($mirror.height());
-							}
-						});
-					}
-				});
-
-				// Set focus styles for the wrapper
-				el.find('textarea').on('focus blur', function(event) {
-					el.toggleClass('focus', $(this).is(document.activeElement));
-				});
-			},
-
-			templateUrl: '/modules/Forms/directives/textbox/view.html'
 		}
 	});
