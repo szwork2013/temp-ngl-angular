@@ -35668,40 +35668,6 @@ angular.module('Forms')
 		}
 	});
 // --------------------------------------------------
-// REBOOT FORMS - CHECKBOX GROUP
-// --------------------------------------------------
-
-// !!! This doesn't work yet, so don't use it.
-
-// This directive should be used as <radio-group></radio-group>
-
-angular.module('Forms')
-	.directive('multiSelect', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-
-			scope: {
-				bullet       : '@?',
-				groupClass   : '@?',
-				id           : '@?',
-				inputClass   : '@?',
-				ngModel      : '=?',
-				name         : '@',
-				options      : '=',
-				validation   : '=?'
-			},
-
-			link: function(scope, el, attrs) {
-				
-			},
-
-			templateUrl: '/modules/Forms/directives/multi-select/view.html'
-		}
-	});
-// --------------------------------------------------
 // REBOOT FORMS - RADIO BUTTON
 // --------------------------------------------------
 
@@ -35736,6 +35702,40 @@ angular.module('Forms')
 			},
 
 			templateUrl: '/modules/Forms/directives/radio/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - CHECKBOX GROUP
+// --------------------------------------------------
+
+// !!! This doesn't work yet, so don't use it.
+
+// This directive should be used as <radio-group></radio-group>
+
+angular.module('Forms')
+	.directive('multiSelect', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+			transclude: true,
+
+			scope: {
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '=',
+				validation   : '=?'
+			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/multi-select/view.html'
 		}
 	});
 // --------------------------------------------------
@@ -35803,6 +35803,13 @@ angular.module('Forms')
 						stateHoverStyles: {
 							fill: '#888'
 						},
+						labelBackingStyles: {
+							fill: '#555',
+							stroke: 'transparent'
+						},
+						labelBackingHoverStyles: {
+							fill: '#888'
+						},
 						// Add the state to the model on click
 						click: function(event, data) {
 							var added = toggleArrayValue(scope.ngModel, data.name);
@@ -35812,8 +35819,10 @@ angular.module('Forms')
 						select: function(event, data) {
 							if (scope.ngModel.indexOf(data.name) !== -1) {
 								data.shape[0].style.fill = '#8DC63F';
+								if (data.labelBacking) data.labelBacking[0].style.fill = '#8DC63F';
 							} else {
 								data.shape[0].style.fill = '#555';
+								if (data.labelBacking) data.labelBacking[0].style.fill = '#333';
 							}
 						},
 						selectState: {} // We have to do this to workaround a bug

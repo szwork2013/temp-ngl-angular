@@ -49477,6 +49477,13 @@ angular.module('Forms')
 						stateHoverStyles: {
 							fill: '#888'
 						},
+						labelBackingStyles: {
+							fill: '#555',
+							stroke: 'transparent'
+						},
+						labelBackingHoverStyles: {
+							fill: '#888'
+						},
 						// Add the state to the model on click
 						click: function(event, data) {
 							var added = toggleArrayValue(scope.ngModel, data.name);
@@ -49486,8 +49493,10 @@ angular.module('Forms')
 						select: function(event, data) {
 							if (scope.ngModel.indexOf(data.name) !== -1) {
 								data.shape[0].style.fill = '#8DC63F';
+								if (data.labelBacking) data.labelBacking[0].style.fill = '#8DC63F';
 							} else {
 								data.shape[0].style.fill = '#555';
+								if (data.labelBacking) data.labelBacking[0].style.fill = '#333';
 							}
 						},
 						selectState: {} // We have to do this to workaround a bug
