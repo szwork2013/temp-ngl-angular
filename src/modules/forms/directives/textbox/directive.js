@@ -10,11 +10,8 @@ angular.module('Forms')
 			replace: true,
 
 			scope: {
-				customClass  : '@?',
-				id           : '@?',
 				ngModel      : '=?',
-				name         : '@',
-				validation   : '=?'
+				name         : '@?'
 			},
 
 			link: function(scope, el, attrs) {
@@ -38,7 +35,7 @@ angular.module('Forms')
 
 						// Style the textarea
 						$textarea.css({
-							'overflow'   : 'hidden',
+							'overflow'   : 'auto',
 							'min-height' : '2em',
 							'resize'     : 'vertical'
 						});

@@ -19,8 +19,7 @@ angular.module('Forms')
 				inputClass   : '@?',
 				ngModel      : '=?',
 				name         : '@',
-				options      : '=',
-				validation   : '=?'
+				options      : '='
 			},
 
 			link: function(scope, el, attrs) {

@@ -17,10 +17,9 @@ angular.module('Forms')
 				id          : '@?',
 				ngChange    : '&?',
 				ngModel     : '=?',
-				name        : '@',
+				name        : '@?',
 				options     : '=',
-				validation  : '=?',
-				value       : '@'
+				value       : '@?'
 			},
 			
 			link: function (scope, el, attrs) {

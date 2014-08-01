@@ -29,7 +29,7 @@ fieldset {
 
 	p {
 		legend + & {
-			margin-top: 15px;
+			margin-top: 10px;
 		}
 
 		&.info {
@@ -38,9 +38,27 @@ fieldset {
 		}
 	}
 
+	.expand {
+		display: none;
+	}
+
 	&.collapsed {
-		height: 0;
-		overflow: hidden;
+
+		* {
+			display: none;
+		}
+
+		.collapse {
+			display: none;
+		}
+
+		.expand {
+			display: inline;
+		}
+
+		legend {
+			display: block;
+		}
 	}
 
 	&.disabled {
@@ -297,6 +315,7 @@ input[type='number'] {
 	color: #FFF;
 	cursor: pointer;
 	font-weight: bold;
+	margin-bottom: 2px;
 	text-transform: uppercase;
 
 	i {
@@ -317,6 +336,7 @@ input[type='number'] {
 	&:active {
 		.gradient(lighten(@light, 7%), lighten(@light, 7%), lighten(@lighter, 7%));
 		.box-shadow(0 1px 0 darken(@darker, 15%));
+		margin-bottom: 0;
 		margin-top: 2px;
 
 		i {
@@ -338,11 +358,188 @@ button.red {
 }
 
 button.gray {
-	.button(#B7B7B7, #9C9C9C, #9B9B9B, #848484);
+	.border-radius(3px);
+	.box-shadow(0 3px 0 darken(#848484, 10%));
+	.gradient(#9C9C9C, #9C9C9C, #B7B7B7);
+	border-bottom: 1px solid #B7B7B7;
 	color: #C7C7C7;
+	cursor: no-drop;
+	font-weight: bold;
+	margin-bottom: 2px;
+	text-transform: uppercase;
+
+	i {
+		.gradient(#848484, #848484, #9B9B9B);
+		float: left;
+		margin: 0 20px 0 -20px;
+		width: 40px;
+	}
+
+	&.active {
+		margin-bottom: 2px !important;
+		margin-top: 0 !important;
+	}
 }
 
 // END BUTTON STYLES
+// --------------------------------------------------
+
+
+// --------------------------------------------------
+// DELIVERY SCHEDULE STYLES
+
+.ui-selectable-helper {
+	display: none;
+}
+
+.delivery-schedule {
+	.clearfix;
+	background-color: #FFF;
+	width: 100%;
+
+	.day {
+		border-bottom: 1px solid #AAA;
+		float: left;
+		width: (100 / 7) * 1%;
+
+		> header, .increment {
+			color: #777;
+			font-size: 10px;
+			line-height: 14px;
+			padding: 3px 5px 3px 10px;
+			width: 100%;
+		}
+
+		> header {
+			background-color: #555;
+			border-right: 1px solid #666;
+			color: #FFF;
+			font-size: 12px;
+			font-weight: bold;
+			height: 30px;
+			line-height: 30px;
+		}
+
+		.increment {
+			// border-top: 1px dotted #AAA;
+			border-right: 1px solid #AAA;
+			cursor: default;
+			text-align: right;
+
+			&.odd {
+				background-color: #F5F5F5;
+			}
+
+			&:first-child {
+				border-top: 0;
+			}
+
+			&.ui-selected {
+				background-color: @colorPrimary;
+				border-right: 1px solid darken(@colorPrimary, 10%);
+				color: darken(@colorPrimary, 35%);
+				font-weight: bold;
+
+				&.odd {
+					background-color: darken(@colorPrimary, 3%);
+				}
+
+				&.ui-unselecting {
+					background-color: #F3BCC3;
+					color: #9A5E66;
+
+					&.odd {
+						background-color: #FAC4CA;
+					}
+				}
+			}
+
+			&.ui-selecting {
+				background-color: lighten(@colorPrimary, 25%);
+				color: @colorPrimaryDark;
+
+				&.odd {
+					background-color: lighten(@colorPrimary, 20%);
+				}
+			}
+
+			&.ui-unselecting {
+				background-color: #F9E4E4;
+				color: #9A5E66;
+
+				&.odd {
+					background-color: darken(#F9E4E4, 2%);
+				}
+			}
+		}
+
+		&.saturday,
+		&.sunday {
+
+			> header {
+				background-color: #444;
+			}
+
+			.increment {
+				background-color: #F5F5F5;
+
+				&.odd {
+					background-color: #E5E5E5;
+				}
+
+				&.ui-selected {
+					background-color: darken(@colorPrimary, 5%);
+					border-right: 1px solid darken(@colorPrimary, 12%);
+					font-weight: bold;
+
+					&.odd {
+						background-color: darken(@colorPrimary, 8%);
+					}
+
+					&.ui-unselecting {
+						background-color: #E7B0B7;
+						color: #9A5E66;
+
+						&.odd {
+							background-color: #F3BCC3;
+						}
+					}
+				}
+
+				&.ui-selecting {
+					background-color: lighten(@colorPrimary, 15%);
+					color: @colorPrimaryDark;
+
+					&.odd {
+						background-color: lighten(@colorPrimary, 10%);
+					}
+				}
+
+				&.ui-unselecting {
+					background-color: darken(#F9E4E4, 3%);
+					color: #9A5E66;
+
+					&.odd {
+						background-color: darken(#F9E4E4, 5%);
+					}
+				}
+			}
+		}
+
+		&:first-child {
+
+			.increment {
+				border-left: 1px solid #AAA;
+			}
+		}
+
+		&.sunday > header {
+			border-right: 0;
+		}
+	}
+}
+
+// END DELIVERY SCHEDULE STYLES
 // --------------------------------------------------
 
 

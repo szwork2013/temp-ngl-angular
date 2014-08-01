@@ -25,6 +25,10 @@
 	.border-box;
 }
 
+body {
+	overflow: hidden;
+}
+
 // Make all sections start a new layer order
 section {
 	position: relative;
@@ -172,7 +176,7 @@ section#sidebar {
 // --------------------------------------------------
 // OTHER STYLES
 
-// Campaigns
+// CAMPAIGNS PAGE
 #form-campaign {
 	margin-right: 350px;
 }
@@ -185,7 +189,7 @@ section#sidebar {
 
 #state-list {
 	float: left;
-	margin-right: 30px;
+	margin: 0 30px 30px 0;
 
 	.state-group {
 		float: left;
@@ -198,10 +202,27 @@ section#sidebar {
 	}
 }
 
+#zip-targeting {
+
+	textarea {
+		max-height: 15em;
+	}
+}
+
+.schedule-wrapper {
+	.border-radius(5px);
+	background-color: #EEE;
+	padding: 20px;
+
+	.row {
+		margin-bottom: 10px;
+	}
+}
+
 .campaign-stats {
 	.border-radius(3px);
-	background-color: #EEE;
-	color: #333;
+	background-color: #EEF7E2;
+	color: #555;
 	padding: 20px;
 	position: absolute;
 	right: 30px;
@@ -224,7 +245,7 @@ section#sidebar {
 	.minimum-bid,
 	.recommended-bid {
 		.clearfix;
-		border-top: 1px solid #DDD;
+		border-top: 1px solid darken(#EEF7E2, 10%);
 		height: 40px;
 		line-height: 40px;
 
@@ -238,7 +259,24 @@ section#sidebar {
 	}
 }
 
-// Leads
+.bid-numbers {
+	.clearfix;
+	.inline-block;
+	vertical-align: middle;
+	
+	.labels, .values {
+		float: left;
+		margin-left: 10px;
+	}
+
+	.values {
+		font-weight: bold;
+		text-align: right;
+	}
+}
+// END CAMPAIGNS PAGE
+
+// LEADS PAGE
 .lead-snapshot {
 	.box-shadow(-2px 0 0 rgba(0,0,0,0.15));
 	background-color: #E2E2E2;
@@ -267,6 +305,7 @@ section#sidebar {
 		padding: 20px;
 	}
 }
+// END LEADS PAGE
 
 // END OTHER STYLES
 // --------------------------------------------------

@@ -4,12 +4,12 @@
 
 routes.push(
 	{
-		state: 'marketplace.campaigns.create',
+		state: 'marketplace.campaigns.edit',
 		options: {
-				url: '/create',
+				url: '/edit:campaign_id',
 				views: {
 					'stage' : {
-						templateUrl: '/apps/marketplace/modules/Campaigns/pages/create/view.html',
+						templateUrl: '/apps/marketplace/modules/Campaigns/pages/edit/view.html',
 						controller: function($scope, $rootScope) {
 
 							// Breadcrumbs
@@ -26,11 +26,33 @@ routes.push(
 									{
 										id: 'health-insurance',
 										name: 'Health Insurance'
+									},
+									{
+										id: 'auto-insurance',
+										name: 'Auto Insurance'
 									}
 								];
 
 							$scope.verticalOptions = buildOptions($scope.verticals, 'name', 'id');
 							$scope.verticalOptions.unshift({label: 'Select a Vertical', value: ''});
+
+							$scope.vertical = {
+								minimum_bid: {
+									shared: 5.50,
+									exclusive: 7.50
+								},
+								recommended_bid: {
+									shared: 6.50,
+									exclusive: 12.50
+								}
+							}
+
+							// Load filters based on selected vertical
+							$scope.$watch('campaign.vertical_id', function(newValue, oldValue) {
+								if (newValue != '') {
+									$rootScope.appState.go('marketplace.campaigns.edit.' + $scope.campaign.vertical_id.replace('-', '_'));
+								}
+							});
 							
 							// END VERTICALS
 							// --------------------------------------------------
@@ -39,6 +61,7 @@ routes.push(
 							// --------------------------------------------------
 							// CAMPAIGN
 							
+							// Set campaign defaults
 							$scope.campaign = {
 									vertical_id: 'health-insurance',
 									name: 'Daily Health Leads',
@@ -46,7 +69,10 @@ routes.push(
 									targeting: {
 										states: ['CA'],
 										zip: []
-									}
+									},
+									strategy: 'shared',
+									delivery_schedule: [],
+									bid: 7.75
 								};
 							
 							// END CAMPAIGN
@@ -54,8 +80,21 @@ routes.push(
 
 
 							// --------------------------------------------------
+							// WATCH FOR MINIMUM REQUIREMENTS
+							
+							$scope.showFullForm = false;
+							$scope.$watchCollection('campaign', function(newValue, oldValue) {
+								$scope.showFullForm = (newValue.vertical_id != '' && newValue.name != '');
+							});
+							
+							// END WATCH FOR MINIMUM REQUIREMENTS
+							// --------------------------------------------------
+
+
+							// --------------------------------------------------
 							// TARGETING
 							
+							$scope.targetingType = 'state',
 							$scope.stateOptions = [
 									[
 										{ label: "Alabama", value: "AL" },
@@ -117,11 +156,24 @@ routes.push(
 								];
 
 							// Convert zip codes into an array
+							$scope.zipRaw = '';
 							$scope.$watch('zipRaw', function() {
 								$scope.campaign.targeting.zip = $scope.zipRaw.split('\n');
 							});
 
 							// END TARGETING
+							// --------------------------------------------------
+
+
+							// --------------------------------------------------
+							// DELIVERY SCHEDULE
+							
+							// Clear the delivery schedule
+							$scope.clearDeliverySchedule = function clearDeliverySchedule() {
+								$scope.campaign.delivery_schedule = [];
+							};
+							
+							// END DELIVERY SCHEDULE
 							// --------------------------------------------------
 
 						}

@@ -17,7 +17,6 @@ angular.module('Forms')
 				id          : '@?',
 				ngModel     : '=?',
 				name        : '@',
-				validation  : '=?',
 				value       : '@'
 			},
 			

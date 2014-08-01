@@ -35465,38 +35465,6 @@ return jQuery;
 
 angular.module('Forms', []);
 // --------------------------------------------------
-// REBOOT FORMS - CHECKBOX GROUP
-// --------------------------------------------------
-
-// This directive should be used as <checkbox-group></checkbox-group>
-
-angular.module('Forms')
-	.directive('checkboxGroup', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-			transclude: true,
-
-			scope: {
-				bullet       : '@?',
-				groupClass   : '@?',
-				id           : '@?',
-				inputClass   : '@?',
-				ngModel      : '=?',
-				name         : '@',
-				options      : '=',
-				validation   : '=?'
-			},
-
-			link: function(scope, el, attrs) {
-				
-			},
-
-			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
-		}
-	});
-// --------------------------------------------------
 // REBOOT FORMS - CHECKBOX
 // --------------------------------------------------
 
@@ -35515,7 +35483,6 @@ angular.module('Forms')
 				id          : '@?',
 				ngModel     : '=?',
 				name        : '@',
-				validation  : '=?',
 				value       : '@',
 			},
 			
@@ -35555,49 +35522,58 @@ angular.module('Forms')
 		}
 	});
 // --------------------------------------------------
-// REBOOT FORMS - DROPDOWN
+// REBOOT FORMS - CHECKBOX GROUP
 // --------------------------------------------------
 
-// This directive should be used as <radio></radio>
+// This directive should be used as <checkbox-group></checkbox-group>
 
 angular.module('Forms')
-	.directive('dropdown', function() {
+	.directive('checkboxGroup', function() {
 		return {
 
 			restrict: 'E',
 			replace: true,
+			transclude: true,
 
 			scope: {
-				arrow       : '@?',
-				customClass : '@?',
-				id          : '@?',
-				ngChange    : '&?',
-				ngModel     : '=?',
-				name        : '@',
-				options     : '=',
-				validation  : '=?',
-				value       : '@'
+				bullet       : '@?',
+				groupClass   : '@?',
+				id           : '@?',
+				inputClass   : '@?',
+				ngModel      : '=?',
+				name         : '@',
+				options      : '='
 			},
+
+			link: function(scope, el, attrs) {
+				
+			},
+
+			templateUrl: '/modules/Forms/directives/checkbox-group/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - COLLAPSABLE ELEMENT
+// --------------------------------------------------
+
+angular.module('Forms')
+	.directive('collapsable', function() {
+		return {
+			restrict: 'A',
 			
 			link: function (scope, el, attrs) {
+				el.ready(function() {
+					var $el = $(el);
 
-				// Watch for changes to the model
-				scope.$watch('ngModel', function() {
-					scope.options.some(function(option) {
-						if (option.value == scope.ngModel) {
-							scope.valueLabel = option.label;
-							return true;
+					$el.find('.toggle-collapse').on('click', function() {
+						if ($el.hasClass('collapsed')) {
+							$el.removeClass('collapsed');
+						} else {
+							$el.addClass('collapsed');
 						}
 					});
 				});
-
-				// Add the focus class when focused
-				el.find('select').on('focus blur', function(event) {
-					el.toggleClass('focus', $(this).is(document.activeElement));
-				});
-			},
-
-			templateUrl: '/modules/Forms/directives/dropdown/view.html'
+			}
 		}
 	});
 // --------------------------------------------------
@@ -35668,42 +35644,258 @@ angular.module('Forms')
 		}
 	});
 // --------------------------------------------------
-// REBOOT FORMS - RADIO BUTTON
+// REBOOT FORMS - STATE SELECTOR
 // --------------------------------------------------
 
 // This directive should be used as <radio></radio>
 
 angular.module('Forms')
-	.directive('radio', function() {
+	.directive('deliverySchedule', function() {
 		return {
 
 			restrict: 'E',
 			replace: true,
 
 			scope: {
-				bullet      : '@?',
-				customClass : '@?',
-				id          : '@?',
-				ngModel     : '=?',
-				name        : '@',
-				validation  : '=?',
-				value       : '@'
+				ngModel        : '=?',
+				settings       : '=?',
+				timezoneOffset : '@?'	// Set as an integer
 			},
 			
 			link: function (scope, el, attrs) {
-				// Watch for changes to the model
-				scope.$watch('ngModel', function() {
-					scope.isChecked = (scope.ngModel == scope.value);
+				var $el = $(el);
+
+				scope.dayOffset = 1; // Set to 1 to use ISO8601 weekdays
+				scope.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+				// Set the timezone offset
+				if (!scope.timezoneOffset) {
+					scope.timezoneOffset = new Date().getTimezoneOffset() / 60 * -1;
+				}
+				else {
+					scope.timezoneOffset = parseInt(scope.timezoneOffset);	
+				}
+
+				scope.increments = [];
+				for (var hour = 0; hour < 24; hour++) {
+					var increment = {
+							hour: hour,
+							dayOffset: 0
+						};
+					
+					// Get the offset hour and day offset
+					increment.offsetHour = hour + scope.timezoneOffset;
+					if (increment.offsetHour < 0) {
+						increment.offsetHour = 24 + increment.offsetHour;
+						increment.dayOffset = -1;
+					}
+					else if (increment.offsetHour > 23) {
+						increment.offsetHour = increment.offsetHour - 24;
+						increment.dayOffset = 1;
+					}
+
+					// Get the readable time
+					increment.readableHour = increment.hour;
+					if (increment.hour >= 12) {
+						increment.readableHour = increment.hour - 12;
+					}
+					if (increment.readableHour === 0) {
+						increment.readableHour = 12;
+					}
+
+					scope.increments.push(increment);
+
+					// Set the correct day
+					scope.getOffsetDay = function getOffsetDay(day) {
+						if (day < 1) {
+							day = 7;
+						}
+						else if (day > 7) {
+							day = 1;
+						}
+
+						return day;
+					};
+
+					// Get the period based on the hour
+					scope.getHourRange = function getHourRange(hour) {
+						var start = hour;
+						var start_period = 'AM';
+						if (hour > 11) start_period = 'PM';
+						if (hour > 12) {
+							start = hour - 12;
+						}
+						if (hour == 0) {
+							start = 12;
+						}
+
+						var end = hour + 1;
+						var end_period = 'AM';
+						if (end > 11 && end < 24) end_period = 'PM';
+						if (end > 12) {
+							end = end - 12;
+						}
+
+						return start + ' ' + start_period + ' - ' + end + ' ' + end_period;
+					};
+				}
+
+				// Return true if the value is in the model array
+				scope.valueInModel = function valueInModel(value) {
+					return _.indexOf(scope.ngModel, value) !== -1;
+				}
+
+				// Set some init values
+				scope.selecting  = false;
+				scope.selectMode = 'add';
+
+				// Add the selectable behavior
+				$el.on('mousedown', function(event) {
+					event.metaKey = true;
+				}).selectable({
+					'filter' : '.increment',
+
+					'stop' : function updateModel(event, ui) {
+							var selectedValues = [];
+							$el.find('.ui-selected').each(function() {
+								selectedValues.push($(this).attr('data-value'));
+							});
+							scope.ngModel = selectedValues;
+							scope.$apply();
+
+							scope.selecting = false;
+						},
+
+					'selecting' : function select(event, ui) {
+							var $increment = $(ui.selecting);
+
+							if (!scope.selecting) {
+								scope.selectMode = 'add';
+								scope.selecting  = true;
+							}
+
+							if (scope.valueInModel($increment.attr('data-value'))) {
+								$increment.addClass('ui-selected');
+							}
+
+							if (scope.selectMode == 'remove') {
+								$increment.addClass('ui-unselecting').removeClass('ui-selecting');
+							}
+						},
+
+					'selected' : function selected(event, ui) {
+							$(ui.selected).addClass('ui-selected');
+						},
+
+					'unselecting' : function unselect(event, ui) {
+							var $increment = $(ui.unselecting);
+
+							if (!scope.selecting) {
+								scope.selectMode = 'remove';
+								scope.selecting = true;
+							} else {
+								$increment.removeClass('ui-unselecting');
+							}
+
+							if (scope.valueInModel($increment.attr('data-value'))) {
+								$increment.addClass('ui-selected');
+							}
+						},
+
+					'unselected' : function unselected(event, ui) {
+							$(ui.unselected).removeClass('ui-selected');
+						}
 				});
 
-				el.find('input').on('focus blur', function(event) {
+				el.ready(function() {
+					scope.$watch('ngModel', function() {
+						// First deselect everything
+						$el.find('.increment').removeClass('ui-selected');
+
+						// Then select all the values in the model
+						_(scope.ngModel).forEach(function(incrementValue) {
+							$el.find('[data-value="' + incrementValue + '"]').addClass('ui-selected');
+						});
+					});
+				});
+
+			},
+
+			templateUrl: '/modules/Forms/directives/delivery-schedule/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - DROPDOWN
+// --------------------------------------------------
+
+// This directive should be used as <radio></radio>
+
+angular.module('Forms')
+	.directive('dropdown', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				arrow       : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngChange    : '&?',
+				ngModel     : '=?',
+				name        : '@?',
+				options     : '=',
+				value       : '@?'
+			},
+			
+			link: function (scope, el, attrs) {
+
+				// Watch for changes to the model
+				scope.$watch('ngModel', function() {
+					scope.options.some(function(option) {
+						if (option.value == scope.ngModel) {
+							scope.valueLabel = option.label;
+							return true;
+						}
+					});
+				});
+
+				// Add the focus class when focused
+				el.find('select').on('focus blur', function(event) {
 					el.toggleClass('focus', $(this).is(document.activeElement));
 				});
 			},
 
-			templateUrl: '/modules/Forms/directives/radio/view.html'
+			templateUrl: '/modules/Forms/directives/dropdown/view.html'
 		}
 	});
+// --------------------------------------------------
+// REBOOT FORMS - MASK INPUT MASKING
+// --------------------------------------------------
+
+angular.module('Forms')
+	.directive('mask', ['$filter', function($filter) {
+		return {
+
+			restrict: 'A',
+			require: 'ngModel',
+			
+			link: function (scope, el, attrs, ngModelCtrl) {
+
+				switch(attrs.mask) {
+					case 'currency':
+						ngModelCtrl.$parsers.push(function toLowerCase(value) {
+							value = value.toString().replace(/[\.,]/g, '');
+							value = parseInt(value) * 0.01;
+							ngModelCtrl.$viewValue = $filter('currency')(parseFloat(value).toFixed(2), '');
+							ngModelCtrl.$render();
+							return parseFloat(value);
+						});
+						break;
+				}
+			}
+		}
+	}]);
 // --------------------------------------------------
 // REBOOT FORMS - CHECKBOX GROUP
 // --------------------------------------------------
@@ -35727,8 +35919,7 @@ angular.module('Forms')
 				inputClass   : '@?',
 				ngModel      : '=?',
 				name         : '@',
-				options      : '=',
-				validation   : '=?'
+				options      : '='
 			},
 
 			link: function(scope, el, attrs) {
@@ -35736,6 +35927,42 @@ angular.module('Forms')
 			},
 
 			templateUrl: '/modules/Forms/directives/multi-select/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - RADIO BUTTON
+// --------------------------------------------------
+
+// This directive should be used as <radio></radio>
+
+angular.module('Forms')
+	.directive('radio', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				bullet      : '@?',
+				customClass : '@?',
+				id          : '@?',
+				ngModel     : '=?',
+				name        : '@',
+				value       : '@'
+			},
+			
+			link: function (scope, el, attrs) {
+				// Watch for changes to the model
+				scope.$watch('ngModel', function() {
+					scope.isChecked = (scope.ngModel == scope.value);
+				});
+
+				el.find('input').on('focus blur', function(event) {
+					el.toggleClass('focus', $(this).is(document.activeElement));
+				});
+			},
+
+			templateUrl: '/modules/Forms/directives/radio/view.html'
 		}
 	});
 // --------------------------------------------------
@@ -35756,13 +35983,11 @@ angular.module('Forms')
 
 			scope: {
 				bullet       : '@?',
-				groupClass   : '@?',
-				id           : '@?',
+				inputId      : '@?',
 				inputClass   : '@?',
 				ngModel      : '=?',
 				name         : '@',
-				options      : '=',
-				validation   : '=?'
+				options      : '='
 			},
 
 			link: function(scope, el, attrs) {
@@ -35770,6 +35995,74 @@ angular.module('Forms')
 			},
 
 			templateUrl: '/modules/Forms/directives/radio-group/view.html'
+		}
+	});
+// --------------------------------------------------
+// REBOOT FORMS - STATE SELECTOR
+// --------------------------------------------------
+
+// This directive should be used as <radio></radio>
+
+angular.module('Forms')
+	.directive('stateSelector', function() {
+		return {
+
+			restrict: 'E',
+			replace: true,
+
+			scope: {
+				ngModel     : '=?',
+				settings    : '=?'
+			},
+			
+			link: function (scope, el, attrs) {
+
+				$(el).usmap({
+					stateStyles: {
+						fill: '#555',
+						stroke: 'transparent'
+					},
+					stateHoverStyles: {
+						fill: '#888'
+					},
+					stateHoverAnimation: 0,
+					labelBackingStyles: {
+						fill: '#555',
+						stroke: 'transparent'
+					},
+					labelBackingHoverStyles: {
+						fill: '#888'
+					},
+					// Add the state to the model on click
+					click: function(event, data) {
+						var added = toggleArrayValue(scope.ngModel, data.name);
+						scope.$apply();
+					},
+					// Highlight states in the model
+					select: function(event, data) {
+						if (scope.ngModel.indexOf(data.name) !== -1) {
+							data.shape[0].style.fill = '#8DC63F';
+							if (data.labelBacking) data.labelBacking[0].style.fill = '#8DC63F';
+						} else {
+							data.shape[0].style.fill = '';
+							if (data.labelBacking) data.labelBacking[0].style.fill = '#333';
+						}
+					},
+					selectState: {} // We have to do this to workaround a bug
+				});
+
+				// Watch for changes to the model and highlight the states
+				// We create an old values array so we can unselect removed states
+				scope.oldValues = [];
+				scope.$watch('ngModel', function(newValue, oldValue) {
+					oldValue.concat(newValue).forEach(function(state) {
+						$(el).usmap('trigger', state, 'select');
+					});
+				}, true);
+
+			},
+
+			templateUrl: '/modules/Forms/directives/state-selector/view.html'
 		}
 	});
 // --------------------------------------------------
@@ -35784,11 +36077,8 @@ angular.module('Forms')
 			replace: true,
 
 			scope: {
-				customClass  : '@?',
-				id           : '@?',
 				ngModel      : '=?',
-				name         : '@',
-				validation   : '=?'
+				name         : '@?'
 			},
 
 			link: function(scope, el, attrs) {
@@ -35812,7 +36102,7 @@ angular.module('Forms')
 
 						// Style the textarea
 						$textarea.css({
-							'overflow'   : 'hidden',
+							'overflow'   : 'auto',
 							'min-height' : '2em',
 							'resize'     : 'vertical'
 						});
@@ -35834,78 +36124,5 @@ angular.module('Forms')
 			},
 
 			templateUrl: '/modules/Forms/directives/textbox/view.html'
-		}
-	});
-// --------------------------------------------------
-// REBOOT FORMS - STATE SELECTOR
-// --------------------------------------------------
-
-// This directive should be used as <radio></radio>
-
-angular.module('Forms')
-	.directive('stateSelector', function() {
-		return {
-
-			restrict: 'E',
-			replace: true,
-
-			scope: {
-				customClass : '@?',
-				id          : '@?',
-				ngModel     : '=?',
-				settings    : '=?'
-			},
-			
-			link: function (scope, el, attrs) {
-
-				el.ready(function() {
-					$(el).usmap({
-						stateStyles: {
-							fill: '#555',
-							stroke: 'transparent'
-						},
-						stateHoverStyles: {
-							fill: '#888'
-						},
-						labelBackingStyles: {
-							fill: '#555',
-							stroke: 'transparent'
-						},
-						labelBackingHoverStyles: {
-							fill: '#888'
-						},
-						// Add the state to the model on click
-						click: function(event, data) {
-							var added = toggleArrayValue(scope.ngModel, data.name);
-							scope.$apply();
-						},
-						// Highlight states in the model
-						select: function(event, data) {
-							if (scope.ngModel.indexOf(data.name) !== -1) {
-								data.shape[0].style.fill = '#8DC63F';
-								if (data.labelBacking) data.labelBacking[0].style.fill = '#8DC63F';
-							} else {
-								data.shape[0].style.fill = '#555';
-								if (data.labelBacking) data.labelBacking[0].style.fill = '#333';
-							}
-						},
-						selectState: {} // We have to do this to workaround a bug
-					});
-
-					// Watch for changes to the model and highlight the states
-					// We create an old values array so we can unselect removed states
-					scope.oldValues = [];
-					scope.$watch('ngModel', function() {
-						scope.oldValues.concat(scope.ngModel).forEach(function(state) {
-							$(el).usmap('trigger', state, 'select');
-						});
-
-						scope.oldValues = scope.ngModel.slice(); // Use slice to get the array by value not reference
-					}, true);
-				});
-
-			},
-
-			templateUrl: '/modules/Forms/directives/state-selector/view.html'
 		}
 	});

@@ -16,13 +16,11 @@ angular.module('Forms')
 
 			scope: {
 				bullet       : '@?',
-				groupClass   : '@?',
-				id           : '@?',
+				inputId      : '@?',
 				inputClass   : '@?',
 				ngModel      : '=?',
 				name         : '@',
-				options      : '=',
-				validation   : '=?'
+				options      : '='
 			},
 
 			link: function(scope, el, attrs) {
