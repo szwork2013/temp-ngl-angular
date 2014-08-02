@@ -18,7 +18,7 @@
 <div class="content has-form">
 	<h1>New Campaign</h1>
 
-	<form id="form-campaign">
+	<form name="formCampaign" id="form-campaign" novalidate>
 		<p>Fields in <strong>bold</strong> are required.</p>
 		
 		<fieldset>
@@ -38,10 +38,11 @@
 			<legend>Step 2: Name Your Campaign</legend>
 			<p>Give your campaign a name so you can identify it in your dashboard.</p>
 
-			<div class="control-group required">
+			<div class="control-group required" ng-class="{valid: formCampaign.name.$valid, invalid: formCampaign.name.$invalid}">
 				<label class="control-label" for="campaign[name]">What do you want to name your campaign?</label>
 				<div class="controls">
-					<input type="text" ng-model="campaign.name" placeholder="e.g. Basic Health Leads">
+					<input type="text" ng-model="campaign.name" name="name" validation="validation.name" placeholder="e.g. Basic Health Leads"><i class="validation-icon" ng-class="{'ngl-check': formCampaign.name.$valid, 'ngl-exclamation': formCampaign.name.$invalid}"></i>
+					<p class="form-error">{{formCampaign.name.$errorMessage}}</p>
 				</div>
 			</div>
 
@@ -157,5 +158,5 @@
 </div>
 
 <div class="buttons">
-	<button class="{{(showFullForm) ? 'green' : 'gray'}}"><i class="ngl-check"></i>Save</button>
+	<button class="{{(showFullForm) ? 'green' : 'gray'}}" ng-disabled="form_campaign.$invalid"><i class="ngl-check"></i>Save</button>
 </div>

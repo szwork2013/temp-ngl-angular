@@ -74,6 +74,11 @@ routes.push(
 									delivery_schedule: [],
 									bid: 7.75
 								};
+
+							// Form Validation
+							$scope.validation = {
+								name: ['required', ['minLength', 6]]
+							}
 							
 							// END CAMPAIGN
 							// --------------------------------------------------

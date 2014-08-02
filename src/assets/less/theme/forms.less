@@ -569,6 +569,10 @@ input[type='number'] {
 	}
 }
 
+.form-error {
+	display: none;
+}
+
 .control-group {
 
 	&.valid {
@@ -589,6 +593,10 @@ input[type='number'] {
 	}
 
 	&.invalid {
+
+		.form-error {
+			display: inherit;
+		}
 
 		i.validation-icon {
 			color: @colorInvalidDark;
